@@ -27,7 +27,7 @@
         <div class="book-item">
             <a href="BookDetails.aspx?id=<%= books[j].Id %>">
                 <div class="img">
-                    <img src="./images/bookCover/<%=books[j].CoverImg%>" />
+                    <img src="<%=books[j].CoverImg%>" />
                 </div>
                 <div class="book-content">
                     <h2><%= books[j].Title %></h2>

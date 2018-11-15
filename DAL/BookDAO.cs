@@ -15,7 +15,7 @@ namespace DAL
         public Book getByISBN(string isbn)
         {
             Book book = null;
-            string query = "select * from Book where ISBN = @isbn";
+            string query = "select * from Book where ISBN = @isbn where status = " + Book.STATUS_ACCEPTED;
             SqlConnection conn = GetConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -33,7 +33,7 @@ namespace DAL
                     Language = reader.GetString(4),
                     Description = reader.GetString(5),
                     Status = reader.GetInt32(6),
-                    CoverImg = reader.GetString(7),
+                    CoverImg = ImageFolder + reader.GetString(7),
                     CreatedTime = reader.GetDateTime(8),
                     CreatorID = reader.GetInt32(9),
                     CategoryID = reader.GetInt32(10)
@@ -76,7 +76,7 @@ namespace DAL
                     + " (select * from Book where title LIKE '%" + queryStr + "%'"
                     + " union select * from Book where ISBN LIKE '%" + queryStr + "%'"
                     + " union select * from Book where author LIKE '%" + queryStr + "%') result) final_result"
-                    + " where final_result.row between " + from + " and " + to;
+                    + " where final_result.row between " + from + " and " + to + " and status = " + Book.STATUS_ACCEPTED;
             return getBookByCommand(query);
         }
 
@@ -88,7 +88,7 @@ namespace DAL
             string query = "select * from "
                     + "(select *, row_number() over (order by id DESC) as row from Book"
                     + " where title LIKE '%" + name + "%') result"
-                    + " where result.row between " + from + " and " + to;
+                    + " where result.row between " + from + " and " + to + " and status = " + Book.STATUS_ACCEPTED; ;
             return getBookByCommand(query);
         }
 
@@ -100,7 +100,7 @@ namespace DAL
             string query = "select * from "
                     + "(select *, row_number()  over (order by id DESC) as row from Book"
                     + " where ISBN LIKE '%" + ISBN + "%') result"
-                    + " where result.row between " + from + " and " + to;
+                    + " where result.row between " + from + " and " + to + " and status = " + Book.STATUS_ACCEPTED; ;
             return getBookByCommand(query);
         }
 
@@ -112,7 +112,7 @@ namespace DAL
             string query = "select * from "
                     + "(select *, row_number() over (order by id DESC) as row from Book"
                     + " where author LIKE '%" + author + "%') result"
-                    + " where result.row between " + from + " and " + to;
+                    + " where result.row between " + from + " and " + to + " and status = " + Book.STATUS_ACCEPTED; ;
             return getBookByCommand(query);
         }
 
@@ -141,7 +141,7 @@ namespace DAL
                                 Language = reader.GetString(4),
                                 Description = reader.GetString(5),
                                 Status = reader.GetInt32(6),
-                                CoverImg = reader.GetString(7),
+                                CoverImg = ImageFolder + reader.GetString(7),
                                 CreatedTime = reader.GetDateTime(8),
                                 CreatorID = reader.GetInt32(9),
                                 CategoryID = reader.GetInt32(10)
@@ -178,16 +178,16 @@ namespace DAL
                     sqlCommand = "select count (distinct id) from"
                             + "(select * from Book where title LIKE '%" + queryStr + "%'"
                     + " union select * from Book where ISBN LIKE '%" + queryStr + "%'"
-                    + " union select * from Book where author LIKE '%" + queryStr + "%') result";
+                    + " union select * from Book where author LIKE '%" + queryStr + "%') result where status = " + Book.STATUS_ACCEPTED;
                     break;
                 case "Title":
-                    sqlCommand = "select count (*) from Book where title LIKE '%" + queryStr + "%'";
+                    sqlCommand = "select count (*) from Book where title LIKE '%" + queryStr + "%' where status = " + Book.STATUS_ACCEPTED; 
                     break;
                 case "Author":
-                    sqlCommand = "select count (*) from Book where author LIKE '%" + queryStr + "%'";
+                    sqlCommand = "select count (*) from Book where author LIKE '%" + queryStr + "%' where status = " + Book.STATUS_ACCEPTED; 
                     break;
                 case "ISBN":
-                    sqlCommand = "select count (*) from Book where ISBN LIKE '%" + queryStr + "%'";
+                    sqlCommand = "select count (*) from Book where ISBN LIKE '%" + queryStr + "%' where status = " + Book.STATUS_ACCEPTED; 
                     break;
             }
 
