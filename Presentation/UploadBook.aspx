@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterForm/MainForm.Master" AutoEventWireup="true" CodeBehind="UploadBook.aspx.cs" Inherits="View.UploadBook" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/Main.Master" AutoEventWireup="true" CodeBehind="UploadBook.aspx.cs" Inherits="Presentation.UploadBook" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" media="screen" href="css/uploadbook.css" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>

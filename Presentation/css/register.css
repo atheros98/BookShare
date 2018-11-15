@@ -1,0 +1,96 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #00839d;
+}
+
+/*Set properties for content wrapper*/
+.content-wrapper{
+    /*Move the the body to the center of page*/
+    width: 50%;
+    height: 70%;
+    margin: 1% 25% 1% 25%;
+    /*Set box-shadow*/
+    box-shadow: 0 0 24px rgba(0, 0, 0, .8);
+    /*Round border*/
+    border-radius: 25px;
+    overflow: hidden;
+}
+* {
+    box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+    background-color: white;
+
+}
+
+.container h1{
+    font-size: 20px;
+}
+.container p{
+    font-size: 14px;
+}
+/* Full-width input fields */
+input[type=text], input[type=password], input[type=date] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus, , input[type=date]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.registerbtn:hover {
+    opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+    color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+/*----------------------------------------------TEXT FONT-------------------------------------------*/
+.font-san-serif{
+    font-family: sans-serif;
+}
+.font-serif{
+    font-family: serif;
+}
+.font-text-small{
+    font-size: 14px;
+}
+
+.confirm-msg{
+    color: red;
+}
