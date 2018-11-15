@@ -81,7 +81,7 @@
     <Content Include="obj\Debug\View.dll" />
     <Content Include="obj\Debug\View.pdb" />
     <Content Include="Register.aspx" />
-    <Content Include="Test.aspx" />
+    <Content Include="UploadBook.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +120,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadBook.aspx.cs">
+      <DependentUpon>UploadBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadBook.aspx.designer.cs">
+      <DependentUpon>UploadBook.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
