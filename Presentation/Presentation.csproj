@@ -74,6 +74,7 @@
     <Content Include="javascript\dateProcessing.js" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="Search.aspx" />
     <Content Include="UploadBook.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -113,6 +114,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="UploadBook.aspx.cs">
       <DependentUpon>UploadBook.aspx</DependentUpon>
