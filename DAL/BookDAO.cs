@@ -10,8 +10,6 @@ namespace DAL
     public class BookDAO : DBContext<Book>
     {
         private int pageSize = 5;
-        string ImageFolder = "./images/bookCover/";
-
         public Book getByISBN(string isbn)
         {
             Book book = null;
@@ -33,7 +31,7 @@ namespace DAL
                     Language = reader.GetString(4),
                     Description = reader.GetString(5),
                     Status = reader.GetInt32(6),
-                    CoverImg = ImageFolder + reader.GetString(7),
+                    CoverImg = reader.GetString(7),
                     CreatedTime = reader.GetDateTime(8),
                     CreatorID = reader.GetInt32(9),
                     CategoryID = reader.GetInt32(10)
@@ -141,7 +139,7 @@ namespace DAL
                                 Language = reader.GetString(4),
                                 Description = reader.GetString(5),
                                 Status = reader.GetInt32(6),
-                                CoverImg = ImageFolder + reader.GetString(7),
+                                CoverImg = reader.GetString(7),
                                 CreatedTime = reader.GetDateTime(8),
                                 CreatorID = reader.GetInt32(9),
                                 CategoryID = reader.GetInt32(10)
@@ -280,7 +278,7 @@ namespace DAL
                     Language = reader.GetString(4),
                     Description = reader.GetString(5),
                     Status = reader.GetInt32(6),
-                    CoverImg = ImageFolder + reader.GetString(7),
+                    CoverImg = reader.GetString(7),
                     CreatedTime = reader.GetDateTime(8),
                     CreatorID = reader.GetInt32(9),
                     CategoryID = reader.GetInt32(10)

@@ -7,6 +7,8 @@ namespace Model
 {
     public class Book
     {
+        const string ImageFolder = "./images/bookCover/";
+
         private int id;
         private string title;
         private string author;
@@ -105,7 +107,7 @@ namespace Model
         {
             get
             {
-                return coverImg;
+                return ImageFolder + coverImg;
             }
 
             set
