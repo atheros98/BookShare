@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace View.masterForm {
+namespace booksahre.masterForm {
     
     
     public partial class BoxForm {

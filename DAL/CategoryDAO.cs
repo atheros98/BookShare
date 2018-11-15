@@ -24,7 +24,7 @@ namespace DAL
             SqlCommand cmd = new SqlCommand("select * from Category", conn);
             SqlDataReader reader = cmd.ExecuteReader();
 
-            if (reader.Read())
+            while (reader.Read())
             {
                 categories.Add(new Category
                 {

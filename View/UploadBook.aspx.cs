@@ -19,5 +19,17 @@ namespace View
                 categories = new CategoryDAO().GetAll();
             }
         }
+
+        protected void isbn_TextChanged(object sender, EventArgs e)
+        {
+            string ISBN = isbn.Text;
+            Book book = new BookDAO().getByISBN(ISBN);
+            if (book != null)
+            {
+                title.Value = book.Title;
+                author.Value = book.Author;
+                category.Value = book.CategoryID.ToString();
+            }
+        }
     }
 }

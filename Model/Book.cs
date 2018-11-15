@@ -13,11 +13,11 @@ namespace Model
         private string ISBN;
         private string language;
         private string description;
-        private bool deleted;
+        private int status;
         private string coverImg;
         private DateTime createdTime;
         private int creatorID;
-        private string categoryID;
+        private int categoryID;
         public int Id
         {
             get
@@ -122,7 +122,7 @@ namespace Model
             }
         }
 
-        public string CategoryID
+        public int CategoryID
         {
             get
             {
@@ -135,16 +135,29 @@ namespace Model
             }
         }
 
-        public bool Deleted
+        public int Status
         {
             get
             {
-                return deleted;
+                return status;
             }
 
             set
             {
-                deleted = value;
+                status = value;
+            }
+        }
+
+        public int CreatorID
+        {
+            get
+            {
+                return creatorID;
+            }
+
+            set
+            {
+                creatorID = value;
             }
         }
     }

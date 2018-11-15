@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterForm/MainForm.Master" AutoEventWireup="true" CodeBehind="UploadBook.aspx.cs" Inherits="View.UploadBook" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" media="screen" href="css/uploadbook.css" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -10,29 +11,13 @@
     <form id="uploadBook" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-
-        <%--<div class="upload-image">
-            <asp:HiddenField ID="isExist" runat="server" Value="False"/>
-            <p>Upload images (Book cover) here:</p>
-            <br />
-            Cover 1:
-                    <asp:FileUpload ID="cover1" runat="server" accept="image/png, image/jpeg" required="" /><br />
-            Cover 2:
-                    <asp:FileUpload ID="cover2" runat="server" accept="image/png, image/jpeg" /><br />
-            Cover 3:
-                    <asp:FileUpload ID="cover3" runat="server" accept="image/png, image/jpeg" /><br />
-            Cover 4:
-                    <asp:FileUpload ID="cover4" runat="server" accept="image/png, image/jpeg" /><br />
-            Cover 5:
-                    <asp:FileUpload ID="cover5" runat="server" accept="image/png, image/jpeg" />
-        </div>--%>
         <div class="info-book">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <div class="elements">
                         <div class="title"><i class="fas fa-barcode"></i>ISBN</div>
                         <div class="input">
-                            <asp:TextBox ID="isbn" runat="server" AutoPostBack="true" Width="100%" autocomplete="off" placeholder="ISBN"></asp:TextBox>
+                            <asp:TextBox ID="isbn" runat="server" AutoPostBack="true" Width="100%" autocomplete="off" placeholder="ISBN" OnTextChanged="isbn_TextChanged"></asp:TextBox>
                             <input id="idBookTxt" type="hidden" runat="server" />
                             <asp:UpdateProgress ID="UpdateProgress1" runat="server">
                                 <ProgressTemplate>
@@ -57,14 +42,21 @@
                     <div class="elements">
                         <div class="title"><i class="fas fa-image"></i>Cover</div>
                         <div class="input">
-                             <asp:FileUpload ID="FileUpload1" runat="server" accept="image/png, image/jpeg" required="" />
+                            <asp:FileUpload ID="FileUpload1" runat="server" accept="image/png, image/jpeg" required="" />
                         </div>
                     </div>
 
                     <div class="elements">
                         <div class="title"><i class="fas fa-tags"></i>Category</div>
                         <div class="input">
-                            <select>
+                            <select id="category" runat="server">
+                                <%foreach (Model.Category cate in categories)
+                                    {
+                                %>
+                                <option value="<#=cate.Id %>"><#=cate.Name%></option>
+                                <%
+                                    }
+                                %>
                             </select>
                         </div>
                     </div>
@@ -90,13 +82,13 @@
             <div class="elements">
                 <div class="title"><i class="fas fa-images"></i>Book images</div>
                 <div class="input">
-                     <asp:FileUpload ID="FileUpload2" runat="server" accept="image/png, image/jpeg" AllowMultiple="true" />
+                    <asp:FileUpload ID="FileUpload2" runat="server" accept="image/png, image/jpeg" AllowMultiple="true" />
                 </div>
             </div>
             <div class="elements">
                 <div class="title"><i class="fas fa-address-card"></i>Book condition</div>
                 <div class="input">
-                     <textarea id="Textarea1" placeholder="Description" required="required" style="border: none;" runat="server"></textarea>
+                    <textarea id="Textarea1" placeholder="Description" required="required" style="border: none;" runat="server"></textarea>
                 </div>
             </div>
             <div class="elements" style="border: none;">
