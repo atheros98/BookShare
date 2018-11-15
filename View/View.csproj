@@ -61,6 +61,7 @@
     <Content Include="css\style.css" />
     <Content Include="css\TableData.css" />
     <Content Include="css\uploadbook.css" />
+    <Content Include="Home.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="obj\Debug\View.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\View.dll" />
@@ -68,6 +69,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
