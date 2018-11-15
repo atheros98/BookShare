@@ -11,6 +11,7 @@ namespace Presentation
     public partial class Home : System.Web.UI.Page
     {
         public int BookNum;
+        public int TotalPages;
         public int PageIndex = 1;
         public List<Book> Books;
 
@@ -34,6 +35,9 @@ namespace Presentation
 
             // get list of book at current page
             Books = bookDao.GetByPageId(PageIndex);
+
+            // total page
+            
 
             //rootPath = Request.ApplicationPath;
 

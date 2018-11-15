@@ -34,8 +34,21 @@
             </div>
             <%} %>
         </section>
-        <div class="page">
-            
-        </div>
+         <div class="page">
+        <% if (totalPage > 1)
+            { %>
+        <%for (int i = 1; i < totalPage; i++)
+            { %>
+        <% if (page == i)
+            { %>
+        <span class="selected-page"><%= i %></span>
+        <%}
+            else
+            { %>
+        <a class="next-page" href="<%= string.Format("Search.aspx?query={0}&filter={1}&page={2}", Request.QueryString["query"], filter , i) %>"><%= i %></a>
+        <%} %>
+        <%} %>
+        <%} %>
+    </div>
     </form>
 </asp:Content>
