@@ -18,6 +18,11 @@ namespace Model
         private DateTime createdTime;
         private int creatorID;
         private int categoryID;
+
+        public const int STATUS_PENDING = 0;
+        public const int STATUS_ACCEPTED = 1;
+        public const int STATUS_DELETED = 2;
+
         public int Id
         {
             get

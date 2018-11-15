@@ -10,10 +10,10 @@ namespace Presentation
 {
     public partial class Home : System.Web.UI.Page
     {
-        public int pageNum = 99;
-        public int page = 1;
-        public List<Book> books;
-        public string rootPath;
+        public int BookNum;
+        public int PageIndex = 1;
+        public List<Book> Books;
+
         //public TradingService.Trading[] tradings;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -23,15 +23,19 @@ namespace Presentation
 
             BookDAO bookDao = new BookDAO();
 
+            // get total number of books
+            BookNum = bookDao.GetTotalAcceptedBooks();
+
             // get page in hype link
             if (Request.QueryString["page"] != null)
             {
-                int.TryParse(Request.QueryString["page"], out page);
+                int.TryParse(Request.QueryString["page"], out PageIndex);
             }
 
+            // get list of book at current page
+            Books = bookDao.GetByPageId(PageIndex);
 
-
-            rootPath = Request.ApplicationPath;
+            //rootPath = Request.ApplicationPath;
 
         }
     }
