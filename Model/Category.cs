@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Model
 {
-    public class Categories
+    public class Category
     {
         private int id;
         private string name;

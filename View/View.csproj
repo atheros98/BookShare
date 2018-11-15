@@ -58,14 +58,30 @@
     <Content Include="bin\View.dll" />
     <Content Include="bin\View.pdb" />
     <Content Include="css\boxform.css" />
+    <Content Include="css\register.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TableData.css" />
     <Content Include="css\uploadbook.css" />
     <Content Include="Home.aspx" />
+    <Content Include="images\avatar\na.jpg" />
+    <Content Include="images\avatar\nam.jpg" />
+    <Content Include="images\avatar\tuan.jpg" />
+    <Content Include="images\bookCover\pic1.jpg" />
+    <Content Include="images\bookCover\pic2.jpg" />
+    <Content Include="images\bookCover\pic3.jpg" />
+    <Content Include="images\bookCover\pic4.jpg" />
+    <Content Include="img\book-icon.svg" />
+    <Content Include="img\cover.jpg" />
+    <Content Include="img\CoverBook.jpg" />
+    <Content Include="img\loader.gif" />
+    <Content Include="javascript\checkPassword.js" />
+    <Content Include="javascript\dateProcessing.js" />
     <Content Include="Login.aspx" />
     <Content Include="obj\Debug\View.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\View.dll" />
     <Content Include="obj\Debug\View.pdb" />
+    <Content Include="Register.aspx" />
+    <Content Include="UploadBook.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +114,20 @@
       <DependentUpon>MainForm.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UploadBook.aspx.cs">
+      <DependentUpon>UploadBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadBook.aspx.designer.cs">
+      <DependentUpon>UploadBook.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="masterForm\BoxForm.Master" />
