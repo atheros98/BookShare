@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterForm/BoxForm.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="BookShare.LoginPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterForm/BoxForm.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="View.LoginPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

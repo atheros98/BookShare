@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BookShare {
+namespace View {
     
     
     public partial class Home {

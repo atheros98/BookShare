@@ -5,7 +5,7 @@ using System.Web.UI;
 using Model;
 using DAL;
 
-namespace BookShare
+namespace View
 {
     public partial class LoginPage : System.Web.UI.Page
     {
