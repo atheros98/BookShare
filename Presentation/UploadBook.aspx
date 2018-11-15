@@ -47,21 +47,8 @@
                     <div class="elements">
                         <div class="title"><i class="fas fa-tags"></i>Category</div>
                         <div class="input">
-                         <select runat="server">
-                             <option runat="server">
-                                1
-                             </option>
-                         </select>
-
-                            <select id="category" runat="server">
-                                <%foreach (Model.Category cate in categories)
-                                    {
-                                %>
-
-                                <%
-                                    }
-                                %>
-                            </select>
+                            <asp:DropDownList ID="cate" runat="server"> 
+                            </asp:DropDownList>
                         </div>
                     </div>
                     <div class="elements">

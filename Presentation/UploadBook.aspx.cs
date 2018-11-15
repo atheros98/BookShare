@@ -17,6 +17,10 @@ namespace Presentation
             if (!IsPostBack)
             {
                 categories = new CategoryDAO().GetAll();
+                foreach (Category cat in categories)
+                {
+                    cate.Items.Add(new ListItem(cat.Name, cate.ID));
+                }
             }
         }
 
@@ -28,7 +32,10 @@ namespace Presentation
             {
                 title.Value = book.Title;
                 author.Value = book.Author;
-                category.Value = book.CategoryID.ToString();
+                cate.ClearSelection();
+                cate.Items[book.CategoryID - 1].Selected = true;
+                language.Value = book.Language;
+                description.Value = book.Description;
             }
         }
     }
