@@ -25,7 +25,7 @@ namespace Presentation
             if (!IsPostBack)
             {
                 // check query search is null or not thing then redirect to home page
-                if (Request.QueryString["query"] == null || Request.QueryString["query"].Trim() == "") Server.Transfer("Home.aspx");
+                if (Request.QueryString["query"] == null || Request.QueryString["query"].Trim() == "") Response.Redirect("Home.aspx");
 
                 listQuery.Add("All");
                 listQuery.Add("Title");

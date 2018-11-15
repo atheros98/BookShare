@@ -1,16 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Presentation.Register" %>
-
-<!DOCTYPE html>
-
-<html>
-<head runat="server">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="css/register.css">
-    <script type="text/javascript" src="javascript/dateProcessing.js"></script>
-    <script type="text/javascript" src="javascript/checkPassword.js"></script>
-
-</head>
-<body>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/Box.Master" AutoEventWireup="true" CodeBehind="RegisterPage.aspx.cs" Inherits="Presentation.RegisterPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form runat="server">
         <div class="content-wrapper">
             <div class="container">
@@ -68,7 +59,4 @@
         /*Set the max date value to Today*/
         setMaxDate();
     </script>
-
-
-</body>
-</html>
+</asp:Content>

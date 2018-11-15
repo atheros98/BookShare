@@ -41,27 +41,15 @@
                     <div class="elements">
                         <div class="title"><i class="fas fa-image"></i>Cover</div>
                         <div class="input">
+                            <asp:Image ID="image" Visible ="false" runat="server" Width="100px"/>
                             <asp:FileUpload ID="FileUpload1" runat="server" accept="image/png, image/jpeg" required="" />
                         </div>
                     </div>
                     <div class="elements">
                         <div class="title"><i class="fas fa-tags"></i>Category</div>
                         <div class="input">
-                         <select runat="server">
-                             <option runat="server">
-                                1
-                             </option>
-                         </select>
-
-                            <select id="category" runat="server">
-                                <%foreach (Model.Category cate in categories)
-                                    {
-                                %>
-
-                                <%
-                                    }
-                                %>
-                            </select>
+                            <asp:DropDownList ID="cate" runat="server"> 
+                            </asp:DropDownList>
                         </div>
                     </div>
                     <div class="elements">
