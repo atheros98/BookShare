@@ -198,6 +198,19 @@ namespace Model
             this.CreatedDate = createdDate;
         }
 
-
+        public User(string fullName, DateTime dob, string username, string password, string email, string address, string phoneNum, string linkFacebook, string avatar, double userPoint, DateTime createdDate)
+        {
+            this.FullName = fullName;
+            this.Dob = dob;
+            this.Username = username;
+            this.Password = password;
+            this.Email = email;
+            this.Address = address;
+            this.PhoneNum = phoneNum;
+            this.LinkFacebook = linkFacebook;
+            this.Avatar = avatar;
+            this.UserPoint = userPoint;
+            this.CreatedDate = createdDate;
+        }
     }
 }

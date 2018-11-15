@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <form action="/Register" method="post">
+    <form runat="server">
         <div class="content-wrapper">
 
             <div class="container">
@@ -29,6 +29,9 @@
                 <%--Input Email--%>
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required />
+                <%--Input Username--%>
+                <label for="username"><b>User Name</b></label>
+                <input type="text" placeholder="Enter User Name" name="userName" required />
                 <%--Input password--%>
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required />
@@ -37,10 +40,21 @@
                 <input type="password" placeholder="Repeat Password" name="psw-repeat" onkeyup="check();" required />
                 <span id='message'></span>
                 <hr>
+
+                <%--<%--Input Address--%>
+                <label for="address"><b>Address</b></label>
+                <input type="text" placeholder="Enter Address" name="address" />
+                <%--Input Phone Number--%>
+                <label for="phoneNum"><b>Phone Number</b></label>
+                <input type="text" placeholder="Enter Phone Number" name="phoneNum" />
+                <%--Input Link Facebook--%>
+                <label for="facebook"><b>Facebook</b></label>
+                <input type="text" placeholder="Enter Facebook" name="facebook" />
+                <asp:Label ID="Label1" CssClass="confirm-msg" Text="" runat="server"/>
                 <%--Terms and Privacy--%>
                 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-                <button type="submit" class="registerbtn" id="submitBtn">Register</button>
+                <asp:Button cssclass="registerbtn" id="submitBtn" runat="server" OnClick="submitBtn_Click" Text="Register"/>
             </div>
 
             <div class="container signin">
