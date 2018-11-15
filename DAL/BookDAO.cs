@@ -13,7 +13,7 @@ namespace DAL
         public Book getByISBN(string isbn)
         {
             Book book = null;
-            string query = "select * from Book where ISBN = @isbn where status = " + Book.STATUS_ACCEPTED;
+            string query = "select * from Book where ISBN = @isbn and status = " + Book.STATUS_ACCEPTED;
             SqlConnection conn = GetConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
