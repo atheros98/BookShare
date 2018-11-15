@@ -131,7 +131,7 @@ namespace DAL
                     {
                         while (reader.Read())
                         {
-                            Book book = new Book()
+                            Book book = new Book
                             {
                                 Id = reader.GetInt32(0),
                                 Title = reader.GetString(1),
