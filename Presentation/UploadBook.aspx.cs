@@ -34,6 +34,9 @@ namespace Presentation
                 author.Value = book.Author;
                 cate.ClearSelection();
                 cate.Items[book.CategoryID - 1].Selected = true;
+                image.Visible = true;
+                image.ImageUrl = book.CoverImg;
+                FileUpload1.Visible = false;
                 language.Value = book.Language;
                 description.Value = book.Description;
             }

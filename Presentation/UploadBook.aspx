@@ -41,6 +41,7 @@
                     <div class="elements">
                         <div class="title"><i class="fas fa-image"></i>Cover</div>
                         <div class="input">
+                            <asp:Image ID="image" Visible ="false" runat="server" Width="100px"/>
                             <asp:FileUpload ID="FileUpload1" runat="server" accept="image/png, image/jpeg" required="" />
                         </div>
                     </div>
