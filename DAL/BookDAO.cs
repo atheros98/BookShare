@@ -261,10 +261,10 @@ namespace DAL
             return book;
         }
 
-        public Book GetLatestUploadBook(int userid)
+        public List<Book> GetLatestUploadBooks(int userid, int num)
         {
-            Book book = null;
-            string query = @"select top 1 b.id, b.title, b.author, b.coverImg 
+            List<Book> books = new List<Book>();
+            string query = @"select top "+num+@" b.id, b.title, b.author, b.coverImg 
                             from Trading t, Book b
                             where t.bookID = b.id  and t.lenderID = @userid
                             order by completedTime desc";
@@ -276,18 +276,18 @@ namespace DAL
 
             SqlDataReader reader = cmd.ExecuteReader();
 
-            if (reader.Read())
+            while (reader.Read())
             {
-                book = new Book
+                books.Add(new Book
                 {
                     Id = reader.GetInt32(0),
                     Title = reader.GetString(1),
                     Author = reader.GetString(2),
                     CoverImg = reader.GetString(3)
-                };
+                });
             }
 
-            return book;
+            return books;
         }
 
         public override List<Book> GetByPageId(int pageIndex)

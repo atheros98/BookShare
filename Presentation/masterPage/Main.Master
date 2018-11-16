@@ -56,7 +56,7 @@
                     else
                     {%>
                 <div class="dropdown">
-                    <a class="login" href="Profile.aspx">
+                    <a class="login" href="Profile.aspx?userid=<%=CurrentUser.Id %>">
                         <i class="fas fa-user">&nbsp;<%= Session["username"].ToString() %></i>
                     </a>
                     <div class="dropdown-content">
