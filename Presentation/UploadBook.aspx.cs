@@ -80,9 +80,16 @@ namespace Presentation
                 }
                 if (bookID != -1)
                 {
+                    TradingDAO tradingDAO = new TradingDAO();
+                    tradingDAO.CreateNewTrading(description.Value.Trim(), bookID, user.Id);
 
                 }
             }
+        }
+
+        private void uploadTradingImage()
+        {
+
         }
 
         private string uploadBookCover()
