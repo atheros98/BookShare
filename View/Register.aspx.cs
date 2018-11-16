@@ -35,8 +35,18 @@ namespace View
                 address, phoneNum, facebook, avatar, userPoint, dayCreated);
             //Create new UserDAO instance to add new data to database
             UserDAO ud = new UserDAO();
-            ud.Insert(user);
+            bool successfully = ud.Insert(user);
 
+            if (successfully)
+            {
+                //Register successfully new accout
+                //Forward to Login page
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                Label1.Text = "Can not register";
+            }
         }
     }
 }

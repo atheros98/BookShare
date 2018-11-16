@@ -50,7 +50,7 @@
                 <%--Input Link Facebook--%>
                 <label for="facebook"><b>Facebook</b></label>
                 <input type="text" placeholder="Enter Facebook" name="facebook" />
-
+                <asp:Label ID="Label1" CssClass="confirm-msg" Text="" runat="server"/>
                 <%--Terms and Privacy--%>
                 <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 

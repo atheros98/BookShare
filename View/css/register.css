@@ -90,3 +90,7 @@ a {
 .font-text-small{
     font-size: 14px;
 }
+
+.confirm-msg{
+    color: red;
+}

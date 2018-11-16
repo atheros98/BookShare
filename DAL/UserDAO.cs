@@ -59,9 +59,39 @@ namespace DAL
             return null;
         }
 
-        public override bool Insert(User t)
+        public override bool Insert(User u)
         {
-            return false;
+            try
+            {
+                string query = @"insert into [User] (fullName, dob, username, password, email, 
+                                address, phoneNum, linkFacebook, avatar, userPoint, createdTime)
+                             values (@fullName, @dob, @username, @password, @email, 
+                                @address, @phoneNum, @linkFacebook, @avatar, @userPoint, @createdTime);";
+
+                SqlConnection conn = GetConnection();
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("fullName", u.FullName);
+                cmd.Parameters.AddWithValue("dob", u.Dob);
+                cmd.Parameters.AddWithValue("username", u.Username);
+                cmd.Parameters.AddWithValue("password", u.Password);
+                cmd.Parameters.AddWithValue("email", u.Email);
+                cmd.Parameters.AddWithValue("address", u.Address);
+                cmd.Parameters.AddWithValue("phoneNum", u.PhoneNum);
+                cmd.Parameters.AddWithValue("linkFacebook", u.LinkFacebook);
+                cmd.Parameters.AddWithValue("avatar", u.Avatar);
+                cmd.Parameters.AddWithValue("userPoint", u.UserPoint);
+                cmd.Parameters.AddWithValue("createdTime", u.CreatedDate);
+
+                cmd.ExecuteNonQuery();
+            } catch (Exception ex)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public override bool Update(int id, User newEntity)
