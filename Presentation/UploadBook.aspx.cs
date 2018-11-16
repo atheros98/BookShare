@@ -24,21 +24,43 @@ namespace Presentation
             }
         }
 
+        private void disableInput(bool disable)
+        {
+            title.Disabled = disable;
+            author.Disabled = disable;
+            cate.ClearSelection();
+            cate.Enabled = !disable;
+            image.Visible = disable;
+            FileUpload1.Visible = !disable;
+            language.Disabled = disable;
+            description.Disabled = disable;
+
+            if (!disable)
+            {
+                title.Value = "";
+                author.Value = "";
+                cate.Items[0].Selected = true;
+                language.Value = "";
+                description.Value = "";
+            }
+        }
+
         protected void isbn_TextChanged(object sender, EventArgs e)
         {
             string ISBN = isbn.Text;
             Book book = new BookDAO().getByISBN(ISBN);
             if (book != null)
             {
+                disableInput(true);
                 title.Value = book.Title;
                 author.Value = book.Author;
-                cate.ClearSelection();
                 cate.Items[book.CategoryID - 1].Selected = true;
-                image.Visible = true;
                 image.ImageUrl = book.CoverImg;
-                FileUpload1.Visible = false;
                 language.Value = book.Language;
                 description.Value = book.Description;
+            } else
+            {
+                disableInput(false);
             }
         }
     }
