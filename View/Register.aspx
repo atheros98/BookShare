@@ -5,9 +5,9 @@
 <html>
 <head runat="server">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="register.css">
-    <script type="text/javascript" src="dateProcessing.js"></script>
-    <script type="text/javascript" src="checkPassword.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <script type="text/javascript" src="javascript/dateProcessing.js"></script>
+    <script type="text/javascript" src="javascript/checkPassword.js"></script>
 
 </head>
 <body>
