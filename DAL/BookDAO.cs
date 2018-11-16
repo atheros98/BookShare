@@ -10,6 +10,7 @@ namespace DAL
     public class BookDAO : DBContext<Book>
     {
         private int pageSize = 5;
+        string ImageFolder = "./images/bookCover/";
 
         public Book getByISBN(string isbn)
         {
@@ -131,7 +132,7 @@ namespace DAL
                     {
                         while (reader.Read())
                         {
-                            Book book = new Book()
+                            Book book = new Book
                             {
                                 Id = reader.GetInt32(0),
                                 Title = reader.GetString(1),
@@ -259,10 +260,65 @@ namespace DAL
             return book;
         }
 
+        public int GetTotalAcceptedBooks()
+        {
+            string query = "select count(id) from Book where status = " + Book.STATUS_ACCEPTED;
+
+            SqlConnection conn = new SqlConnection(ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            try
+            {
+                int book_num = (int)cmd.ExecuteScalar();
+                return book_num;
+            }
+            catch
+            {
+                Console.WriteLine("Get total book num return not a number");
+            }
+            return -1;
+        }
+
         public override List<Book> GetByPageId(int pageIndex)
         {
+            List<Book> list = new List<Book>();
+            string query = @"with temp as(
+	                        select *, ROW_NUMBER() over(order by createdTime desc) row_num
+	                        from Book
+                            )
+                            select * from temp
+                            where row_num >= @start and row_num <=@end";
 
-            return null;
+            SqlConnection conn = new SqlConnection(ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("start", (pageIndex - 1) * pageSize + 1);
+            cmd.Parameters.AddWithValue("end", pageIndex * pageSize + 1);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+               
+                Book book = new Book
+                {
+                    Id = reader.GetInt32(0),
+                    Title = reader.GetString(1),
+                    Author = reader.GetString(2),
+                    ISBN1 = reader.GetString(3),
+                    Language = reader.GetString(4),
+                    Description = reader.GetString(5),
+                    Status = reader.GetInt32(6),
+                    CoverImg = ImageFolder + reader.GetString(7),
+                    CreatedTime = reader.GetDateTime(8),
+                    CreatorID = reader.GetInt32(9),
+                    CategoryID = reader.GetInt32(10)
+                };
+
+                list.Add(book);
+
+            }
+
+            return list;
         }
 
         public override bool Insert(Book t)
