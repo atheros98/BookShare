@@ -8,6 +8,6 @@
         <input type="password" name="passwordTxt" required="required" placeholder="Password" />
         <asp:Label ID="errorTxt" CssClass="error-message" runat="server" Text=""></asp:Label>
         <asp:Button ID="submit" runat="server" Text="Login" OnClick="submit_Click" />
-        <p class="message">Not registered? <a href="RegisterPage.aspx">Create an account</a></p>
+        <p class="message">Not registered? <a href="Register.aspx">Create an account</a></p>
     </form>
 </asp:Content>
