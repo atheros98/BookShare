@@ -65,6 +65,7 @@
     <Content Include="obj\Debug\View.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\View.dll" />
     <Content Include="obj\Debug\View.pdb" />
+    <Content Include="RegisterPage\checkPassword.js" />
     <Content Include="RegisterPage\dateProcessing.js" />
     <Content Include="RegisterPage\Register.aspx" />
     <Content Include="RegisterPage\register.css" />
