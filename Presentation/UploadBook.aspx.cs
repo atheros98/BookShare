@@ -66,7 +66,16 @@ namespace Presentation
 
         protected void uploadBtn_Click(object sender, EventArgs e)
         {
-            
+            User user = (User)Session["currentUser"];
+            if (user != null)
+            {
+                BookDAO bookDAO = new BookDAO();
+                Book book = bookDAO.getByISBN(isbn.Text);
+                if (book == null)
+                {
+
+                }
+            }
         }
     }
 }
