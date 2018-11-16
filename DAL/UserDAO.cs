@@ -9,7 +9,7 @@ using System.Data;
 
 namespace DAL
 {
-    public class UserDAO : DBContext<UserDAO>
+    public class UserDAO : DBContext<User>
     {
         public User GetUserByUsernamePassword(string username, string password)
         {
@@ -44,27 +44,27 @@ namespace DAL
             return false;
         }
 
-        public override List<UserDAO> GetAll()
+        public override List<User> GetAll()
         {
             return null;
         }
 
-        public override UserDAO GetById(int id)
+        public override User GetById(int id)
         {
             return null;
         }
 
-        public override List<UserDAO> GetByPageId(int pageIndex)
+        public override List<User> GetByPageId(int pageIndex)
         {
             return null;
         }
 
-        public override bool Insert(UserDAO t)
+        public override bool Insert(User t)
         {
             return false;
         }
 
-        public override bool Update(int id, UserDAO newEntity)
+        public override bool Update(int id, User newEntity)
         {
             return false;
         }

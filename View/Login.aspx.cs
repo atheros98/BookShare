@@ -27,11 +27,16 @@ namespace BookShare
             string password = Request.Params["passwordTxt"].ToString();
 
             User user = new UserDAO().GetUserByUsernamePassword(username, password);
-            if(user!= null)
+            if(user==null)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(),
-        "alertMessage", @"alert('Login success')", true);
+                errorTxt.Text = "Username or password is incorrect";
+                //ScriptManager.RegisterClientScriptBlock(this, GetType(),
+                //    "alertMessage", @"alert('Login success')", true);
+                return;
             }
+
+            Session.Add("currentUser", user);
+            Response.Redirect("Home.aspx");
         }
     }
 }
