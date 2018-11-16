@@ -6,7 +6,7 @@ using System.Data;
 using Model;
 using DAL;
 
-namespace BookShare
+namespace View
 {
     public partial class Home : System.Web.UI.Page
     {

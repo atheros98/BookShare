@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace booksahre.masterForm
+namespace View.masterForm
 {
     public partial class BoxForm : System.Web.UI.MasterPage
     {
