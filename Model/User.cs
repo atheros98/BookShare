@@ -21,6 +21,8 @@ namespace Model
         private double userPoint;
         private DateTime createdDate;
 
+        private string imageFolder = "./images/avatar/";
+
         public User()
         {
 
@@ -147,7 +149,7 @@ namespace Model
         {
             get
             {
-                return avatar;
+                return imageFolder + avatar;
             }
 
             set

@@ -35,6 +35,28 @@ namespace DAL
             return categories;
         }
 
+        public List<Category> GetNRandom(int num)
+        {
+            List<Category> categories = new List<Category>();
+            string query = "select top "+num+ " * from Category order by NEWID()";
+            SqlConnection conn = GetConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            //cmd.Parameters.AddWithValue("num", num);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                categories.Add(new Category
+                {
+                    Id = reader.GetInt32(0),
+                    Name = reader.GetString(1)
+                });
+            }
+            return categories;
+        }
+
         public override Category GetById(int id)
         {
             throw new NotImplementedException();

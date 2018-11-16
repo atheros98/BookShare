@@ -60,7 +60,7 @@
                         <i class="fas fa-user">&nbsp;<%= Session["username"].ToString() %></i>
                     </a>
                     <div class="dropdown-content">
-                        <a href="Profile.aspx">Profile</a>
+                        <a href="Profile.aspx?userid=<%=CurrentUser.Id %>">Profile</a>
                         <a href="../ChangePassword.aspx">Change password</a>
                         <a href="../Login.aspx?command=logout">Logout</a>
                     </div>
@@ -88,9 +88,9 @@
             <section class="section-left">
                 <h3>YOUR BOOK UPLOAD</h3>
                 <div class="section-left-content">
-                    <div class="book-color"></div>
+                    <div class="book-color"><img src=""/></div>
                     <div class="book-color-content">
-                        <h2>0</h2>
+                        <h2><%=RecentUploadBook.Title %></h2>
                         <span>books upload</span>
                         <br />
                         <span class="fa fa-star checked"></span>
@@ -99,7 +99,7 @@
                         <span class="fa fa-star"></span>
                         <span class="fa fa-star"></span>
                         <br />
-                        <a href="#">Upload book now</a>
+                        <a href="#">Upload book now</a>S
                     </div>
                 </div>
             </section>
@@ -108,11 +108,11 @@
                 <h3>#CATEGORY</h3>
                 <div class="section-left-content">
                     <ul>
-                        <li><a href="#">#Self-help books</a></li>
-                        <li><a href="#">#Autobiographies</a></li>
-                        <li><a href="#">#Comic books</a></li>
-                        <li><a href="#">#Technical books?</a></li>
-                        <li><a href="#">#Children's books?</a></li>
+                        <% foreach (Model.Category cate in Categories)
+                            { %>
+                            <li><a href="#">#<%=cate.Name %></a></li>
+                        <%} %>
+                        
                     </ul>
                 </div>
             </section>

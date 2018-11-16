@@ -172,6 +172,9 @@ namespace DAL
 
             switch (type)
             {
+                case "NoFilter":
+                    sqlCommand = "select count (distinct id) from Book where status = " + Book.STATUS_ACCEPTED;
+                    break;
                 case "All":
                     sqlCommand = "select count (distinct id) from"
                             + "(select * from Book where title LIKE '%" + queryStr + "%'"
@@ -258,23 +261,33 @@ namespace DAL
             return book;
         }
 
-        public int GetTotalAcceptedBooks()
+        public Book GetLatestUploadBook(int userid)
         {
-            string query = "select count(id) from Book where status = " + Book.STATUS_ACCEPTED;
-
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            Book book = null;
+            string query = @"select top 1 b.id, b.title, b.author, b.coverImg 
+                            from Trading t, Book b
+                            where t.bookID = b.id  and t.lenderID = @userid
+                            order by completedTime desc";
+            SqlConnection conn = GetConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
-            try
+
+            cmd.Parameters.AddWithValue("userid", userid);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
             {
-                int book_num = (int)cmd.ExecuteScalar();
-                return book_num;
+                book = new Book
+                {
+                    Id = reader.GetInt32(0),
+                    Title = reader.GetString(1),
+                    Author = reader.GetString(2),
+                    CoverImg = reader.GetString(3)
+                };
             }
-            catch
-            {
-                Console.WriteLine("Get total book num return not a number");
-            }
-            return -1;
+
+            return book;
         }
 
         public override List<Book> GetByPageId(int pageIndex)
@@ -291,7 +304,7 @@ namespace DAL
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             cmd.Parameters.AddWithValue("start", (pageIndex - 1) * pageSize + 1);
-            cmd.Parameters.AddWithValue("end", pageIndex * pageSize + 1);
+            cmd.Parameters.AddWithValue("end", pageIndex * pageSize);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
