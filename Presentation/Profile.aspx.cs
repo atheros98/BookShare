@@ -27,6 +27,9 @@ namespace Presentation
 
             CurrentUser = Session["currentUser"] as User;
 
+            // update data if this foward is from submit form
+            UploadInfo();
+
             UserDAO userDao = new UserDAO();
             BookDAO bookDao = new BookDAO();
 
@@ -38,7 +41,6 @@ namespace Presentation
                 }else
                 {
                     strUserId = "" + CurrentUser.Id;
-
                 }
             }
 
@@ -63,10 +65,40 @@ namespace Presentation
             {
                 avatar.Visible = false;
                 errorUpload.Visible = false;
-                uploadAvatar.Visible = false;
+                
             }
 
 
+        }
+
+        void UploadInfo()
+        {
+            string fullname = Request.Params["fullname"];
+            if (fullname != null)
+            {
+                
+                
+                
+            }
+        }
+
+        void fileUploadOnChange()
+        {
+            ScriptManager.RegisterClientScriptBlock(this, GetType(),
+               "alertMessage", @"alert('Upload')", true);
+        }
+
+        protected void uploadAvatar_Click(object sender, EventArgs e)
+        {
+            // overwrite existing avatar
+            HttpPostedFile uploadedFile = avatar.PostedFiles.Count > 0 ? avatar.PostedFiles[0] : null;
+            if (uploadedFile != null)
+            {
+                string[] raw = uploadedFile.FileName.Split('.');
+                uploadedFile.SaveAs(System.IO.Path.Combine(Server.MapPath("~/images/avatar/"), CurrentUser.Id+"."+raw[raw.Length-1]));
+                ScriptManager.RegisterClientScriptBlock(this, GetType(),
+                    "alertMessage", @"alert('Upload')", true);
+            }
         }
 
     }
