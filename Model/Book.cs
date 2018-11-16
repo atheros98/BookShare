@@ -7,7 +7,7 @@ namespace Model
 {
     public class Book
     {
-        const string ImageFolder = "./images/bookCover/";
+        public static string ImageFolder = "images/bookCover/";
 
         private int id;
         private string title;
