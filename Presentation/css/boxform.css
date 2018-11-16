@@ -39,9 +39,9 @@
 
     .form input {
         border-style: none;
-    border-color: inherit;
-    border-width: 0;
-    font-family: "Roboto", sans-serif;
+        border-color: inherit;
+        border: 0;
+        font-family: "Roboto", sans-serif;
         outline: 0;
         background: #f2f2f2;
         width: 100%;
@@ -49,8 +49,7 @@
         padding: 15px;
         box-sizing: border-box;
         font-size: 14px;
-    height: 21px;
-}
+    }
 
         .form input[type='submit'] {
             font-family: "Roboto", sans-serif;
@@ -88,6 +87,6 @@
         margin-bottom: 20px !important;
     }
 
-.error-message{
+.error-message {
     color: red;
 }
