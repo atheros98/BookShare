@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/masterPage/Main.Master" AutoEventWireup="true" CodeBehind="UploadBook.aspx.cs" Inherits="Presentation.UploadBook" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" media="screen" href="css/uploadbook.css" />
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -41,14 +42,14 @@
                     <div class="elements">
                         <div class="title"><i class="fas fa-image"></i>Cover</div>
                         <div class="input">
-                            <asp:Image ID="image" Visible ="false" runat="server" Width="100px"/>
+                            <asp:Image ID="image" Visible="false" runat="server" Width="100px" />
                             <asp:FileUpload ID="FileUpload1" runat="server" accept="image/png, image/jpeg" required="" />
                         </div>
                     </div>
                     <div class="elements">
                         <div class="title"><i class="fas fa-tags"></i>Category</div>
                         <div class="input">
-                            <asp:DropDownList ID="cate" runat="server"> 
+                            <asp:DropDownList ID="cate" runat="server">
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -74,7 +75,7 @@
             <div class="elements">
                 <div class="title"><i class="fas fa-images"></i>Book images</div>
                 <div class="input">
-                    <asp:FileUpload ID="FileUpload2" runat="server" accept="image/png, image/jpeg" AllowMultiple="true" />
+                    <asp:FileUpload ID="FileUpload2" runat="server" accept="image/png, image/jpeg" required="" AllowMultiple="true" />
                 </div>
             </div>
             <div class="elements">
@@ -86,15 +87,15 @@
             <div class="elements" style="border: none;">
                 <div class="title"><i class="fas fa-gavel"></i>Rules</div>
                 <div class="input">
-                    <textarea rows="6" cols="50" name="rules" readonly="readonly"></textarea><br />
+                    <textarea rows="6" cols="50" name="rules" disabled="disabled"></textarea><br />
                     <div class="check-rules">
-                        <asp:CheckBox ID="checkRules" runat="server" required="" />I have read, and agree to abide by the bookshare.com website rules.
+                        <asp:Label ID="Rules" runat="server" Text="By click upload button, you have read and agreed to our website's rules"/>
                     </div>
                 </div>
             </div>
         </div>
         <div class="uploadBtn">
-            <asp:Button ID="uploadBtn" runat="server" Text="Upload" disabled="" />
+            <asp:Button ID="uploadBtn" runat="server" Text="Upload" OnClick="uploadBtn_Click" />
         </div>
     </form>
     <script>
