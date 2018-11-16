@@ -17,6 +17,11 @@ namespace Model
         private int lenderID;
         private int borrowerID;
 
+        public static int STATUS_AVAILABLE = 0;
+        public static int STATUS_PENDING = 1;
+        public static int STATUS_LENDING = 2;
+        public static int STATUS_COMPLETED = 3;
+
         public int Id
         {
             get
