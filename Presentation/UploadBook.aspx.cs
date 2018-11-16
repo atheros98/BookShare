@@ -63,5 +63,10 @@ namespace Presentation
                 disableInput(false);
             }
         }
+
+        protected void uploadBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
