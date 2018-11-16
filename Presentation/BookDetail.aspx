@@ -13,7 +13,7 @@
         </div>
         <div>
             <%--Contain cover image--%>
-            <img src="" alt="Cover" width="42" height="42">
+            <img src="" alt="Cover" width="100" height="100">
         </div>
         <div>
             <%--ISBN+Ratings--%>
