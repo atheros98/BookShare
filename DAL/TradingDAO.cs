@@ -102,19 +102,14 @@ namespace DAL
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                int temp1 = reader.GetInt32(0);
-                string temp = reader.GetString(1);
                 Trading trade = new Trading
                 {
                     Id = reader.GetInt32(0),
                     Description = reader.GetString(1),
                     TradingStatus = reader.GetInt32(2),
                     CompletedTime = reader.GetDateTime(3),
-                    //LenderRatePoint = reader.GetFloat(4),
-                    //BorrowerRatePoint = reader.GetFloat(5),
-                    //BookID = reader.GetInt32(6),
-                    LenderID = reader.GetInt32(7),
-                    //BorrowerID = reader.GetInt32(8)
+                    BookID = reader.GetInt32(6),
+                    LenderID = reader.GetInt32(7)
                 };
 
                 lists.Add(trade);
