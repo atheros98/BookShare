@@ -21,7 +21,7 @@ namespace Model
         public static int STATUS_PENDING = 1;
         public static int STATUS_LENDING = 2;
         public static int STATUS_COMPLETED = 3;
-
+        public static string ImageFolder = "images/tradingImage/";
         public int Id
         {
             get

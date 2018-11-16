@@ -68,6 +68,7 @@ namespace Presentation
         protected void uploadBtn_Click(object sender, EventArgs e)
         {
             User user = (User)Session["currentUser"];
+            int tradingID = -1;
             int bookID = -1;
             if (user != null)
             {
@@ -77,20 +78,44 @@ namespace Presentation
                 {
                     string filename = uploadBookCover();
                     bookID = bookDAO.CreateBook(title.Value.Trim(), author.Value.Trim(), isbn.Text.Trim(), language.Value.Trim(), description.Value.Trim(), filename, user.Id, cate.SelectedValue);
+                } else
+                {
+                    bookID = book.Id;
                 }
                 if (bookID != -1)
                 {
                     TradingDAO tradingDAO = new TradingDAO();
-                    tradingDAO.CreateNewTrading(description.Value.Trim(), bookID, user.Id);
+                    tradingID = tradingDAO.CreateNewTrading(condition.Value.Trim(), bookID, user.Id);
+                    uploadTradingImage(tradingID);
 
+                }
+
+                Response.Redirect(string.Format("BookDetails.aspx?id={0}", bookID));
+            }
+        }
+
+        private void uploadTradingImage(int tradingID)
+        {
+            string filename = "";
+            int i = 0;
+            if (FileUpload2.HasFile)
+            {
+                TradedBookImageDAO tradedBookImageDAO = new TradedBookImageDAO();
+                foreach (HttpPostedFile uploadedFile in FileUpload2.PostedFiles)
+                {
+                    string extension = uploadedFile.FileName.Split('.')[1];
+                    i++;
+                    filename = String.Format("{0}_{1}_{2}.{3}", tradingID, DateTime.Now.ToFileTime(), i, extension);
+                    uploadedFile.SaveAs(System.IO.Path.Combine(Server.MapPath("~/" + Trading.ImageFolder), filename));
+                    tradedBookImageDAO.Insert(new TradedBookImage
+                    {
+                        Image = filename,
+                        TradingID = tradingID
+                    });
                 }
             }
         }
 
-        private void uploadTradingImage()
-        {
-
-        }
 
         private string uploadBookCover()
         {
