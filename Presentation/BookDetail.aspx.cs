@@ -12,7 +12,7 @@ namespace Presentation
     public partial class BookDetail : System.Web.UI.Page
     {
         public User user;
-        public int idBook = 2;
+        public int idBook;
         public Book book;
         public List<string> covers;
         public List<User> lenders;
@@ -28,38 +28,30 @@ namespace Presentation
 
             if (Request.QueryString["id"] == null || Session["currentUser"] == null)
             {
-                //Server.Transfer("ErrorPage.aspx");
+                Server.Transfer("ErrorPage.aspx");
             }
             else
             {
                 user = (User)Session["currentUser"];
-                //int.TryParse(Request.QueryString["id"], out idBook); // get idbook
-                //BookDAO bookDAO = new BookDAO();
-                ////Get book by id
-                //book = bookDAO.GetById(idBook);
-                
-                ////Get all lenders for this book
-                //TradingDAO tradingDAO = new TradingDAO();
-                //List<User> lenders = tradingDAO.getAllLendersByBookIDAndPaging(idBook, 1);
+                idBook = int.Parse(Request.QueryString["id"]);
+                BookDAO bookDAO = new BookDAO();
+                //Get book by id
+                book = bookDAO.GetById(idBook);
 
-                //System.Diagnostics.Debug.WriteLine("--------------"+book.Title + "|" + book.ISBN1);
+                //Get all lenders for this book
+                TradingDAO tradingDAO = new TradingDAO();
+                tradings = tradingDAO.getAllTradingOfOneBookPaging(idBook, 1);
+
+                //Get all lenders according to tradings
+                lenders = new List<User>();
+                UserDAO userDAO = new UserDAO();
+                foreach (Trading t in tradings)
+                {
+                    User u = userDAO.GetById(t.LenderID);
+                    lenders.Add(u);
+                }
             }
-            BookDAO bookDAO = new BookDAO();
-            //Get book by id
-            book = bookDAO.GetById(idBook);
-
-            //Get all lenders for this book
-            TradingDAO tradingDAO = new TradingDAO();
-            tradings = tradingDAO.getAllTradingOfOneBook(idBook, 0);
-
-            //Get all lenders according to tradings
-            lenders = new List<User>();
-            UserDAO userDAO = new UserDAO();
-            foreach(Trading t in tradings)
-            {
-                User u = userDAO.GetById(t.LenderID);
-                lenders.Add(u);
-            }
+            
         }
 
         public void updateReview(int top)

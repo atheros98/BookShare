@@ -161,32 +161,31 @@
     </div>
     <%--End the list of lenders--%> 
     <script>
-        var slideIndex = 0;
+        var slideIndex = 1;
         showSlides(slideIndex);
-
         function plusSlides(n) {
             showSlides(slideIndex += n);
         }
-
         function showSlides(n) {
             var i;
             var slides = document.getElementsByClassName("info-book");
-            var length = slides.length - 1;
+            slides.add
+            var length = slides.length;
             console.log(slideIndex);
             var prev = document.getElementById("prev");
             var next = document.getElementById("next");
             if (n === length - 1) {
                 next.disabled = true;
-                next.style.d
+
             } else {
                 next.disabled = false;
             }
-            if (n === 0) {
+            if (n === 1) {
                 prev.disabled = true;
             } else {
                 prev.disabled = false;
             }
-            for (i = 0; i < length; i++) {
+            for (i = 1; i < length; i++) {
 
                 slides[i].style.display = "none";
             }

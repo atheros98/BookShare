@@ -75,11 +75,14 @@ namespace DAL
         }
   
         //Get all tradings of one bookId
-        public List<Trading> getAllTradingOfOneBook(int bookId, int pageIndex)
+        public List<Trading> getAllTradingOfOneBookPaging(int bookId, int pageIndex)
         {
             List<Trading> lists = new List<Trading>();
-
-            string query = @"with temp as (select id, [description], tradingStatus, 
+            SqlConnection conn = null;
+            SqlCommand cmd = null;
+            try
+            {
+                string query = @"with temp as (select id, [description], tradingStatus, 
                                     completedTime, lenderRatePoint, borrowerRatePoint, bookID, lenderID, borrowerID,
                                     ROW_NUMBER() over (order by completedTime desc) row_num 
 
@@ -91,29 +94,38 @@ namespace DAL
                             from temp
                             where temp.row_num between @start and @end";
 
-            SqlConnection conn = new SqlConnection(ConnectionString);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
+                conn = new SqlConnection(ConnectionString);
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("@id", bookId);
-            cmd.Parameters.AddWithValue("@start", (pageIndex - 1) * pageSize + 1);
-            cmd.Parameters.AddWithValue("@end", pageIndex * pageSize + 1);
+                cmd.Parameters.AddWithValue("@id", bookId);
+                cmd.Parameters.AddWithValue("@start", (pageIndex - 1) * pageSize + 1);
+                cmd.Parameters.AddWithValue("@end", pageIndex * pageSize + 1);
 
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                Trading trade = new Trading
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
                 {
-                    Id = reader.GetInt32(0),
-                    Description = reader.GetString(1),
-                    TradingStatus = reader.GetInt32(2),
-                    CompletedTime = reader.GetDateTime(3),
-                    BookID = reader.GetInt32(6),
-                    LenderID = reader.GetInt32(7)
-                };
+                    Trading trade = new Trading
+                    {
+                        Id = reader.GetInt32(0),
+                        Description = reader.GetString(1),
+                        TradingStatus = reader.GetInt32(2),
+                        CompletedTime = reader.GetDateTime(3),
+                        BookID = reader.GetInt32(6),
+                        LenderID = reader.GetInt32(7)
+                    };
 
-                lists.Add(trade);
+                    lists.Add(trade);
 
+                }
+            }catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
             }
             return lists;
         }
