@@ -139,13 +139,13 @@ namespace Presentation {
         protected global::System.Web.UI.WebControls.FileUpload FileUpload2;
         
         /// <summary>
-        /// Textarea1 control.
+        /// condition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea Textarea1;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea condition;
         
         /// <summary>
         /// Rules control.
