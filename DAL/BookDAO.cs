@@ -37,7 +37,7 @@ namespace DAL
                     CategoryID = reader.GetInt32(10)
                 };
             }
-
+            conn.Close();
             return book;
         }
 
@@ -257,7 +257,7 @@ namespace DAL
                     CategoryID = reader.GetInt32(10)
                 };
             }
-
+            conn.Close();
             return book;
         }
 
@@ -286,7 +286,7 @@ namespace DAL
                     CoverImg = reader.GetString(3)
                 });
             }
-
+            conn.Close();
             return books;
         }
 
@@ -328,7 +328,7 @@ namespace DAL
                 list.Add(book);
 
             }
-
+            conn.Close();
             return list;
         }
 
