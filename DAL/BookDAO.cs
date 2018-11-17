@@ -227,21 +227,21 @@ namespace DAL
 
         public override Book GetById(int id)
         {
-            Book book = null;
+            Book book = new Book();
             string query = @"select * from Book
                         where id= @id";
             SqlConnection conn = GetConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("id", id);
+            cmd.Parameters.AddWithValue("@id", id);
 
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
                 book = new Book
                 {
-                    Id = id,
+                    Id = reader.GetInt32(0),
                     Title = reader.GetString(1),
                     Author = reader.GetString(2),
                     ISBN1 = reader.GetString(3),

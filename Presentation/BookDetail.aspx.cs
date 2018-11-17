@@ -15,7 +15,7 @@ namespace Presentation
         public int idBook = 2;
         public Book book;
         public List<string> covers;
-        public List<Trading> tradings;
+        public List<User> lenders;
         public DateTime currentDate = DateTime.Today;
         public List<BookReview> reviews;
         public string rootPath;
@@ -31,11 +31,25 @@ namespace Presentation
             }
             else
             {
+                user = (User)Session["currentUser"];
+                //int.TryParse(Request.QueryString["id"], out idBook); // get idbook
+                //BookDAO bookDAO = new BookDAO();
+                ////Get book by id
+                //book = bookDAO.GetById(idBook);
                 
+                ////Get all lenders for this book
+                //TradingDAO tradingDAO = new TradingDAO();
+                //List<User> lenders = tradingDAO.getAllLendersByBookIDAndPaging(idBook, 1);
+
+                //System.Diagnostics.Debug.WriteLine("--------------"+book.Title + "|" + book.ISBN1);
             }
-            user = (User)Session["currentUser"];
-            BookDAO bookDao = new BookDAO();
-            book = bookDao.GetById(idBook);
+            BookDAO bookDAO = new BookDAO();
+            //Get book by id
+            book = bookDAO.GetById(idBook);
+
+            //Get all lenders for this book
+            TradingDAO tradingDAO = new TradingDAO();
+            lenders = tradingDAO.getAllLendersByBookIDAndPaging(idBook, 0);
         }
 
         public void updateReview(int top)
