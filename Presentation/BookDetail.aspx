@@ -29,10 +29,7 @@
     <%--Book Cover--%>
     <%--List all the covers of book--%>
     <div class="cover-book">
-        <% for (int c = 0; c < 1; c++)
-            { %>
-        <img src="images/bookCover/pic1.jpg" />
-        <%} %>
+        <img src="<%=book.CoverImg %>" />
     </div>
     <%--Book info--%>
     <div class="info-book">

@@ -206,7 +206,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\tradingImage\" />
+    <Folder Include="images\tradingImage\HowToInfluenceFriend\" />
+    <Folder Include="images\tradingImage\NhaGiaKim\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
