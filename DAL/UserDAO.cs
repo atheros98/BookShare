@@ -37,7 +37,7 @@ namespace DAL
                     };
                 }
             }
-
+            conn.Close();
             return user;
         }
 
@@ -71,7 +71,7 @@ namespace DAL
                 };
 
             }
-
+            conn.Close();
             return user;
         }
 
@@ -114,7 +114,7 @@ namespace DAL
                 };
 
             }
-
+            conn.Close();
             return user;
         }
 
@@ -150,11 +150,12 @@ namespace DAL
                 cmd.Parameters.AddWithValue("createdTime", u.CreatedDate);
 
                 cmd.ExecuteNonQuery();
+                conn.Close();
             } catch (Exception ex)
             {
                 return false;
             }
-
+            
             return true;
         }
 

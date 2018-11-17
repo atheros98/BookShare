@@ -32,6 +32,7 @@ namespace DAL
                     Name = reader.GetString(1)
                 });
             }
+            conn.Close();
             return categories;
         }
 
@@ -54,6 +55,7 @@ namespace DAL
                     Name = reader.GetString(1)
                 });
             }
+            conn.Close();
             return categories;
         }
 
