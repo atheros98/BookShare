@@ -16,7 +16,13 @@ namespace Model
         private int bookID;
         private int lenderID;
         private int borrowerID;
+        private List<string> tradedImages;
 
+        public static int STATUS_AVAILABLE = 0;
+        public static int STATUS_PENDING = 1;
+        public static int STATUS_LENDING = 2;
+        public static int STATUS_COMPLETED = 3;
+        public static string ImageFolder = "images/tradingImage/";
         public int Id
         {
             get
@@ -134,11 +140,23 @@ namespace Model
             }
         }
 
+        public List<string> TradedImages
+        {
+            get
+            {
+                return tradedImages;
+            }
+
+            set
+            {
+                tradedImages = value;
+            }
+        }
+
         public Trading()
         {
 
         }
-
         public Trading(int id, string description, int tradingStatus, int borrowerRatePoint, int bookID, int borrowerID)
         {
             this.id = id;

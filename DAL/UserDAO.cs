@@ -37,7 +37,7 @@ namespace DAL
                     };
                 }
             }
-
+            conn.Close();
             return user;
         }
 
@@ -46,12 +46,12 @@ namespace DAL
             User user = null;
             string query = @"select top 1 u.id, u.username, u.avatar, u.userPoint
                             from [User] u, trading t
-                            where u.id = t.lenderID and t.tradingStatus=1 and t.bookID = @bookID order by (t.completedTime) desc";
+                            where u.id = t.lenderID and t.tradingStatus= @status and t.bookID = @bookID order by (t.completedTime) desc";
             
             SqlConnection conn = GetConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
-
+            cmd.Parameters.AddWithValue("@status", Trading.STATUS_AVAILABLE);
             cmd.Parameters.AddWithValue("bookID", bookID);
 
             //ScriptManager.RegisterClientScriptBlock(this, GetType(),
@@ -71,7 +71,7 @@ namespace DAL
                 };
 
             }
-
+            conn.Close();
             return user;
         }
 
@@ -94,10 +94,7 @@ namespace DAL
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("id", id);
-
-            //ScriptManager.RegisterClientScriptBlock(this, GetType(),
-            //    "alertMessage", @"alert('Login success')", true);
+            cmd.Parameters.AddWithValue("@id", id);
 
             SqlDataReader reader = cmd.ExecuteReader();
 
@@ -117,7 +114,7 @@ namespace DAL
                 };
 
             }
-
+            conn.Close();
             return user;
         }
 
@@ -153,11 +150,12 @@ namespace DAL
                 cmd.Parameters.AddWithValue("createdTime", u.CreatedDate);
 
                 cmd.ExecuteNonQuery();
+                conn.Close();
             } catch (Exception ex)
             {
                 return false;
             }
-
+            
             return true;
         }
 

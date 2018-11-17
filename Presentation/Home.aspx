@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="book-item">
-                    <a href="BookDetails.aspx?id=<%= Books[i].Id %>" class="book-link">
+                    <a href="BookDetail.aspx?id=<%= Books[i].Id %>" class="book-link">
                         <div class="img">
                             <img src="<%= Books[i].CoverImg %>" alt="" />
                         </div>

@@ -12,10 +12,12 @@ namespace Presentation
     public partial class BookDetail : System.Web.UI.Page
     {
         public User user;
-        public int idBook = 2;
+        public int idBook;
         public Book book;
         public List<string> covers;
+        public List<User> lenders;
         public List<Trading> tradings;
+        
         public DateTime currentDate = DateTime.Today;
         public List<BookReview> reviews;
         public string rootPath;
@@ -27,15 +29,41 @@ namespace Presentation
 
             if (Request.QueryString["id"] == null || Session["currentUser"] == null)
             {
-                //Server.Transfer("ErrorPage.aspx");
+                Server.Transfer("ErrorPage.aspx");
             }
             else
             {
+                user = (User)Session["currentUser"];
+                idBook = int.Parse(Request.QueryString["id"]);
+                BookDAO bookDAO = new BookDAO();
+                //Get book by id
+                book = bookDAO.GetById(idBook);
+
+                //Get all lenders for this book
+                TradingDAO tradingDAO = new TradingDAO();
+                tradings = tradingDAO.getAllTradingOfOneBookPaging(idBook, 1);
+
+                //Get all lenders according to tradings
+                lenders = new List<User>();
+                UserDAO userDAO = new UserDAO();
+                foreach (Trading t in tradings)
+                {
+                    User u = userDAO.GetById(t.LenderID);
+                    lenders.Add(u);
+                }
+
+                //Get all traded images
+                foreach (Trading t in tradings)
+                {
+                    tradingDAO = new TradingDAO();
+                    List<string> tradedImages = new List<string>();
+                    tradedImages = tradingDAO.getAllTradedImages(t.Id);
+                    t.TradedImages = tradedImages;
+                }
                 
+
             }
-            user = (User)Session["currentUser"];
-            BookDAO bookDao = new BookDAO();
-            book = bookDao.GetById(idBook);
+            
         }
 
         public void updateReview(int top)

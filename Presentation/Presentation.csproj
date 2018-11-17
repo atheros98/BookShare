@@ -58,12 +58,49 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\css\font-face.css" />
+    <Content Include="admin\css\theme.css" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.svg" />
+    <Content Include="admin\images\icon\logo.png" />
+    <Content Include="admin\index.html" />
+    <Content Include="admin\js\main.js" />
+    <Content Include="admin\TestAdmin.aspx" />
+    <Content Include="admin\vendor\jquery-3.2.1.min.js" />
+    <Content Include="admin\vendor\jquery-ui.min.js" />
+    <Content Include="bin\Controller.dll" />
+    <Content Include="bin\Controller.pdb" />
+    <Content Include="bin\DAL.dll" />
+    <Content Include="bin\DAL.pdb" />
+    <Content Include="bin\Model.dll" />
+    <Content Include="bin\Model.pdb" />
+    <Content Include="bin\Presentation.dll" />
+    <Content Include="bin\Presentation.pdb" />
     <Content Include="BookDetail.aspx" />
+    <Content Include="css\bookDetail.css" />
     <Content Include="css\boxform.css" />
+    <Content Include="css\imageSlideShow.css" />
     <Content Include="css\register.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TableData.css" />
     <Content Include="css\uploadbook.css" />
+    <Content Include="ErrorPage.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="images\avatar\na.jpg" />
     <Content Include="images\avatar\nam.jpg" />
@@ -72,27 +109,59 @@
     <Content Include="images\bookCover\pic2.jpg" />
     <Content Include="images\bookCover\pic3.jpg" />
     <Content Include="images\bookCover\pic4.jpg" />
+    <Content Include="images\bookCover\pic5.jpg" />
+    <Content Include="images\bookCover\pic6.jpg" />
+    <Content Include="images\bookCover\pic7.jpg" />
+    <Content Include="images\bookCover\pic8.jpg" />
+    <Content Include="images\tradingImage\HowToInfluenceFriend\pic1.jpg" />
+    <Content Include="images\tradingImage\HowToInfluenceFriend\pic2.jpg" />
+    <Content Include="images\tradingImage\HowToInfluenceFriend\pic3.jpg" />
     <Content Include="img\book-icon.svg" />
     <Content Include="img\cover.jpg" />
     <Content Include="img\CoverBook.jpg" />
     <Content Include="img\loader.gif" />
     <Content Include="javascript\checkPassword.js" />
     <Content Include="javascript\dateProcessing.js" />
+    <Content Include="javascript\imageSlideShow.js" />
     <Content Include="Login.aspx" />
+    <Content Include="obj\Debug\Presentation.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Presentation.dll" />
+    <Content Include="obj\Debug\Presentation.pdb" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
-    <Content Include="RegisterPage.aspx" />
     <Content Include="Search.aspx" />
+    <Content Include="TestImageSlideShow.aspx" />
     <Content Include="UploadBook.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\Dashboard.Master.cs">
+      <DependentUpon>Dashboard.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Dashboard.Master.designer.cs">
+      <DependentUpon>Dashboard.Master</DependentUpon>
+    </Compile>
+    <Compile Include="admin\TestAdmin.aspx.cs">
+      <DependentUpon>TestAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\TestAdmin.aspx.designer.cs">
+      <DependentUpon>TestAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BookDetail.aspx.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BookDetail.aspx.designer.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -122,6 +191,9 @@
     <Compile Include="masterPage\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -137,19 +209,19 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RegisterPage.aspx.cs">
-      <DependentUpon>RegisterPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="RegisterPage.aspx.designer.cs">
-      <DependentUpon>RegisterPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Search.aspx.cs">
       <DependentUpon>Search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestImageSlideShow.aspx.cs">
+      <DependentUpon>TestImageSlideShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestImageSlideShow.aspx.designer.cs">
+      <DependentUpon>TestImageSlideShow.aspx</DependentUpon>
     </Compile>
     <Compile Include="UploadBook.aspx.cs">
       <DependentUpon>UploadBook.aspx</DependentUpon>
@@ -162,6 +234,82 @@
   <ItemGroup>
     <Content Include="masterPage\Box.Master" />
     <Content Include="masterPage\Main.Master" />
+    <Content Include="bin\Presentation.dll.config" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\Presentation.csprojResolveAssemblyReference.cache" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="admin\Dashboard.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -182,6 +330,30 @@
       <Project>{abe31203-3c71-4130-8509-05d995b8e0c5}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="admin\vendor\animsition\" />
+    <Folder Include="admin\vendor\bootstrap-4.1\" />
+    <Folder Include="admin\vendor\bootstrap-progressbar\" />
+    <Folder Include="admin\vendor\chartjs\" />
+    <Folder Include="admin\vendor\circle-progress\" />
+    <Folder Include="admin\vendor\countdown\" />
+    <Folder Include="admin\vendor\counter-up\" />
+    <Folder Include="admin\vendor\css-hamburgers\" />
+    <Folder Include="admin\vendor\font-awesome-4.7\" />
+    <Folder Include="admin\vendor\font-awesome-5\" />
+    <Folder Include="admin\vendor\lightbox2\" />
+    <Folder Include="admin\vendor\mdi-font\" />
+    <Folder Include="admin\vendor\perfect-scrollbar\" />
+    <Folder Include="admin\vendor\progressbar\" />
+    <Folder Include="admin\vendor\select2\" />
+    <Folder Include="admin\vendor\slick\" />
+    <Folder Include="admin\vendor\smk-accordion\" />
+    <Folder Include="admin\vendor\sweetalert\" />
+    <Folder Include="admin\vendor\vector-map\" />
+    <Folder Include="admin\vendor\wow\" />
+    <Folder Include="images\tradingImage\NhaGiaKim\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

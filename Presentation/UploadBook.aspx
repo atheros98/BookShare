@@ -81,7 +81,7 @@
             <div class="elements">
                 <div class="title"><i class="fas fa-address-card"></i>Book condition</div>
                 <div class="input">
-                    <textarea id="Textarea1" placeholder="Description" required="required" style="border: none;" runat="server"></textarea>
+                    <textarea id="condition" placeholder="Description" required="required" style="border: none;" runat="server"></textarea>
                 </div>
             </div>
             <div class="elements" style="border: none;">

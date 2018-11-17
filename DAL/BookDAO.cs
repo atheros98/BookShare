@@ -37,7 +37,7 @@ namespace DAL
                     CategoryID = reader.GetInt32(10)
                 };
             }
-
+            conn.Close();
             return book;
         }
 
@@ -182,13 +182,13 @@ namespace DAL
                     + " union select * from Book where author LIKE '%" + queryStr + "%') result where status = " + Book.STATUS_ACCEPTED;
                     break;
                 case "Title":
-                    sqlCommand = "select count (*) from Book where title LIKE '%" + queryStr + "%' where status = " + Book.STATUS_ACCEPTED; 
+                    sqlCommand = "select count (*) from Book where title LIKE '%" + queryStr + "%' and status = " + Book.STATUS_ACCEPTED; 
                     break;
                 case "Author":
-                    sqlCommand = "select count (*) from Book where author LIKE '%" + queryStr + "%' where status = " + Book.STATUS_ACCEPTED; 
+                    sqlCommand = "select count (*) from Book where author LIKE '%" + queryStr + "%' and status = " + Book.STATUS_ACCEPTED; 
                     break;
                 case "ISBN":
-                    sqlCommand = "select count (*) from Book where ISBN LIKE '%" + queryStr + "%' where status = " + Book.STATUS_ACCEPTED; 
+                    sqlCommand = "select count (*) from Book where ISBN LIKE '%" + queryStr + "%' and status = " + Book.STATUS_ACCEPTED; 
                     break;
             }
 
@@ -230,21 +230,21 @@ namespace DAL
 
         public override Book GetById(int id)
         {
-            Book book = null;
+            Book book = new Book();
             string query = @"select * from Book
                         where id= @id";
             SqlConnection conn = GetConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("id", id);
+            cmd.Parameters.AddWithValue("@id", id);
 
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
                 book = new Book
                 {
-                    Id = id,
+                    Id = reader.GetInt32(0),
                     Title = reader.GetString(1),
                     Author = reader.GetString(2),
                     ISBN1 = reader.GetString(3),
@@ -257,7 +257,7 @@ namespace DAL
                     CategoryID = reader.GetInt32(10)
                 };
             }
-
+            conn.Close();
             return book;
         }
 
@@ -286,7 +286,7 @@ namespace DAL
                     CoverImg = reader.GetString(3)
                 });
             }
-
+            conn.Close();
             return books;
         }
 
@@ -328,9 +328,49 @@ namespace DAL
                 list.Add(book);
 
             }
-
+            conn.Close();
             return list;
         }
+
+        public int CreateBook(string title, string author, string isbn, string languague, string description, string cover, int creatorID, int categoryID)
+        {
+            int bookID = -1;
+            SqlConnection conn = GetConnection();
+            SqlCommand cmd = null;
+            try
+            {
+                string query = @"insert into Book 
+                    (title, author, ISBN, language, description, status, coverImg, createdTime, 
+                    creatorID, categoryID)
+                    values(@title, @author, @ISBN, @languague, @description, @status, @cover, 
+                    @createdTime, @creatorID, @categoryID);SELECT SCOPE_IDENTITY();";
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@title", title);
+                cmd.Parameters.AddWithValue("@author", author);
+                cmd.Parameters.AddWithValue("@ISBN", isbn);
+                cmd.Parameters.AddWithValue("@languague", languague);
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@status", Book.STATUS_PENDING);
+                cmd.Parameters.AddWithValue("@cover", cover);
+                cmd.Parameters.AddWithValue("@createdTime", DateTime.Now);
+                cmd.Parameters.AddWithValue("@creatorID", creatorID);
+                cmd.Parameters.AddWithValue("@categoryID", categoryID);
+
+                bookID = Convert.ToInt32(cmd.ExecuteScalar());
+
+            } catch (Exception ex)
+            {
+                throw ex;
+            } finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+
+            return bookID;
+        }
+
 
         public override bool Insert(Book t)
         {
