@@ -121,5 +121,42 @@ namespace DAL
             }
             return lists;
         }
+        //Get all traded images of one traidings
+        public List<string> getAllTradedImages(int tradingId)
+        {
+            List<string> lists = new List<string>();
+            SqlConnection conn = null;
+            SqlCommand cmd = null;
+            try
+            {
+                string query = @"select id, image, tradingID 
+                                from TradedBookImage
+                                where tradingID = @tradingId";
+
+                conn = new SqlConnection(ConnectionString);
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@tradingId", tradingId);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string imagePath = Trading.ImageFolder + reader.GetString(1);
+                    lists.Add(imagePath);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+            return lists;
+        }
     }
 }

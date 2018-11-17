@@ -87,9 +87,6 @@
     <Content Include="images\bookCover\pic6.jpg" />
     <Content Include="images\bookCover\pic7.jpg" />
     <Content Include="images\bookCover\pic8.jpg" />
-    <Content Include="images\tradingImage\HowToInfluenceFriend\pic1.jpg" />
-    <Content Include="images\tradingImage\HowToInfluenceFriend\pic2.jpg" />
-    <Content Include="images\tradingImage\HowToInfluenceFriend\pic3.jpg" />
     <Content Include="img\book-icon.svg" />
     <Content Include="img\cover.jpg" />
     <Content Include="img\CoverBook.jpg" />
@@ -220,7 +217,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\tradingImage\NhaGiaKim\" />
+    <Folder Include="images\tradingImage\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
