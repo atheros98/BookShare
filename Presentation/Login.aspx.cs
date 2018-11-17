@@ -34,6 +34,7 @@ namespace Presentation
                 return;
             }
 
+            Session.Add("username", username);
             Session.Add("currentUser", user);
             Response.Redirect("Home.aspx");
         }

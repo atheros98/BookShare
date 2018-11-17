@@ -6,6 +6,8 @@ using System.Web;
 using Model;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
+using System.Diagnostics;
 
 namespace DAL
 {
@@ -39,6 +41,40 @@ namespace DAL
             return user;
         }
 
+        public User GetLatestUploadUser(int bookID)
+        {
+            User user = null;
+            string query = @"select top 1 u.id, u.username, u.avatar, u.userPoint
+                            from [User] u, trading t
+                            where u.id = t.lenderID and t.tradingStatus=1 and t.bookID = @bookID order by (t.completedTime) desc";
+            
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("bookID", bookID);
+
+            //ScriptManager.RegisterClientScriptBlock(this, GetType(),
+            //    "alertMessage", @"alert('Login success')", true);
+            
+            SqlDataReader reader = cmd.ExecuteReader();
+          
+            if (reader.Read())
+            {
+                System.Diagnostics.Debug.WriteLine(reader.GetInt32(0));
+                user = new User
+                {
+                    Id = reader.GetInt32(0),
+                    Username = reader.GetString(1), 
+                    Avatar = reader.GetString(2),
+                    UserPoint = reader.GetFloat(3)
+                };
+
+            }
+
+            return user;
+        }
+
         public override bool Delete(int id)
         {
             return false;
@@ -51,7 +87,38 @@ namespace DAL
 
         public override User GetById(int id)
         {
-            return null;
+            User user = null;
+            string query = "select * from [User] where id = @id";
+
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("id", id);
+
+            //ScriptManager.RegisterClientScriptBlock(this, GetType(),
+            //    "alertMessage", @"alert('Login success')", true);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                System.Diagnostics.Debug.WriteLine(reader.GetInt32(0));
+                user = new User
+                {
+                    Id = reader.GetInt32(0),
+                    FullName = reader.GetString(1), Dob = reader.GetDateTime(2),
+                    Username = reader.GetString(3), Password = reader.GetString(4),
+                    Email = reader.GetString(5), Address = reader.GetString(6),
+                    PhoneNum = reader.GetString(7), LinkFacebook = reader.GetString(8),
+                    Avatar = reader.GetString(9),
+                    UserPoint = reader.GetFloat(10),
+                    CreatedDate = reader.GetDateTime(11)
+                };
+
+            }
+
+            return user;
         }
 
         public override List<User> GetByPageId(int pageIndex)

@@ -292,10 +292,15 @@ a.login {
     background: #F27125;
 }
 
+.book-color > img{
+}
+
 .book-color-content {
     margin-left: 5px;
     line-height: 25px;
 }
+
+
 
 .checked {
     color: orange;
@@ -364,6 +369,7 @@ a.login {
     height: 50px;
     border-radius: 25px;
     margin-right: 10px;
+    object-fit: cover;
 }
 
 .book-content {
