@@ -16,6 +16,7 @@ namespace Model
         private int bookID;
         private int lenderID;
         private int borrowerID;
+        private List<string> tradedImages;
 
         public static int STATUS_AVAILABLE = 0;
         public static int STATUS_PENDING = 1;
@@ -136,6 +137,19 @@ namespace Model
             set
             {
                 borrowerID = value;
+            }
+        }
+
+        public List<string> TradedImages
+        {
+            get
+            {
+                return tradedImages;
+            }
+
+            set
+            {
+                tradedImages = value;
             }
         }
 

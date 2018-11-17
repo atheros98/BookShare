@@ -17,6 +17,7 @@ namespace Presentation
         public List<string> covers;
         public List<User> lenders;
         public List<Trading> tradings;
+        
         public DateTime currentDate = DateTime.Today;
         public List<BookReview> reviews;
         public string rootPath;
@@ -50,6 +51,17 @@ namespace Presentation
                     User u = userDAO.GetById(t.LenderID);
                     lenders.Add(u);
                 }
+
+                //Get all traded images
+                foreach (Trading t in tradings)
+                {
+                    tradingDAO = new TradingDAO();
+                    List<string> tradedImages = new List<string>();
+                    tradedImages = tradingDAO.getAllTradedImages(t.Id);
+                    t.TradedImages = tradedImages;
+                }
+                
+
             }
             
         }

@@ -1,36 +1,42 @@
-﻿var slideIndex = 0;
-showSlides(slideIndex);
+﻿
+var slideIndexImage = 1;
+showSlidesImage(slideIndexImage);
 
-// Next/previous controls
-function plusSlides(n) {
-    showSlides(slideIndex += n);
+function plusSlidesImage(n) {
+    showSlidesImage(slideIndexImage += n);
 }
 
-// Thumbnail image controls
-function currentSlide(n) {
-    showSlides(slideIndex = n);
+function currentSlideImage(n) {
+    showSlidesImage(slideIndexImage = n);
 }
 
-function showSlides(n) {
+function showSlidesImage(n) {
+    console.log(n);
+    
     var i;
     var slides = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("dot");
+    //Log using for debugging
+    console.log("slide length: " + slides.length);
+    //Check range of slide
     if (n > slides.length)
     {
-        slideIndex = 1
+        slideIndexImage = 1
     }
     if (n < 1)
     {
-        slideIndex = slides.length
+        slideIndexImage = slides.length - 1
     }
+    //Hide all images and dots
     for (i = 0; i < slides.length; i++)
     {
-        slides[i].style.display = "none";
+        slides[i].style.display = "none";  
     }
     for (i = 0; i < dots.length; i++)
     {
         dots[i].className = dots[i].className.replace(" active", "");
     }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
+    //Display the current image and highlight the current block
+    slides[slideIndexImage - 1].style.display = "block";
+    dots[slideIndexImage - 1].className += " active";
 }
