@@ -69,6 +69,7 @@
     <Content Include="BookDetail.aspx" />
     <Content Include="css\bookDetail.css" />
     <Content Include="css\boxform.css" />
+    <Content Include="css\imageSlideShow.css" />
     <Content Include="css\register.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TableData.css" />
@@ -86,12 +87,16 @@
     <Content Include="images\bookCover\pic6.jpg" />
     <Content Include="images\bookCover\pic7.jpg" />
     <Content Include="images\bookCover\pic8.jpg" />
+    <Content Include="images\tradingImage\HowToInfluenceFriend\pic1.jpg" />
+    <Content Include="images\tradingImage\HowToInfluenceFriend\pic2.jpg" />
+    <Content Include="images\tradingImage\HowToInfluenceFriend\pic3.jpg" />
     <Content Include="img\book-icon.svg" />
     <Content Include="img\cover.jpg" />
     <Content Include="img\CoverBook.jpg" />
     <Content Include="img\loader.gif" />
     <Content Include="javascript\checkPassword.js" />
     <Content Include="javascript\dateProcessing.js" />
+    <Content Include="javascript\imageSlideShow.js" />
     <Content Include="Login.aspx" />
     <Content Include="obj\Debug\Presentation.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Presentation.dll" />
@@ -99,6 +104,7 @@
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Search.aspx" />
+    <Content Include="TestImageSlideShow.aspx" />
     <Content Include="UploadBook.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -170,6 +176,13 @@
     <Compile Include="Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TestImageSlideShow.aspx.cs">
+      <DependentUpon>TestImageSlideShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestImageSlideShow.aspx.designer.cs">
+      <DependentUpon>TestImageSlideShow.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UploadBook.aspx.cs">
       <DependentUpon>UploadBook.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -206,7 +219,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\tradingImage\HowToInfluenceFriend\" />
     <Folder Include="images\tradingImage\NhaGiaKim\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>

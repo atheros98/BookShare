@@ -88,6 +88,10 @@
             <% for (int i = 0; i < tradings.Count; i++)
                 { %>
             <div class="info-book">
+                <%--Slide show for trading images--%>
+
+                <%--////////////////////////////////////////////////////////--%>
+
                 <%--Lenders'name + borrow button info--%>
                 <div class="elements">
                     <%--Lenders'name--%>
