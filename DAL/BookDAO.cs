@@ -332,7 +332,7 @@ namespace DAL
             return list;
         }
 
-        public int CreateBook(string title, string author, string isbn, string languague, string description, string cover, int creatorID, string categoryID)
+        public int CreateBook(string title, string author, string isbn, string languague, string description, string cover, int creatorID, int categoryID)
         {
             int bookID = -1;
             SqlConnection conn = GetConnection();
@@ -341,7 +341,7 @@ namespace DAL
             {
                 string query = @"insert into Book 
                     (title, author, ISBN, language, description, status, coverImg, createdTime, 
-                    createID, categoryID)
+                    creatorID, categoryID)
                     values(@title, @author, @ISBN, @languague, @description, @status, @cover, 
                     @createdTime, @creatorID, @categoryID);SELECT SCOPE_IDENTITY();";
                 conn.Open();

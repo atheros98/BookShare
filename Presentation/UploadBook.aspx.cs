@@ -20,7 +20,7 @@ namespace Presentation
                 categories = new CategoryDAO().GetAll();
                 foreach (Category cat in categories)
                 {
-                    cate.Items.Add(new ListItem(cat.Name, cate.ID));
+                    cate.Items.Add(new ListItem(cat.Name, cat.Id.ToString()));
                 }
             }
         }
@@ -55,7 +55,7 @@ namespace Presentation
                 disableInput(true);
                 title.Value = book.Title;
                 author.Value = book.Author;
-                cate.Items[book.CategoryID - 1].Selected = true;
+                cate.Items.FindByValue(book.CategoryID.ToString()).Selected = true;
                 image.ImageUrl = book.CoverImg;
                 language.Value = book.Language;
                 description.Value = book.Description;
@@ -77,7 +77,7 @@ namespace Presentation
                 if (book == null)
                 {
                     string filename = uploadBookCover();
-                    bookID = bookDAO.CreateBook(title.Value.Trim(), author.Value.Trim(), isbn.Text.Trim(), language.Value.Trim(), description.Value.Trim(), filename, user.Id, cate.SelectedValue);
+                    bookID = bookDAO.CreateBook(title.Value.Trim(), author.Value.Trim(), isbn.Text.Trim(), language.Value.Trim(), description.Value.Trim(), filename, user.Id, int.Parse(cate.SelectedItem.Value));
                 } else
                 {
                     bookID = book.Id;
