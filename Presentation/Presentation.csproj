@@ -107,6 +107,8 @@
     <Content Include="images\avatar\na.jpg" />
     <Content Include="images\avatar\nam.jpg" />
     <Content Include="images\avatar\tuan.jpg" />
+    <Content Include="images\bookCover\2514929285151.jpg" />
+    <Content Include="images\bookCover\3103859898433.jpg" />
     <Content Include="images\bookCover\pic1.jpg" />
     <Content Include="images\bookCover\pic2.jpg" />
     <Content Include="images\bookCover\pic3.jpg" />
@@ -115,9 +117,6 @@
     <Content Include="images\bookCover\pic6.jpg" />
     <Content Include="images\bookCover\pic7.jpg" />
     <Content Include="images\bookCover\pic8.jpg" />
-    <Content Include="images\tradingImage\HowToInfluenceFriend\pic1.jpg" />
-    <Content Include="images\tradingImage\HowToInfluenceFriend\pic2.jpg" />
-    <Content Include="images\tradingImage\HowToInfluenceFriend\pic3.jpg" />
     <Content Include="img\book-icon.svg" />
     <Content Include="img\cover.jpg" />
     <Content Include="img\CoverBook.jpg" />
@@ -341,27 +340,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="admin\vendor\animsition\" />
-    <Folder Include="admin\vendor\bootstrap-4.1\" />
-    <Folder Include="admin\vendor\bootstrap-progressbar\" />
-    <Folder Include="admin\vendor\chartjs\" />
-    <Folder Include="admin\vendor\circle-progress\" />
-    <Folder Include="admin\vendor\countdown\" />
-    <Folder Include="admin\vendor\counter-up\" />
-    <Folder Include="admin\vendor\css-hamburgers\" />
-    <Folder Include="admin\vendor\font-awesome-4.7\" />
-    <Folder Include="admin\vendor\font-awesome-5\" />
-    <Folder Include="admin\vendor\lightbox2\" />
-    <Folder Include="admin\vendor\mdi-font\" />
-    <Folder Include="admin\vendor\perfect-scrollbar\" />
-    <Folder Include="admin\vendor\progressbar\" />
-    <Folder Include="admin\vendor\select2\" />
-    <Folder Include="admin\vendor\slick\" />
-    <Folder Include="admin\vendor\smk-accordion\" />
-    <Folder Include="admin\vendor\sweetalert\" />
-    <Folder Include="admin\vendor\vector-map\" />
-    <Folder Include="admin\vendor\wow\" />
-    <Folder Include="images\tradingImage\NhaGiaKim\" />
+    <Folder Include="images\tradingImage\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
