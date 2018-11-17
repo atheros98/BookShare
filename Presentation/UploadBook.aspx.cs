@@ -90,7 +90,7 @@ namespace Presentation
 
                 }
 
-                Response.Redirect(string.Format("BookDetails.aspx?id={0}", bookID));
+                Response.Redirect(string.Format("BookDetail.aspx?id={0}", bookID));
             }
         }
 
