@@ -30,6 +30,40 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public int CreateNewTrading(string description, int bookID, int lenderID)
+        {
+            SqlConnection conn = GetConnection();
+            SqlCommand cmd = null;
+            int tradingID = -1;
+            try
+            {
+                string sql = @"INSERT INTO Trading 
+                            (description, tradingStatus, completedTime, bookID, lenderID) 
+                            VALUES (@description, @tradingStatus, @completedTime, @bookID, @lenderID);
+                            SELECT SCOPE_IDENTITY()";
+                conn.Open();
+                cmd = new SqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@tradingStatus", Trading.STATUS_AVAILABLE);
+                cmd.Parameters.AddWithValue("@completedTime", DateTime.Now);
+                cmd.Parameters.AddWithValue("@bookID", bookID);
+                cmd.Parameters.AddWithValue("@lenderID", lenderID);
+
+                tradingID = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+            return tradingID;
+        }
+
         public override bool Insert(Trading t)
         {
             throw new NotImplementedException();

@@ -339,7 +339,11 @@ namespace DAL
             SqlCommand cmd = null;
             try
             {
-                string query = "insert into Book values(@title, @author, @ISBN, @languague, @description, @status, @cover, @createdTime, @creatorID, @categoryID);SELECT SCOPE_IDENTITY();";
+                string query = @"insert into Book 
+                    (title, author, ISBN, language, description, status, coverImg, createdTime, 
+                    createID, categoryID)
+                    values(@title, @author, @ISBN, @languague, @description, @status, @cover, 
+                    @createdTime, @creatorID, @categoryID);SELECT SCOPE_IDENTITY();";
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@title", title);
