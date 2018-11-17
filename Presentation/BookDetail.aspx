@@ -2,6 +2,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" type="text/css" href="css/bookDetail.css">
+    <link rel="stylesheet" type="text/css" href="css/imageSlideShow.css">
+    <script type="text/javascript" src="javascript/imageSlideShow.js"></script>
+    <script type="text/javascript" src="javascript/lenderSlideShow.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="book-title">
@@ -77,21 +80,54 @@
             </div>
         </div>
     </div>
-
+    <%--                                             LENDERS                                                   --%>
     <%--List of all available tradings--%>
     <div class="title-upload" style="background: #F9F7F4;">
         <i class="fas fa-info"><b>List of lenders</b></i>
         <div style="clear: both;">
         </div>
-        <%--Using slider to display all the tradings'details--%> 
+        <%--Slide show for trading images--%>
+        <%--Image slideShow--%>
+        <div>
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 3</div>
+                    <img src="images/bookCover/pic1.jpg" style="width: 100%">
+                    <div class="text">Caption Text</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 3</div>
+                    <img src="images/bookCover/pic2.jpg" style="width: 100%">
+                    <div class="text">Caption Two</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 3</div>
+                    <img src="images/bookCover/pic3.jpg" style="width: 100%">
+                    <div class="text">Caption Three</div>
+                </div>
+
+                <a class="prevImage" onclick="plusSlidesImage(-1)">&#10094;</a>
+                <a class="nextImage" onclick="plusSlidesImage(1)">&#10095;</a>
+
+            </div>
+            <br>
+
+            <div style="text-align: center">
+                <span class="dot" onclick="currentSlideImage(1)"></span>
+                <span class="dot" onclick="currentSlideImage(2)"></span>
+                <span class="dot" onclick="currentSlideImage(3)"></span>
+            </div>
+        </div>
+        <%--//////////////////////////////////////////////////////////////////////////--%>
+        <%--Using slider to display all the tradings'details--%>
         <div class="slides-container">
             <% for (int i = 0; i < tradings.Count; i++)
                 { %>
             <div class="info-book">
-                <%--Slide show for trading images--%>
-
-                <%--////////////////////////////////////////////////////////--%>
-
                 <%--Lenders'name + borrow button info--%>
                 <div class="elements">
                     <%--Lenders'name--%>
@@ -110,7 +146,7 @@
                     <%--Book--%>
                     <div class="title"><i class="fas fa-envelope"></i>Description</div>
                     <div class="input">
-                        <input type="description" name="description" value="<%=tradings[i].Description%>" readonly="" />
+                        <input type="text" name="description" value="<%=tradings[i].Description%>" readonly="" />
                     </div>
                 </div>
                 <%--Email info--%>
@@ -160,38 +196,13 @@
             <button id="next" onclick="plusSlides(1)">Next &#10095;</button>
         </div>
     </div>
-    <%--End the list of lenders--%> 
+    <%--End the list of lenders--%>
     <script>
+        //Lenders slideShow
         var slideIndex = 1;
         showSlides(slideIndex);
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-        function showSlides(n) {
-            var i;
-            var slides = document.getElementsByClassName("info-book");
-            slides.add
-            var length = slides.length;
-            console.log(slideIndex);
-            var prev = document.getElementById("prev");
-            var next = document.getElementById("next");
-            if (n === length - 1) {
-                next.disabled = true;
-
-            } else {
-                next.disabled = false;
-            }
-            if (n === 1) {
-                prev.disabled = true;
-            } else {
-                prev.disabled = false;
-            }
-            for (i = 1; i < length; i++) {
-
-                slides[i].style.display = "none";
-            }
-            console.log(slideIndex);
-            slides[slideIndex].style.display = "block";
-        }
+        //Image slideShow
+        var slideIndexImage = 1;
+        showSlidesImage(slideIndexImage);
     </script>
 </asp:Content>

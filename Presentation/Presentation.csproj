@@ -97,6 +97,7 @@
     <Content Include="javascript\checkPassword.js" />
     <Content Include="javascript\dateProcessing.js" />
     <Content Include="javascript\imageSlideShow.js" />
+    <Content Include="javascript\lenderSlideShow.js" />
     <Content Include="Login.aspx" />
     <Content Include="obj\Debug\Presentation.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Presentation.dll" />

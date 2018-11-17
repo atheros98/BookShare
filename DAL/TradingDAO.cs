@@ -82,26 +82,18 @@ namespace DAL
             SqlCommand cmd = null;
             try
             {
-                string query = @"with temp as (select id, [description], tradingStatus, 
-                                    completedTime, lenderRatePoint, borrowerRatePoint, bookID, lenderID, borrowerID,
-                                    ROW_NUMBER() over (order by completedTime desc) row_num 
-
-                                    from Trading 
-                                    where bookID = @id
-                                    )    
-                            select id, [description], tradingStatus, 
-                            completedTime, lenderRatePoint, borrowerRatePoint, bookID, lenderID, borrowerID
-                            from temp
-                            where temp.row_num between @start and @end";
+                string query = @"select id, [description], tradingStatus, 
+                                completedTime, lenderRatePoint, borrowerRatePoint, bookID, lenderID, borrowerID
+		
+                                from Trading t
+                                where t.bookID = @id";
 
                 conn = new SqlConnection(ConnectionString);
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
 
                 cmd.Parameters.AddWithValue("@id", bookId);
-                cmd.Parameters.AddWithValue("@start", (pageIndex - 1) * pageSize + 1);
-                cmd.Parameters.AddWithValue("@end", pageIndex * pageSize + 1);
-
+                
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
