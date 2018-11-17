@@ -179,7 +179,7 @@ namespace DAL
                     sqlCommand = "select count (distinct id) from"
                             + "(select * from Book where title LIKE '%" + queryStr + "%'"
                     + " union select * from Book where ISBN LIKE '%" + queryStr + "%'"
-                    + " union select * from Book where author LIKE '%" + queryStr + "%') result and status = " + Book.STATUS_ACCEPTED;
+                    + " union select * from Book where author LIKE '%" + queryStr + "%') result where status = " + Book.STATUS_ACCEPTED;
                     break;
                 case "Title":
                     sqlCommand = "select count (*) from Book where title LIKE '%" + queryStr + "%' and status = " + Book.STATUS_ACCEPTED; 
