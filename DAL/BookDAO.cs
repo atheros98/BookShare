@@ -110,7 +110,7 @@ namespace DAL
             string query = "select * from "
                     + "(select *, row_number() over (order by id DESC) as row from Book"
                     + " where author LIKE '%" + author + "%') result"
-                    + " where result.row between " + from + " and " + to + " and status = " + Book.STATUS_ACCEPTED; ;
+                    + " where result.row between " + from + " and " + to + " and status = " + Book.STATUS_ACCEPTED;
             return getBookByCommand(query);
         }
 

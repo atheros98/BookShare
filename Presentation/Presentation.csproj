@@ -93,11 +93,13 @@
     <Content Include="bin\Presentation.dll" />
     <Content Include="bin\Presentation.pdb" />
     <Content Include="BookDetail.aspx" />
+    <Content Include="Borrowing.aspx" />
     <Content Include="css\bookDetail.css" />
     <Content Include="css\boxform.css" />
     <Content Include="css\imageSlideShow.css" />
     <Content Include="css\register.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\table.css" />
     <Content Include="css\TableData.css" />
     <Content Include="css\uploadbook.css" />
     <Content Include="ErrorPage.aspx" />
@@ -155,6 +157,13 @@
     </Compile>
     <Compile Include="BookDetail.aspx.designer.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Borrowing.aspx.cs">
+      <DependentUpon>Borrowing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Borrowing.aspx.designer.cs">
+      <DependentUpon>Borrowing.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorPage.aspx.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
