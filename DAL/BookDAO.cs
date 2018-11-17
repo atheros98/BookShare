@@ -332,6 +332,42 @@ namespace DAL
             return list;
         }
 
+        public int CreateBook(string title, string author, string isbn, string languague, string description, string cover, int creatorID, string categoryID)
+        {
+            int bookID = -1;
+            SqlConnection conn = GetConnection();
+            SqlCommand cmd = null;
+            try
+            {
+                string query = "insert into Book values(@title, @author, @ISBN, @languague, @description, @status, @cover, @createdTime, @creatorID, @categoryID);SELECT SCOPE_IDENTITY();";
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@title", title);
+                cmd.Parameters.AddWithValue("@author", author);
+                cmd.Parameters.AddWithValue("@ISBN", isbn);
+                cmd.Parameters.AddWithValue("@languague", languague);
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@status", Book.STATUS_PENDING);
+                cmd.Parameters.AddWithValue("@cover", cover);
+                cmd.Parameters.AddWithValue("@createdTime", DateTime.Now);
+                cmd.Parameters.AddWithValue("@creatorID", creatorID);
+                cmd.Parameters.AddWithValue("@categoryID", categoryID);
+
+                bookID = Convert.ToInt32(cmd.ExecuteScalar());
+
+            } catch (Exception ex)
+            {
+                throw ex;
+            } finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+
+            return bookID;
+        }
+
+
         public override bool Insert(Book t)
         {
             return false;
