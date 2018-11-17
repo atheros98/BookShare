@@ -184,6 +184,11 @@ namespace Model
             }
         }
 
+        public string GetAvatarFilenameOnly()
+        {
+            return avatar;
+        }
+
         public User(int id, string fullName, DateTime dob, string username, string password, string email, string address, string phoneNum, string linkFacebook, string avatar, double userPoint, DateTime createdDate)
         {
             this.Id = id;

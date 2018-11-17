@@ -45,10 +45,6 @@ namespace Presentation
                 Users.Add(user);
             }
 
-            
-
-            //rootPath = Request.ApplicationPath;
-
         }
     }
 }

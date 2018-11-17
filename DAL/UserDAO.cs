@@ -163,7 +163,24 @@ namespace DAL
 
         public override bool Update(int id, User newEntity)
         {
-            return false;
+            string query = "update [User] set fullName=@fullName, dob=@dob, email=@email, address=@address, phoneNum=@phoneNum, linkFacebook=@linkFacebook where id = @id";
+            SqlConnection conn = GetConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("fullName", newEntity.FullName);
+            cmd.Parameters.AddWithValue("dob", newEntity.Dob);
+
+            cmd.Parameters.AddWithValue("email", newEntity.Email);
+            cmd.Parameters.AddWithValue("address", newEntity.Address);
+            cmd.Parameters.AddWithValue("phoneNum", newEntity.PhoneNum);
+            cmd.Parameters.AddWithValue("linkFacebook", newEntity.LinkFacebook);
+
+            cmd.Parameters.AddWithValue("id", id);
+
+            int ok = cmd.ExecuteNonQuery();
+            return ok > 0;
         }
     }
 }

@@ -44,7 +44,7 @@
             <div class="elements">
                 <div class="title"><i class="fas fa-birthday-cake"></i>Birthday</div>
                 <div class="input">
-                    <input type="text" name="datepicker" value="<%= ViewedUser.Dob.ToString("MM/dd/yyyy") %>" required="required" />
+                    <input type="date"  name="datepicker" value="<%= ViewedUser.Dob.ToString("yyyy-MM-dd") %>" required="required" />
                 </div>
             </div>
             <div class="elements">
@@ -56,7 +56,7 @@
             <div class="elements">
                 <div class="title"><i class="fas fa-envelope"></i>Email</div>
                 <div class="input">
-                    <input type="text" name="email" placeholder="Email" value="<%= ViewedUser.Email %>" required="" />
+                    <input type="email" name="email" placeholder="Email" value="<%= ViewedUser.Email %>" required="" />
                 </div>
             </div>
             <div class="elements">
@@ -68,16 +68,17 @@
             <div class="elements">
                 <div class="title"><i class="fas fa-mobile"></i>Phone</div>
                 <div class="input">
-                    <input type="text" name="phonenumber" placeholder="Phone number" value="<%= ViewedUser.PhoneNum %>" required="" />
+                    <input type="number" name="phonenumber" placeholder="Phone number" value="<%= ViewedUser.PhoneNum %>" required="" />
                 </div>
             </div>
             <div class="elements">
                 <div class="title"><i class="fab fa-facebook-square"></i>Facebook</div>
                 <div class="input">
-                    <input type="text" name="linkfacebook" placeholder="Link facebook" value="<%= ViewedUser.LinkFacebook %>" required="" />
+                    <input type="url" name="linkfacebook" placeholder="Link facebook" value="<%= ViewedUser.LinkFacebook %>" required="" />
                 </div>
             </div>
             
+            <asp:Label ID="updateInfomer"  runat="server" BackColor="White"></asp:Label>
             <div class="submit-info">
                 <button type="submit">Change Information</button>
             </div>
@@ -121,7 +122,7 @@
             <div class="elements">
                 <div class="title"><i class="fas fa-envelope"></i>Email</div>
                 <div class="input">
-                    <input type="text" id="email" placeholder="Email" value="<%= ViewedUser.Email %>" disabled="disabled" />
+                    <input type="email" id="email" placeholder="Email" value="<%= ViewedUser.Email %>" disabled="disabled" />
                 </div>
             </div>
             <div class="elements">
@@ -133,7 +134,7 @@
             <div class="elements">
                 <div class="title"><i class="fas fa-mobile"></i>Phone</div>
                 <div class="input">
-                    <input type="text" id="phonenumber" placeholder="Phone number" value="<%= ViewedUser.PhoneNum %>" disabled="disabled" />
+                    <input type="number" id="phonenumber" placeholder="Phone number" value="<%= ViewedUser.PhoneNum %>" disabled="disabled" />
                 </div>
             </div>
             <div class="elements">
