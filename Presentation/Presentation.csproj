@@ -48,9 +48,9 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -58,12 +58,22 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Controller.dll" />
+    <Content Include="bin\Controller.pdb" />
+    <Content Include="bin\DAL.dll" />
+    <Content Include="bin\DAL.pdb" />
+    <Content Include="bin\Model.dll" />
+    <Content Include="bin\Model.pdb" />
+    <Content Include="bin\Presentation.dll" />
+    <Content Include="bin\Presentation.pdb" />
     <Content Include="BookDetail.aspx" />
+    <Content Include="css\bookDetail.css" />
     <Content Include="css\boxform.css" />
     <Content Include="css\register.css" />
     <Content Include="css\style.css" />
     <Content Include="css\TableData.css" />
     <Content Include="css\uploadbook.css" />
+    <Content Include="ErrorPage.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="images\avatar\na.jpg" />
     <Content Include="images\avatar\nam.jpg" />
@@ -72,6 +82,10 @@
     <Content Include="images\bookCover\pic2.jpg" />
     <Content Include="images\bookCover\pic3.jpg" />
     <Content Include="images\bookCover\pic4.jpg" />
+    <Content Include="images\bookCover\pic5.jpg" />
+    <Content Include="images\bookCover\pic6.jpg" />
+    <Content Include="images\bookCover\pic7.jpg" />
+    <Content Include="images\bookCover\pic8.jpg" />
     <Content Include="img\book-icon.svg" />
     <Content Include="img\cover.jpg" />
     <Content Include="img\CoverBook.jpg" />
@@ -79,6 +93,9 @@
     <Content Include="javascript\checkPassword.js" />
     <Content Include="javascript\dateProcessing.js" />
     <Content Include="Login.aspx" />
+    <Content Include="obj\Debug\Presentation.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Presentation.dll" />
+    <Content Include="obj\Debug\Presentation.pdb" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Search.aspx" />
@@ -92,6 +109,13 @@
     </Compile>
     <Compile Include="BookDetail.aspx.designer.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -121,6 +145,9 @@
     <Compile Include="masterPage\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -154,6 +181,9 @@
   <ItemGroup>
     <Content Include="masterPage\Box.Master" />
     <Content Include="masterPage\Main.Master" />
+    <Content Include="bin\Presentation.dll.config" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\Presentation.csprojResolveAssemblyReference.cache" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -174,6 +204,9 @@
       <Project>{abe31203-3c71-4130-8509-05d995b8e0c5}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

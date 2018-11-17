@@ -16,6 +16,7 @@ namespace Presentation
         public Book book;
         public List<string> covers;
         public List<User> lenders;
+        public List<Trading> tradings;
         public DateTime currentDate = DateTime.Today;
         public List<BookReview> reviews;
         public string rootPath;
@@ -49,7 +50,16 @@ namespace Presentation
 
             //Get all lenders for this book
             TradingDAO tradingDAO = new TradingDAO();
-            lenders = tradingDAO.getAllLendersByBookIDAndPaging(idBook, 0);
+            tradings = tradingDAO.getAllTradingOfOneBook(idBook, 0);
+
+            //Get all lenders according to tradings
+            lenders = new List<User>();
+            UserDAO userDAO = new UserDAO();
+            foreach(Trading t in tradings)
+            {
+                User u = userDAO.GetById(t.LenderID);
+                lenders.Add(u);
+            }
         }
 
         public void updateReview(int top)

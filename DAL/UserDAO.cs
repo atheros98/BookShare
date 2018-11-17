@@ -94,10 +94,7 @@ namespace DAL
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("id", id);
-
-            //ScriptManager.RegisterClientScriptBlock(this, GetType(),
-            //    "alertMessage", @"alert('Login success')", true);
+            cmd.Parameters.AddWithValue("@id", id);
 
             SqlDataReader reader = cmd.ExecuteReader();
 

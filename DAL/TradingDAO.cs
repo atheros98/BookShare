@@ -39,69 +39,51 @@ namespace DAL
         {
             throw new NotImplementedException();
         }
-        //Get a specific number of lenders by book ID 
-        public List<User> getAllLendersByBookIDAndPaging(int bookId, int pageIndex)
-        {
-            List<User> lists = new List<User>();
-
-            string query = @"with temp as(
-                            select u.id, u.fullName, u.email, u.[address], u.phoneNum, u.linkFacebook,
-                            t.completedTime, ROW_NUMBER() over(order by uploadDate desc) row_num
-	                        from Trading t, [User] u
-			                where t.lenderID = u.id
-							and t.bookID = 2)
-                            
-                            select * from temp 
-                            where temp.row_num >= @start and temp.row_num <= @end";
-
-            SqlConnection conn = new SqlConnection(ConnectionString);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            cmd.Parameters.AddWithValue("start", (pageIndex - 1) * pageSize + 1);
-            cmd.Parameters.AddWithValue("end", pageIndex * pageSize + 1);
-
-            SqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                User user = new User
-                {
-                    Id = reader.GetInt32(0),
-                    FullName = reader.GetString(1),
-                    Email = reader.GetString(2),
-                    Address = reader.GetString(3),
-                    PhoneNum = reader.GetString(4),
-                    LinkFacebook = reader.GetString(5)
-                };
-                
-                lists.Add(user);
-
-            }
-            return lists;
-        }
+  
         //Get all tradings of one bookId
         public List<Trading> getAllTradingOfOneBook(int bookId, int pageIndex)
         {
             List<Trading> lists = new List<Trading>();
 
-            string query = @"";
+            string query = @"with temp as (select id, [description], tradingStatus, 
+                                    completedTime, lenderRatePoint, borrowerRatePoint, bookID, lenderID, borrowerID,
+                                    ROW_NUMBER() over (order by completedTime desc) row_num 
+
+                                    from Trading 
+                                    where bookID = @id
+                                    )    
+                            select id, [description], tradingStatus, 
+                            completedTime, lenderRatePoint, borrowerRatePoint, bookID, lenderID, borrowerID
+                            from temp
+                            where temp.row_num between @start and @end";
 
             SqlConnection conn = new SqlConnection(ConnectionString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
 
-            cmd.Parameters.AddWithValue("start", (pageIndex - 1) * pageSize + 1);
-            cmd.Parameters.AddWithValue("end", pageIndex * pageSize + 1);
+            cmd.Parameters.AddWithValue("@id", bookId);
+            cmd.Parameters.AddWithValue("@start", (pageIndex - 1) * pageSize + 1);
+            cmd.Parameters.AddWithValue("@end", pageIndex * pageSize + 1);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
+                int temp1 = reader.GetInt32(0);
+                string temp = reader.GetString(1);
                 Trading trade = new Trading
                 {
-                    trade.Id
+                    Id = reader.GetInt32(0),
+                    Description = reader.GetString(1),
+                    TradingStatus = reader.GetInt32(2),
+                    CompletedTime = reader.GetDateTime(3),
+                    //LenderRatePoint = reader.GetFloat(4),
+                    //BorrowerRatePoint = reader.GetFloat(5),
+                    //BookID = reader.GetInt32(6),
+                    LenderID = reader.GetInt32(7),
+                    //BorrowerID = reader.GetInt32(8)
                 };
 
-                lists.Add(user);
+                lists.Add(trade);
 
             }
             return lists;

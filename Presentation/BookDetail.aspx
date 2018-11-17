@@ -5,8 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="book-title">
-        <h2><%=book.Title %></h2>
+        <h2><%=book.Title%></h2>
     </div>
+    <%--Show ratings stars--%>
     <div class="rate-book">
         <div class="rate">
             <select id="rate">
@@ -80,16 +81,17 @@
         </div>
     </div>
 
-    <%--List of all available lenders--%>
+    <%--List of all available tradings--%>
     <div class="title-upload" style="background: #F9F7F4;">
         <i class="fas fa-info"><b>List of lenders</b></i>
         <div style="clear: both;">
         </div>
+        <%--Using slider to display all the tradings'details--%> 
         <div class="slides-container">
-            <% for (int i = 0; i < lenders.Count; i++)
+            <% for (int i = 0; i < tradings.Count; i++)
                 { %>
             <div class="info-book">
-                <%--First info--%>
+                <%--Lenders'name + borrow button info--%>
                 <div class="elements">
                     <%--Lenders'name--%>
                     <div class="title trading"><i class="fas fa-user"></i>Name</div>
@@ -99,10 +101,18 @@
                     </div>
                     <%--Trading id--%>
                     <div class="borrow-book">
-                        <input type="button" value="Borrow" data-idtrading="<%= tradings[i].id %>" />
+                        <input type="button" value="Borrow" data-idtrading="<%= tradings[i].Id %>" />
                     </div>
                 </div>
-                <%--Second info--%>
+                <%--Book info--%>
+                <div class="elements">
+                    <%--Book--%>
+                    <div class="title"><i class="fas fa-envelope"></i>Description</div>
+                    <div class="input">
+                        <input type="description" name="description" value="<%=tradings[i].Description%>" readonly="" />
+                    </div>
+                </div>
+                <%--Email info--%>
                 <div class="elements">
                     <%--Email--%>
                     <div class="title"><i class="fas fa-envelope"></i>Email</div>
@@ -110,7 +120,7 @@
                         <input type="email" name="email" value="<%=lenders[i].Email%>" readonly="" />
                     </div>
                 </div>
-                <%--Third info--%>
+                <%--Lenders' address info--%>
                 <div class="elements">
                     <%--Lenders' address--%>
                     <div class="title"><i class="fas fa-address-card"></i>Address</div>
@@ -118,7 +128,7 @@
                         <input type="text" value="<%= lenders[i].Address %>" readonly="" />
                     </div>
                 </div>
-                <%--Fourth info--%>
+                <%--Phone number info--%>
                 <div class="elements">
                     <%--Phone number--%>
                     <div class="title"><i class="fas fa-phone-square"></i>Phone number</div>
@@ -126,7 +136,7 @@
                         <input type="text" value="<%= lenders[i].PhoneNum %>" readonly="" />
                     </div>
                 </div>
-                <%--Fifth info--%>
+                <%--Link facebook info--%>
                 <div class="elements">
                     <%--Link facebook--%>
                     <div class="title"><i class="fab fa-facebook"></i>Facebook</div>
@@ -134,11 +144,11 @@
                         <input type="text" value="<%=lenders[i].LinkFacebook %>" readonly="" />
                     </div>
                 </div>
-                <%--Final info--%>
+                <%--Upload time info--%>
                 <div class="elements">
                     <div class="title"><i class="fa fa-calendar"></i>Upload date</div>
                     <div class="input">
-                        <input type="text" value="<%= lenders[i].CreatedDate%>" readonly="" />
+                        <input type="text" value="<%= tradings[i].CompletedTime%>" readonly="" />
                     </div>
                 </div>
             </div>

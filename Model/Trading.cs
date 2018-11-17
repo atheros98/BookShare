@@ -138,7 +138,6 @@ namespace Model
         {
 
         }
-
         public Trading(int id, string description, int tradingStatus, int borrowerRatePoint, int bookID, int borrowerID)
         {
             this.id = id;
