@@ -10,7 +10,7 @@
     <h3>Profile</h3>
     <form runat="server">
         <div class="avatar">
-            <img id="ava_img" src="<%= Request.ApplicationPath + ViewedUser.Avatar %>" alt="avatar" />
+            <img id="ava_img" src="<%= ViewedUser.Avatar %>" alt="avatar" />
             <asp:FileUpload ID="avatar" accept="image/png, image/jpeg" runat="server"  onchange="loadFile(event)"/>
             <asp:Label ID="errorUpload" class="error-message" runat="server" Text="" ></asp:Label>
             <asp:Button ID="uploadAvatar" runat="server" Text="Change" onclick="uploadAvatar_Click"/>

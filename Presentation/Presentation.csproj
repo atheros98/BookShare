@@ -162,12 +162,11 @@
     <Content Include="admin\vendor\wow\animate.css" />
     <Content Include="admin\vendor\wow\wow.min.js" />
     <Content Include="BookDetail.aspx" />
-<<<<<<< HEAD
-=======
+
     <Content Include="Borrowing.aspx" />
     <Content Include="css\bookDetail.css" />
     <Content Include="css\bootstrap.min.css" />
->>>>>>> deb61eeaf4da0032ad603a0f43d96f1a03c3a4da
+
     <Content Include="css\boxform.css" />
     <Content Include="css\register.css" />
     <Content Include="css\style.css" />
@@ -184,8 +183,7 @@
     <Content Include="images\bookCover\pic2.jpg" />
     <Content Include="images\bookCover\pic3.jpg" />
     <Content Include="images\bookCover\pic4.jpg" />
-<<<<<<< HEAD
-=======
+
     <Content Include="images\bookCover\pic5.jpg" />
     <Content Include="images\bookCover\pic6.jpg" />
     <Content Include="images\bookCover\pic7.jpg" />
@@ -205,17 +203,16 @@
     <Content Include="images\tradingImage\27_131869025134449713_1.jpg" />
     <Content Include="images\tradingImage\27_131869025134547308_2.jpg" />
     <Content Include="images\tradingImage\27_131869025134625404_3.jpg" />
->>>>>>> deb61eeaf4da0032ad603a0f43d96f1a03c3a4da
+
     <Content Include="img\book-icon.svg" />
     <Content Include="img\cover.jpg" />
     <Content Include="img\CoverBook.jpg" />
     <Content Include="img\loader.gif" />
     <Content Include="javascript\checkPassword.js" />
     <Content Include="javascript\dateProcessing.js" />
-<<<<<<< HEAD
-=======
+
     <Content Include="Lending.aspx" />
->>>>>>> deb61eeaf4da0032ad603a0f43d96f1a03c3a4da
+
     <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
@@ -259,8 +256,7 @@
     <Compile Include="BookDetail.aspx.designer.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
+
     <Compile Include="Borrowing.aspx.cs">
       <DependentUpon>Borrowing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -275,7 +271,7 @@
     <Compile Include="ErrorPage.aspx.designer.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
->>>>>>> deb61eeaf4da0032ad603a0f43d96f1a03c3a4da
+
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -469,12 +465,11 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
-<<<<<<< HEAD
-=======
+
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
->>>>>>> deb61eeaf4da0032ad603a0f43d96f1a03c3a4da
+
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
