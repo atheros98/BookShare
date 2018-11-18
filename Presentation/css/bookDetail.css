@@ -41,7 +41,6 @@
 .elements {
     display: flex;
     padding-top: 7px;
-    padding-bottom: 7px;
     border: none;
     border-bottom: 1px solid gray;
 }
@@ -122,8 +121,7 @@
         }
 
 .slides-container {
-    /*position: relative;*/
-    margin-bottom: 10px;
+    position: relative;
 }
 
 

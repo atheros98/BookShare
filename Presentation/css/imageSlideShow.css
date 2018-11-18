@@ -3,10 +3,10 @@
 }
 /*Block for each slideshow container*/
 .slide-container-block {
-    display: none;
+    display: block;
     position: relative;
     margin: auto;
-    margin-bottom: 100px;
+    margin-bottom: 10px;
     object-fit: contain;
 }
 /* Slideshow container */
@@ -18,7 +18,7 @@
 
 /* Hide the images by default */
 .mySlides {
-    display: none;
+    display: block;
 }
 /*Image of trading book*/
 .mySlides img{

@@ -60,8 +60,6 @@ namespace Presentation
                     tradedImages = tradingDAO.getAllTradedImages(t.Id);
                     t.TradedImages = tradedImages;
                 }
-                
-
             }
             
         }
@@ -79,6 +77,27 @@ namespace Presentation
         protected void sendReview_Click(object sender, EventArgs e)
         {
             
+        }
+
+        protected void borrowBtn_Click(object sender, EventArgs e)
+        {
+            //Get data of the current trading
+            string index = Request.Params["pointerId"].ToString();
+            int indexOfTrading = int.Parse(index);
+            //Get id of trading
+            Trading currentChosen = tradings[indexOfTrading];
+            int tradingId = currentChosen.Id;
+
+            /*Update borrower*/ 
+            //Get id of borrower = current user in sessionId
+            int borrowerId = user.Id;
+            currentChosen.BorrowerID = borrowerId;
+
+            //Update in database
+            TradingDAO tradingDAO = new TradingDAO();
+
+            tradingDAO.Update(tradingId, currentChosen);
+
         }
     }
 }
