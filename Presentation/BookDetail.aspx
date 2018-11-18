@@ -22,7 +22,7 @@
                     <select id="rate">
                         <option value="1">1 Star</option>
                         <option value="2">2 Star</option>
-                        <option value="3">3 Star</option>
+                        <option value="3" selected>3 Star</option>
                         <option value="4">4 Star</option>
                         <option value="5">5 Star</option>
                     </select>
@@ -232,17 +232,23 @@
             var prev = document.getElementById("prev");
             var next = document.getElementById("next");
             //Check range for next and prev button
-            if (n === length - 1) {
+            if (length == 0) {
                 next.disabled = true;
-
-            } else {
-                next.disabled = false;
-            }
-            if (n === 0) {
                 prev.disabled = true;
             } else {
-                prev.disabled = false;
+                if (n === length - 1) {
+                    next.disabled = true;
+
+                } else {
+                    next.disabled = false;
+                }
+                if (n === 0) {
+                    prev.disabled = true;
+                } else {
+                    prev.disabled = false;
+                }
             }
+            
             //Hide all lenders
             for (i = 0; i < length; i++) {
 

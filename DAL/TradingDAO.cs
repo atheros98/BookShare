@@ -153,12 +153,13 @@ namespace DAL
             try
             {
                 string query = @"UPDATE Trading
-                            SET [borrowerID] = @borrowerId
+                            SET [tradingStatus] = @tradingStatus, [borrowerID] = @borrowerId
                             WHERE id = @tradingId;";
                 conn = GetConnection();
                 conn.Open();
 
                 cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@tradingStatus", newEntity.TradingStatus);
                 cmd.Parameters.AddWithValue("@borrowerId", newEntity.BorrowerID);
                 cmd.Parameters.AddWithValue("@tradingId", id);
 
@@ -179,7 +180,7 @@ namespace DAL
         }
 
         //Get all tradings of one bookId
-        public List<Trading> getAllTradingOfOneBookPaging(int bookId, int pageIndex)
+        public List<Trading> getAllTradingOfOneBookPaging(int bookId, int userId, int tradingStatus)
         {
             List<Trading> lists = new List<Trading>();
             SqlConnection conn = null;
@@ -190,13 +191,15 @@ namespace DAL
                                 completedTime, lenderRatePoint, borrowerRatePoint, bookID, lenderID, borrowerID
 		
                                 from Trading t
-                                where t.bookID = @id";
+                                where t.bookID = @bookId and tradingStatus = @tradingStatus and t.lenderID != @userId";
 
                 conn = new SqlConnection(ConnectionString);
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
 
-                cmd.Parameters.AddWithValue("@id", bookId);
+                cmd.Parameters.AddWithValue("@bookId", bookId);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@tradingStatus", tradingStatus);
 
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

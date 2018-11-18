@@ -41,7 +41,8 @@ namespace Presentation
 
                 //Get all lenders for this book
                 TradingDAO tradingDAO = new TradingDAO();
-                tradings = tradingDAO.getAllTradingOfOneBookPaging(idBook, 1);
+                int tradingStatus = 0; //Get all available trading
+                tradings = tradingDAO.getAllTradingOfOneBookPaging(idBook, user.Id, tradingStatus);
 
                 //Get all lenders according to tradings
                 lenders = new List<User>();
@@ -91,13 +92,15 @@ namespace Presentation
             /*Update borrower*/ 
             //Get id of borrower = current user in sessionId
             int borrowerId = user.Id;
+            //Change tradingStatus to pending
+            currentChosen.TradingStatus = 1;
+            //Update borrowerId
             currentChosen.BorrowerID = borrowerId;
 
             //Update in database
             TradingDAO tradingDAO = new TradingDAO();
 
             tradingDAO.Update(tradingId, currentChosen);
-
         }
     }
 }
