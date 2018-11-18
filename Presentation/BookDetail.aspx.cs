@@ -99,8 +99,10 @@ namespace Presentation
 
             //Update in database
             TradingDAO tradingDAO = new TradingDAO();
-
             tradingDAO.Update(tradingId, currentChosen);
+
+            //Reload page
+            Server.Transfer("BookDetail.aspx");
         }
     }
 }

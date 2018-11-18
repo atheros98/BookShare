@@ -139,6 +139,7 @@
     <Content Include="img\loader.gif" />
     <Content Include="javascript\checkPassword.js" />
     <Content Include="javascript\dateProcessing.js" />
+    <Content Include="Lending.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="obj\Debug\Presentation.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Presentation.dll" />
@@ -192,6 +193,13 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lending.aspx.cs">
+      <DependentUpon>Lending.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lending.aspx.designer.cs">
+      <DependentUpon>Lending.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

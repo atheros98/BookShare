@@ -30,7 +30,7 @@ namespace DAL
         {
             throw new NotImplementedException();
         }
-
+        //===============================================Borrowing===============================================
         public void UpdateLenderRatePoint(int tradingID, int point)
         {
             SqlConnection conn = GetConnection();
@@ -56,7 +56,6 @@ namespace DAL
                 conn.Close();
             }
         }
-
         public List<Trading> GetPendingBorrowing(int userID, int page)
         {
             int from = (page - 1) * pageSize + 1;
@@ -89,7 +88,90 @@ namespace DAL
                             where result.row between " + from + " and " + to;
             return GetTradingByCommand(query);
         }
+        //===============================================Lending===============================================
+        public void UpdateBorrowerRatePoint(int tradingID, int point)
+        {
+            SqlConnection conn = GetConnection();
+            SqlCommand cmd = null;
+            try
+            {
+                string sql = @"UPDATE Trading set borrowerRatePoint = @point where id = @tradingID";
+                conn.Open();
+                cmd = new SqlCommand(sql, conn);
 
+                cmd.Parameters.AddWithValue("@point", point);
+                cmd.Parameters.AddWithValue("@tradingID", tradingID);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+        }
+        public List<Trading> GetAvailableLending(int userID, int page)
+        {
+            int from = (page - 1) * pageSize + 1;
+            int to = page * pageSize;
+            string query = @"select * from
+                            (
+                            select *, ROW_NUMBER() over(order by t.completedTime desc) as row
+                            from Trading t
+                            where tradingStatus = " + Trading.STATUS_AVAILABLE + @" and lenderID = " + userID + @"
+                            ) result
+                            where result.row between " + from + " and " + to + " ";
+
+            return GetTradingByCommand(query);
+        }
+        public List<Trading> GetPendingLending(int userID, int page)
+        {
+            int from = (page - 1) * pageSize + 1;
+            int to = page * pageSize;
+            string query = @"select * from
+                            (
+                            select *, ROW_NUMBER() over(order by t.completedTime desc) as row
+                            from Trading t
+                            where tradingStatus = " + Trading.STATUS_PENDING + @" and lenderID = " + userID + @"
+                            ) result
+                            where result.row between " + from + " and " + to + " ";
+
+            return GetTradingByCommand(query);
+        }
+        public List<Trading> GetLending(int userID, int page)
+        {
+            int from = (page - 1) * pageSize + 1;
+            int to = page * pageSize;
+            string query = @"select * from
+                            (
+                            select *, ROW_NUMBER() over(order by t.completedTime desc) as row
+                            from Trading t
+                            where tradingStatus = " + Trading.STATUS_LENDING + @" and lenderID = " + userID + @"
+                            ) result
+                            where result.row between " + from + " and " + to + " ";
+
+            return GetTradingByCommand(query);
+        }
+
+        public List<Trading> GetCompletedLending(int userID, int page)
+        {
+            int from = (page - 1) * pageSize + 1;
+            int to = page * pageSize;
+            string query = @"select * from
+                            (
+                            select *, ROW_NUMBER() over(order by t.completedTime desc) as row
+                            from Trading t
+                            where tradingStatus = " + Trading.STATUS_COMPLETED + @" and lenderID = " + userID + @"
+                            ) result
+                            where result.row between " + from + " and " + to + " ";
+
+            return GetTradingByCommand(query);
+        }
+        //===============================================End of lending===============================================
         public List<Trading> GetTradingByCommand(string query)
         {
             SqlConnection conn = GetConnection();
@@ -303,6 +385,7 @@ namespace DAL
 
             switch (type)
             {
+                //=========================================Borrowing query=======================================
                 case "PendingBR":
                     sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_PENDING + " and borrowerID = " + userID;
                     break;
@@ -317,6 +400,19 @@ namespace DAL
                     break;
                 case "ISBN":
                     sqlCommand = "select count (*) from Book where ISBN LIKE '%%' and status = " + Book.STATUS_ACCEPTED;
+                    break;
+                    //=========================================Lending query=======================================
+                case "AvailableLending":
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_AVAILABLE + " and lenderID = " + userID; ;
+                    break;
+                case "PendingLending":
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_PENDING + " and lenderID = " + userID; ;
+                    break;
+                case "Lending":
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_LENDING + " and lenderID = " + userID; ;
+                    break;
+                case "CompleteLending":
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_COMPLETED + " and lenderID = " + userID; ;
                     break;
             }
 
