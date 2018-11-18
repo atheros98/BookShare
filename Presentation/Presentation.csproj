@@ -58,6 +58,32 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\css\font-face.css" />
+    <Content Include="admin\css\theme.css" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.svg" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.svg" />
+    <Content Include="admin\images\icon\logo.png" />
+    <Content Include="admin\index.html" />
+    <Content Include="admin\js\main.js" />
+    <Content Include="admin\TestAdmin.aspx" />
+    <Content Include="admin\vendor\jquery-3.2.1.min.js" />
+    <Content Include="admin\vendor\jquery-ui.min.js" />
     <Content Include="bin\Controller.dll" />
     <Content Include="bin\Controller.pdb" />
     <Content Include="bin\DAL.dll" />
@@ -89,21 +115,6 @@
     <Content Include="images\bookCover\pic6.jpg" />
     <Content Include="images\bookCover\pic7.jpg" />
     <Content Include="images\bookCover\pic8.jpg" />
-    <Content Include="images\tradingImage\24_131868988435729406_1.jpg" />
-    <Content Include="images\tradingImage\24_131868988435827002_2.jpg" />
-    <Content Include="images\tradingImage\24_131868988436159394_3.jpg" />
-    <Content Include="images\tradingImage\24_131868988436237477_4.jpg" />
-    <Content Include="images\tradingImage\24_131868988436322156_5.jpg" />
-    <Content Include="images\tradingImage\25_131868991181110451_1.jpg" />
-    <Content Include="images\tradingImage\25_131868991181178788_2.jpg" />
-    <Content Include="images\tradingImage\25_131868991181257141_3.jpg" />
-    <Content Include="images\tradingImage\25_131868991181325238_4.jpg" />
-    <Content Include="images\tradingImage\26_131868992607604319_1.jpg" />
-    <Content Include="images\tradingImage\26_131868992607711490_2.jpg" />
-    <Content Include="images\tradingImage\26_131868992607818896_3.jpg" />
-    <Content Include="images\tradingImage\27_131869025134449713_1.jpg" />
-    <Content Include="images\tradingImage\27_131869025134547308_2.jpg" />
-    <Content Include="images\tradingImage\27_131869025134625404_3.jpg" />
     <Content Include="img\book-icon.svg" />
     <Content Include="img\cover.jpg" />
     <Content Include="img\CoverBook.jpg" />
@@ -111,7 +122,6 @@
     <Content Include="javascript\checkPassword.js" />
     <Content Include="javascript\dateProcessing.js" />
     <Content Include="javascript\imageSlideShow.js" />
-    <Content Include="javascript\lenderSlideShow.js" />
     <Content Include="Login.aspx" />
     <Content Include="obj\Debug\Presentation.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Presentation.dll" />
@@ -124,6 +134,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\Dashboard.Master.cs">
+      <DependentUpon>Dashboard.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Dashboard.Master.designer.cs">
+      <DependentUpon>Dashboard.Master</DependentUpon>
+    </Compile>
+    <Compile Include="admin\TestAdmin.aspx.cs">
+      <DependentUpon>TestAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\TestAdmin.aspx.designer.cs">
+      <DependentUpon>TestAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BookDetail.aspx.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -212,6 +236,79 @@
     <Content Include="bin\Presentation.dll.config" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\Presentation.csprojResolveAssemblyReference.cache" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-200italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-300italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-500italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-600italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-700italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-800italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-900italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.woff2" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.eot" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.ttf" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.woff" />
+    <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.woff2" />
+    <Content Include="admin\Dashboard.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -234,6 +331,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="images\tradingImage\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
