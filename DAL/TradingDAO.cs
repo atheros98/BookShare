@@ -63,8 +63,8 @@ namespace DAL
             int to = page * pageSize;
             string query = @"select * from 
                             (select *, row_number() over (order by completedTime DESC) as row from Trading
-                            where tradingStatus = "+Trading.STATUS_PENDING+" and borrowerID = "+userID+@") result
-                            where result.row between "+from+" and " + to;
+                            where tradingStatus = " + Trading.STATUS_PENDING + " and borrowerID = " + userID + @") result
+                            where result.row between " + from + " and " + to;
             return GetTradingByCommand(query);
         }
 
@@ -173,9 +173,37 @@ namespace DAL
 
         public override bool Update(int id, Trading newEntity)
         {
-            throw new NotImplementedException();
+            bool finish = false;
+            SqlConnection conn = null;
+            SqlCommand cmd = null;
+            try
+            {
+                string query = @"UPDATE Trading
+                            SET [borrowerID] = @borrowerId
+                            WHERE id = @tradingId;";
+                conn = GetConnection();
+                conn.Open();
+
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@borrowerId", newEntity.BorrowerID);
+                cmd.Parameters.AddWithValue("@tradingId", id);
+
+                cmd.ExecuteNonQuery();
+                finish = true;
+            }
+            catch (Exception ex)
+            {
+                finish = false;
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+            return finish;
         }
-  
+
         //Get all tradings of one bookId
         public List<Trading> getAllTradingOfOneBookPaging(int bookId, int pageIndex)
         {
@@ -195,7 +223,7 @@ namespace DAL
                 cmd = new SqlCommand(query, conn);
 
                 cmd.Parameters.AddWithValue("@id", bookId);
-                
+
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -212,7 +240,8 @@ namespace DAL
                     lists.Add(trade);
 
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -272,7 +301,7 @@ namespace DAL
             switch (type)
             {
                 case "PendingBR":
-                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " +Trading.STATUS_PENDING+ " and borrowerID = " + userID;
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_PENDING + " and borrowerID = " + userID;
                     break;
                 case "Borrowing":
                     sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_LENDING + " and borrowerID = " + userID;

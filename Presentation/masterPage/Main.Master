@@ -90,7 +90,7 @@
                 <div class="section-left-content">
                     <div class="book-color"><img src=""/></div>
                     <div class="book-color-content">
-                        <h2><%=RecentUploadBook.Title %></h2>
+                        <%--<h2><%=RecentUploadBook.Title %></h2>--%>
                         <span>books upload</span>
                         <br />
                         <span class="fa fa-star checked"></span>
