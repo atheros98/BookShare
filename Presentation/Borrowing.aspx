@@ -107,9 +107,9 @@
         </div>
 
         <div class="page">
-            <% if (totalPages > 0)
+            <% if (totalPages > 1)
                 { %>
-            <%for (int i = 1; i < totalPages; i++)
+            <%for (int i = 1; i <= totalPages; i++)
                 { %>
             <% if (page == i)
                 { %>
@@ -117,7 +117,7 @@
             <%}
                 else
                 { %>
-            <a class="next-page" href="<%= string.Format("Search.aspx?filter={0}&page={1}", filter , i) %>"><%= i %></a>
+            <a class="next-page" href="<%= string.Format("Borrowing.aspx?filter={0}&page={1}", filter , i) %>"><%= i %></a>
             <%} %>
             <%} %>
             <%} %>
