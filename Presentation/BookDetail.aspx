@@ -89,10 +89,10 @@
 
         <%--Using slider to display all the tradings'details--%>
         <div class="slides-container">
+            <%--Slide show for trading images--%>
             <% for (int i = 0; i < tradings.Count; i++)
                 { %>
             <div class="slide-container-block">
-                <%--Slide show for trading images--%>
                 <%--Image slideShow--%>
                 <%for (int j = 0; j < tradings[i].TradedImages.Count; j++)
                     { %>
@@ -100,7 +100,7 @@
                 <div class="slideshow-container">
                     <div class="mySlides fade">
                         <div class="numbertext"><%=j+1 %> / <%=tradings[i].TradedImages.Count %></div>
-                        <img src="<%=tradings[i].TradedImages[j]%>" style="width: 200px">
+                        <img src="<%=tradings[i].TradedImages[j]%>" style="width: 200px"/>
                         <div class="text">Caption Text</div>
                     </div>
                     <a class="prevImage" onclick="plusSlidesImage(-1)">&#10094;</a>
@@ -108,11 +108,14 @@
 
                 </div>
                 <br>
-
-                <div style="text-align: center">
-                    <span class="dot" onclick="currentSlideImage(<%=j+1 %>)"></span>
-                </div>
                 <%}%>
+                <div style="text-align: center">
+                    <%for (int j = 0; j < tradings[i].TradedImages.Count; j++)
+                    { %>
+                    <span class="dot" onclick="currentSlideImage(<%=j+1 %>)"></span>
+                    <%}%>
+                </div>
+                
             </div>
             <%--//////////////////////////////////////////////////////////////////////////--%>
             <div class="info-book">
@@ -190,7 +193,7 @@
         var slideIndex = 1;
         showSlides(slideIndex);
         //Block of slide images
-        //showSlidesBlock(slideIndex);
+        showSlidesBlock(slideIndex);
         //Image slideShow
         var slideIndexImage = 1;
         showSlidesImage(slideIndexImage);
