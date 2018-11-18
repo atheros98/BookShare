@@ -31,6 +31,32 @@ namespace DAL
             throw new NotImplementedException();
         }
 
+        public void UpdateLenderRatePoint(int tradingID, int point)
+        {
+            SqlConnection conn = GetConnection();
+            SqlCommand cmd = null;
+            try
+            {
+                string sql = @"UPDATE Trading set lenderRatePoint = @point where id = @tradingID";
+                conn.Open();
+                cmd = new SqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@point", point);
+                cmd.Parameters.AddWithValue("@tradingID", tradingID);
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+        }
+
         public List<Trading> GetPendingBorrowing(int userID, int page)
         {
             int from = (page - 1) * pageSize + 1;
@@ -84,11 +110,11 @@ namespace DAL
                         Description = reader.GetString(1),
                         TradingStatus = reader.GetInt32(2),
                         CompletedTime = reader.GetDateTime(3),
-                        LenderRatePoint = reader.GetString(4) == null ? -1 : reader.GetFloat(4),
-                        BorrowerRatePoint = reader.GetString(5) == null ? -1 : reader.GetFloat(5),
+                        LenderRatePoint = reader.IsDBNull(4) ? -1 : reader.GetFloat(4),
+                        BorrowerRatePoint = reader.IsDBNull(5) ? -1 : reader.GetFloat(5),
                         BookID = reader.GetInt32(6),
                         LenderID = reader.GetInt32(7),
-                        BorrowerID = reader.GetString(8) == null ? -1 : reader.GetInt32(8)
+                        BorrowerID = reader.IsDBNull(8) ? -1 : reader.GetInt32(8)
                     };
 
                     tradings.Add(trade);
