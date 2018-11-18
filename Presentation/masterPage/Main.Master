@@ -33,7 +33,7 @@
                         <b><a href="../TradingManagement.aspx">Lending</a></b>
                     </li>
                     <li>
-                        <b><a href="../TradingManagement.aspx">Borrowing</a></b>
+                        <b><a href="../Borrowing.aspx">Borrowing</a></b>
                     </li>
                 </ul>
             </div>
