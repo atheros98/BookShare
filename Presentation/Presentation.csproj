@@ -79,6 +79,8 @@
     <Content Include="images\avatar\na.jpg" />
     <Content Include="images\avatar\nam.jpg" />
     <Content Include="images\avatar\tuan.jpg" />
+    <Content Include="images\bookCover\2514929285151.jpg" />
+    <Content Include="images\bookCover\3103859898433.jpg" />
     <Content Include="images\bookCover\pic1.jpg" />
     <Content Include="images\bookCover\pic2.jpg" />
     <Content Include="images\bookCover\pic3.jpg" />
@@ -87,6 +89,21 @@
     <Content Include="images\bookCover\pic6.jpg" />
     <Content Include="images\bookCover\pic7.jpg" />
     <Content Include="images\bookCover\pic8.jpg" />
+    <Content Include="images\tradingImage\24_131868988435729406_1.jpg" />
+    <Content Include="images\tradingImage\24_131868988435827002_2.jpg" />
+    <Content Include="images\tradingImage\24_131868988436159394_3.jpg" />
+    <Content Include="images\tradingImage\24_131868988436237477_4.jpg" />
+    <Content Include="images\tradingImage\24_131868988436322156_5.jpg" />
+    <Content Include="images\tradingImage\25_131868991181110451_1.jpg" />
+    <Content Include="images\tradingImage\25_131868991181178788_2.jpg" />
+    <Content Include="images\tradingImage\25_131868991181257141_3.jpg" />
+    <Content Include="images\tradingImage\25_131868991181325238_4.jpg" />
+    <Content Include="images\tradingImage\26_131868992607604319_1.jpg" />
+    <Content Include="images\tradingImage\26_131868992607711490_2.jpg" />
+    <Content Include="images\tradingImage\26_131868992607818896_3.jpg" />
+    <Content Include="images\tradingImage\27_131869025134449713_1.jpg" />
+    <Content Include="images\tradingImage\27_131869025134547308_2.jpg" />
+    <Content Include="images\tradingImage\27_131869025134625404_3.jpg" />
     <Content Include="img\book-icon.svg" />
     <Content Include="img\cover.jpg" />
     <Content Include="img\CoverBook.jpg" />
@@ -217,7 +234,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\tradingImage\" />
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
