@@ -7,7 +7,7 @@ namespace Model
 {
     public class Book
     {
-        public static string ImageFolder = "images/bookCover/";
+        public static string ImageFolder = "/images/bookCover/";
 
         private int id;
         private string title;
@@ -24,6 +24,7 @@ namespace Model
         public const int STATUS_PENDING = 0;
         public const int STATUS_ACCEPTED = 1;
         public const int STATUS_DELETED = 2;
+
 
         public int Id
         {
@@ -167,5 +168,6 @@ namespace Model
                 creatorID = value;
             }
         }
+
     }
 }

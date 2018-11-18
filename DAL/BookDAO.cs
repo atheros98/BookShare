@@ -10,6 +10,17 @@ namespace DAL
     public class BookDAO : DBContext<Book>
     {
         private int pageSize = 5;
+
+        public BookDAO()
+        {
+
+        }
+
+        public BookDAO(int pageSize)
+        {
+            this.pageSize = pageSize;
+        }
+
         public Book getByISBN(string isbn)
         {
             Book book = null;
@@ -296,6 +307,7 @@ namespace DAL
             string query = @"with temp as(
 	                        select *, ROW_NUMBER() over(order by createdTime desc) row_num
 	                        from Book
+                            where status = "+Book.STATUS_ACCEPTED+@"
                             )
                             select * from temp
                             where row_num >= @start and row_num <=@end";
@@ -372,9 +384,76 @@ namespace DAL
         }
 
 
+        public List<Book> GetPendingBookByPageId(int pageIndex)
+        {
+            List<Book> list = new List<Book>();
+            string query = @"with temp as(
+	                        select *, ROW_NUMBER() over(order by createdTime desc) row_num
+	                        from Book
+                            where status = "+Book.STATUS_PENDING+ @"
+                            )
+                            select * from temp
+                            where row_num >= @start and row_num <=@end";
+
+            SqlConnection conn = new SqlConnection(ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("start", (pageIndex - 1) * pageSize + 1);
+            cmd.Parameters.AddWithValue("end", pageIndex * pageSize);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+
+                Book book = new Book
+                {
+                    Id = reader.GetInt32(0),
+                    Title = reader.GetString(1),
+                    Author = reader.GetString(2),
+                    ISBN1 = reader.GetString(3),
+                    Language = reader.GetString(4),
+                    Description = reader.GetString(5),
+                    Status = reader.GetInt32(6),
+                    CoverImg = reader.GetString(7),
+                    CreatedTime = reader.GetDateTime(8),
+                    CreatorID = reader.GetInt32(9),
+                    CategoryID = reader.GetInt32(10)
+                };
+
+                list.Add(book);
+
+            }
+            conn.Close();
+            return list;
+        }
+
+        public int GetTotalPagesPendingBook()
+        {
+            string query = "select count(id) from Book where status = " + Book.STATUS_PENDING;
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            int totalNumber = (int) cmd.ExecuteScalar();
+
+            return (int)Math.Ceiling(totalNumber*1.0/pageSize);
+        }
+
         public override bool Insert(Book t)
         {
             return false;
+        }
+
+        public bool UpdateStatus(int id, int status)
+        {
+            string query = "update Book set status = @status where id=@id";
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("status", status);
+            cmd.Parameters.AddWithValue("id", id);
+            int ok = cmd.ExecuteNonQuery();
+
+            return ok > 0;
         }
 
         public override bool Update(int id, Book newEntity)

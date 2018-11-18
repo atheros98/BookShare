@@ -47,6 +47,18 @@ namespace Presentation
                     strUserId = "" + CurrentUser.Id;
                 }
             }
+            else  // userid param is on query string
+            {
+                // if current user has not logged in: read only
+                if (CurrentUser == null)
+                {
+                    ReadOnly = true;
+                    avatar.Visible = false;
+                    errorUpload.Visible = false;
+                    uploadAvatar.Visible = false;
+                }
+            }
+            
 
             // check if user insert non-digit character on userid param
             try
@@ -62,7 +74,7 @@ namespace Presentation
             ViewedUser = userDao.GetById(idUser);
 
             // if ViewedUser is Current logged in user, let him edit his profile
-            if (ViewedUser.Id != CurrentUser.Id)
+            if (CurrentUser!= null && ViewedUser.Id != CurrentUser.Id)
             {
                 ReadOnly = true;
                 avatar.Visible = false;

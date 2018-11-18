@@ -61,7 +61,27 @@ namespace DAL
 
         public override Category GetById(int id)
         {
-            throw new NotImplementedException();
+            Category cate = null;
+            string query = "select * from Category where id=@id";
+            SqlConnection conn = GetConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("id", id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                cate = new Category
+                {
+                    Id = reader.GetInt32(0),
+                    Name = reader.GetString(1)
+                };
+
+            }
+
+            return cate;
         }
 
         public override List<Category> GetByPageId(int pageIndex)

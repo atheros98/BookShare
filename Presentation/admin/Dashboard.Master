@@ -31,6 +31,7 @@
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/style.css" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
 

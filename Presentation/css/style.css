@@ -761,3 +761,7 @@ a.login {
 .error-message{
     color: red;
 }
+
+.cover-pending{
+    width:100px;
+}

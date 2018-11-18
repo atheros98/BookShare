@@ -21,7 +21,7 @@ namespace Model
         private double userPoint;
         private DateTime createdDate;
 
-        private string imageFolder = "./images/avatar/";
+        private string imageFolder = "/images/avatar/";
 
         public User()
         {
