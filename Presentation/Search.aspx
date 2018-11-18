@@ -25,7 +25,7 @@
         <% for (int j = 0; j < books.Count; j++)
             { %>
         <div class="book-item">
-            <a href="BookDetails.aspx?id=<%= books[j].Id %>">
+            <a href="BookDetail.aspx?id=<%= books[j].Id %>">
                 <div class="img">
                     <img src="<%=books[j].CoverImg%>" />
                 </div>
@@ -47,7 +47,7 @@
     <div class="page">
         <% if (totalPage > 1)
             { %>
-        <%for (int i = 1; i < totalPage; i++)
+        <%for (int i = 1; i <= totalPage; i++)
             { %>
         <% if (page == i)
             { %>

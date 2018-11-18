@@ -81,11 +81,11 @@ namespace DAL
             int from = (page - 1) * pageSize + 1;
             int to = page * pageSize;
             string query = "select * from"
-                    + " (select distinct * , ROW_NUMBER() over (order by id DESC) as row from"
+                    + " (select  * , ROW_NUMBER() over (order by id DESC) as row from"
                     + " (select * from Book where title LIKE '%" + queryStr + "%'"
                     + " union select * from Book where ISBN LIKE '%" + queryStr + "%'"
-                    + " union select * from Book where author LIKE '%" + queryStr + "%') result) final_result"
-                    + " where final_result.row between " + from + " and " + to + " and status = " + Book.STATUS_ACCEPTED;
+                    + " union select * from Book where author LIKE '%" + queryStr + "%') result where status = "+Book.STATUS_ACCEPTED+") final_result"
+                    + " where final_result.row between " + from + " and " + to;
             return getBookByCommand(query);
         }
 
@@ -121,7 +121,7 @@ namespace DAL
             string query = "select * from "
                     + "(select *, row_number() over (order by id DESC) as row from Book"
                     + " where author LIKE '%" + author + "%') result"
-                    + " where result.row between " + from + " and " + to + " and status = " + Book.STATUS_ACCEPTED; ;
+                    + " where result.row between " + from + " and " + to + " and status = " + Book.STATUS_ACCEPTED;
             return getBookByCommand(query);
         }
 
@@ -187,7 +187,7 @@ namespace DAL
                     sqlCommand = "select count (distinct id) from Book where status = " + Book.STATUS_ACCEPTED;
                     break;
                 case "All":
-                    sqlCommand = "select count (distinct id) from"
+                    sqlCommand = "select count (*) from"
                             + "(select * from Book where title LIKE '%" + queryStr + "%'"
                     + " union select * from Book where ISBN LIKE '%" + queryStr + "%'"
                     + " union select * from Book where author LIKE '%" + queryStr + "%') result where status = " + Book.STATUS_ACCEPTED;

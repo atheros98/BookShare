@@ -162,25 +162,60 @@
     <Content Include="admin\vendor\wow\animate.css" />
     <Content Include="admin\vendor\wow\wow.min.js" />
     <Content Include="BookDetail.aspx" />
+<<<<<<< HEAD
+=======
+    <Content Include="Borrowing.aspx" />
+    <Content Include="css\bookDetail.css" />
+    <Content Include="css\bootstrap.min.css" />
+>>>>>>> deb61eeaf4da0032ad603a0f43d96f1a03c3a4da
     <Content Include="css\boxform.css" />
     <Content Include="css\register.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\table.css" />
     <Content Include="css\TableData.css" />
     <Content Include="css\uploadbook.css" />
     <Content Include="Home.aspx" />
     <Content Include="images\avatar\na.jpg" />
     <Content Include="images\avatar\nam.jpg" />
     <Content Include="images\avatar\tuan.jpg" />
+    <Content Include="images\bookCover\2514929285151.jpg" />
+    <Content Include="images\bookCover\3103859898433.jpg" />
     <Content Include="images\bookCover\pic1.jpg" />
     <Content Include="images\bookCover\pic2.jpg" />
     <Content Include="images\bookCover\pic3.jpg" />
     <Content Include="images\bookCover\pic4.jpg" />
+<<<<<<< HEAD
+=======
+    <Content Include="images\bookCover\pic5.jpg" />
+    <Content Include="images\bookCover\pic6.jpg" />
+    <Content Include="images\bookCover\pic7.jpg" />
+    <Content Include="images\bookCover\pic8.jpg" />
+    <Content Include="images\tradingImage\24_131868988435729406_1.jpg" />
+    <Content Include="images\tradingImage\24_131868988435827002_2.jpg" />
+    <Content Include="images\tradingImage\24_131868988436159394_3.jpg" />
+    <Content Include="images\tradingImage\24_131868988436237477_4.jpg" />
+    <Content Include="images\tradingImage\24_131868988436322156_5.jpg" />
+    <Content Include="images\tradingImage\25_131868991181110451_1.jpg" />
+    <Content Include="images\tradingImage\25_131868991181178788_2.jpg" />
+    <Content Include="images\tradingImage\25_131868991181257141_3.jpg" />
+    <Content Include="images\tradingImage\25_131868991181325238_4.jpg" />
+    <Content Include="images\tradingImage\26_131868992607604319_1.jpg" />
+    <Content Include="images\tradingImage\26_131868992607711490_2.jpg" />
+    <Content Include="images\tradingImage\26_131868992607818896_3.jpg" />
+    <Content Include="images\tradingImage\27_131869025134449713_1.jpg" />
+    <Content Include="images\tradingImage\27_131869025134547308_2.jpg" />
+    <Content Include="images\tradingImage\27_131869025134625404_3.jpg" />
+>>>>>>> deb61eeaf4da0032ad603a0f43d96f1a03c3a4da
     <Content Include="img\book-icon.svg" />
     <Content Include="img\cover.jpg" />
     <Content Include="img\CoverBook.jpg" />
     <Content Include="img\loader.gif" />
     <Content Include="javascript\checkPassword.js" />
     <Content Include="javascript\dateProcessing.js" />
+<<<<<<< HEAD
+=======
+    <Content Include="Lending.aspx" />
+>>>>>>> deb61eeaf4da0032ad603a0f43d96f1a03c3a4da
     <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
@@ -224,12 +259,36 @@
     <Compile Include="BookDetail.aspx.designer.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="Borrowing.aspx.cs">
+      <DependentUpon>Borrowing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Borrowing.aspx.designer.cs">
+      <DependentUpon>Borrowing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
+>>>>>>> deb61eeaf4da0032ad603a0f43d96f1a03c3a4da
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Lending.aspx.cs">
+      <DependentUpon>Lending.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Lending.aspx.designer.cs">
+      <DependentUpon>Lending.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -410,6 +469,12 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
+<<<<<<< HEAD
+=======
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+>>>>>>> deb61eeaf4da0032ad603a0f43d96f1a03c3a4da
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
