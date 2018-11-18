@@ -79,7 +79,6 @@
     <Content Include="admin\fonts\poppins\poppins-v5-latin-italic.svg" />
     <Content Include="admin\fonts\poppins\poppins-v5-latin-regular.svg" />
     <Content Include="admin\images\icon\logo.png" />
-    <Content Include="admin\index.html" />
     <Content Include="admin\js\main.js" />
     <Content Include="admin\TestAdmin.aspx" />
     <Content Include="admin\vendor\jquery-3.2.1.min.js" />
