@@ -95,6 +95,7 @@
     <Content Include="BookDetail.aspx" />
     <Content Include="Borrowing.aspx" />
     <Content Include="css\bookDetail.css" />
+    <Content Include="css\bootstrap.min.css" />
     <Content Include="css\boxform.css" />
     <Content Include="css\imageSlideShow.css" />
     <Content Include="css\register.css" />
