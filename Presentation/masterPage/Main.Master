@@ -88,22 +88,38 @@
             <section class="section-left">
                 <h3>YOUR BOOK UPLOAD</h3>
                 <div class="section-left-content">
-                    <div class="book-color"><img src=""/></div>
+                    <%if (Session["username"] == null || RecentUploadBook == null)
+                        {%>
+                    <div class="book-color">
+                        <img src="/images/bookCover/default.jpg" />
+                    </div>
                     <div class="book-color-content">
-
                         <h2>0</h2>
 
-                        <span>books upload</span>
-                        <br />
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <br />
-                        <a href="UploadBook.aspx">Upload book now</a>S
+                        <%
+                            }
+                            else if (RecentUploadBook != null)
+                            {
+                        %>
+                        <div class="book-color">
+                            <img src="<%=RecentUploadBook.CoverImg %>" />
+                        </div>
+                        <div class="book-color-content">
+                            <h2><%= totalBooks %></h2>
+                            <%} %>
+
+
+                            <span>books uploaded</span>
+                            <br />
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <br />
+                            <a href="UploadBook.aspx">Upload book now</a>
+                        </div>
                     </div>
-                </div>
             </section>
 
             <section class="section-left">
@@ -112,9 +128,8 @@
                     <ul>
                         <% foreach (Model.Category cate in Categories)
                             { %>
-                            <li><a href="#">#<%=cate.Name %></a></li>
+                        <li><a href="<%=string.Format("Home.aspx?categoryID={0}", cate.Id) %>">#<%=cate.Name %></a></li>
                         <%} %>
-                        
                     </ul>
                 </div>
             </section>

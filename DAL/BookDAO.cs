@@ -84,7 +84,7 @@ namespace DAL
                     + " (select  * , ROW_NUMBER() over (order by id DESC) as row from"
                     + " (select * from Book where title LIKE '%" + queryStr + "%'"
                     + " union select * from Book where ISBN LIKE '%" + queryStr + "%'"
-                    + " union select * from Book where author LIKE '%" + queryStr + "%') result where status = "+Book.STATUS_ACCEPTED+") final_result"
+                    + " union select * from Book where author LIKE '%" + queryStr + "%') result where status = " + Book.STATUS_ACCEPTED + ") final_result"
                     + " where final_result.row between " + from + " and " + to;
             return getBookByCommand(query);
         }
@@ -124,6 +124,7 @@ namespace DAL
                     + " where result.row between " + from + " and " + to + " and status = " + Book.STATUS_ACCEPTED;
             return getBookByCommand(query);
         }
+
 
         public List<Book> getBookByCommand(string sqlCommand)
         {
@@ -183,6 +184,9 @@ namespace DAL
 
             switch (type)
             {
+                case "category":
+                    sqlCommand = "select count (distinct id) from Book where status = " + Book.STATUS_ACCEPTED + " and categoryID = " + queryStr;
+                    break;
                 case "NoFilter":
                     sqlCommand = "select count (distinct id) from Book where status = " + Book.STATUS_ACCEPTED;
                     break;
@@ -193,13 +197,13 @@ namespace DAL
                     + " union select * from Book where author LIKE '%" + queryStr + "%') result where status = " + Book.STATUS_ACCEPTED;
                     break;
                 case "Title":
-                    sqlCommand = "select count (*) from Book where title LIKE '%" + queryStr + "%' and status = " + Book.STATUS_ACCEPTED; 
+                    sqlCommand = "select count (*) from Book where title LIKE '%" + queryStr + "%' and status = " + Book.STATUS_ACCEPTED;
                     break;
                 case "Author":
-                    sqlCommand = "select count (*) from Book where author LIKE '%" + queryStr + "%' and status = " + Book.STATUS_ACCEPTED; 
+                    sqlCommand = "select count (*) from Book where author LIKE '%" + queryStr + "%' and status = " + Book.STATUS_ACCEPTED;
                     break;
                 case "ISBN":
-                    sqlCommand = "select count (*) from Book where ISBN LIKE '%" + queryStr + "%' and status = " + Book.STATUS_ACCEPTED; 
+                    sqlCommand = "select count (*) from Book where ISBN LIKE '%" + queryStr + "%' and status = " + Book.STATUS_ACCEPTED;
                     break;
             }
 
@@ -275,7 +279,7 @@ namespace DAL
         public List<Book> GetLatestUploadBooks(int userid, int num)
         {
             List<Book> books = new List<Book>();
-            string query = @"select top "+num+@" b.id, b.title, b.author, b.coverImg 
+            string query = @"select top " + num + @" b.id, b.title, b.author, b.coverImg 
                             from Trading t, Book b
                             where t.bookID = b.id  and t.lenderID = @userid
                             order by completedTime desc";
@@ -301,13 +305,30 @@ namespace DAL
             return books;
         }
 
+
+        public List<Book> getBooksByCategory(int category, int pageIndex)
+        {
+            int from = (pageIndex - 1) * pageSize + 1;
+            int to = pageIndex * pageSize;
+            string query = @"with temp as(
+	                        select *, ROW_NUMBER() over(order by createdTime desc) row_num
+	                        from Book
+                            where status = " + Book.STATUS_ACCEPTED + " and categoryID = " + category + @"
+                            )
+                            select * from temp
+                            where row_num >= " + from + " and row_num <=" + to;
+
+            return getBookByCommand(query);
+        }
+
+
         public override List<Book> GetByPageId(int pageIndex)
         {
             List<Book> list = new List<Book>();
             string query = @"with temp as(
 	                        select *, ROW_NUMBER() over(order by createdTime desc) row_num
 	                        from Book
-                            where status = "+Book.STATUS_ACCEPTED+@"
+                            where status = " + Book.STATUS_ACCEPTED + @"
                             )
                             select * from temp
                             where row_num >= @start and row_num <=@end";
@@ -321,7 +342,7 @@ namespace DAL
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-               
+
                 Book book = new Book
                 {
                     Id = reader.GetInt32(0),
@@ -371,10 +392,12 @@ namespace DAL
 
                 bookID = Convert.ToInt32(cmd.ExecuteScalar());
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
-            } finally
+            }
+            finally
             {
                 cmd.Dispose();
                 conn.Close();
@@ -390,7 +413,7 @@ namespace DAL
             string query = @"with temp as(
 	                        select *, ROW_NUMBER() over(order by createdTime desc) row_num
 	                        from Book
-                            where status = "+Book.STATUS_PENDING+ @"
+                            where status = " + Book.STATUS_PENDING + @"
                             )
                             select * from temp
                             where row_num >= @start and row_num <=@end";
@@ -433,9 +456,25 @@ namespace DAL
             SqlConnection conn = GetConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
-            int totalNumber = (int) cmd.ExecuteScalar();
+            int totalNumber = (int)cmd.ExecuteScalar();
 
-            return (int)Math.Ceiling(totalNumber*1.0/pageSize);
+            return (int)Math.Ceiling(totalNumber * 1.0 / pageSize);
+        }
+
+        public int CountNumberUploadedBook(int creatorID)
+        {
+            SqlConnection conn = GetConnection();
+            string query = "select count (*) from Book where status = @status and creatorID = @id";
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("@status", Book.STATUS_ACCEPTED);
+            cmd.Parameters.AddWithValue("@id", creatorID);
+
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            conn.Close();
+            return count;
+
         }
 
         public override bool Insert(Book t)
