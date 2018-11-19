@@ -10,7 +10,7 @@
             <div class="new-book">
                 <div class="section-center-header">
                     <div class="user">
-                        <a href="Profile.aspx?userid=<%=Users[i].Id%>" >
+                        <a href="Profile.aspx?userid=<%=Users[i] != null ? Users[i].Id.ToString() : ""%>" >
                             <img src="<% = Users[i]!=null?Users[i].Avatar:""%>" />
                             <p><%= Users[i]!=null?Users[i].Username:"" %></p>
                         </a>
