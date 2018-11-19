@@ -26,6 +26,10 @@ namespace Presentation
             Page.Title = "Borrowing - BookShare";
             User user = (User)Session["currentUser"];
 
+            if (user == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
 
             listQuery.Add("Pending");
             listQuery.Add("Borrowing");
