@@ -27,36 +27,58 @@ namespace Presentation
         {
             // set title for page
             Page.Title = "Lending - BookShare";
-            User user = (User)Session["currentUser"];
-
-            listQuery.Add("Available");
-            listQuery.Add("Pending");
-            listQuery.Add("Lending");
-            listQuery.Add("Completed");
-
-            filter = Request.QueryString["filter"] == null ? "Pending" : Request.QueryString["filter"];
-            page = Request.QueryString["page"] == null ? 1 : int.Parse(Request.QueryString["page"]);
-            int id = Request.QueryString["id"] == null ? -1 : int.Parse(Request.QueryString["id"]);
-
-            int point = Request.QueryString["point"] == null ? -1 : int.Parse(Request.QueryString["point"]);
-
-            FillData(filter, user.Id);
-
-            if (id != -1)
+            if (Session["currentUser"] == null)
             {
-                borrowerId = borrowers[id].Id;
-                myModal.Visible = true;
-                info.InnerHtml = "Trading no: " + (id + 1) + "<br/>Lender: " + borrowers[id].FullName + "<br/>";
-                trading.InnerText = tradings[id].Id + "";
+                Server.Transfer("ErrorPage.aspx");
+            }
+            else
+            {
+                User user = (User)Session["currentUser"];
+
+                listQuery.Add("Available");
+                listQuery.Add("Pending");
+                listQuery.Add("Lending");
+                listQuery.Add("Completed");
+
+                filter = Request.QueryString["filter"] == null ? "Pending" : Request.QueryString["filter"];
+                page = Request.QueryString["page"] == null ? 1 : int.Parse(Request.QueryString["page"]);
+                int id = Request.QueryString["id"] == null ? -1 : int.Parse(Request.QueryString["id"]);
+
+                int point = Request.QueryString["point"] == null ? -1 : int.Parse(Request.QueryString["point"]);
+
+                //Check if page is reload and there is some deletion action 
+                if (filter == "Delete")
+                {
+                    int tradingID = int.Parse(Request.QueryString["deleteID"]);
+                    DeleteTrading(tradingID);
+                    Response.Redirect("Lending.aspx?filter=Available");
+                }else if (filter == "Approve")
+                {
+                    //Check if page is reload and there is some aprroval action 
+                    int tradingID = int.Parse(Request.QueryString["approveID"]);
+                    ApproveTrading(tradingID);
+                    Response.Redirect("Lending.aspx?filter=Pending");
+                }
+
+                FillData(filter, user.Id);
+
+                if (id != -1)
+                {
+                    borrowerId = borrowers[id].Id;
+                    myModal.Visible = true;
+                    info.InnerHtml = "Trading no: " + (id + 1) + "<br/>Borrower: " + borrowers[id].FullName + "<br/>";
+                    trading.InnerText = tradings[id].Id + "";
+                }
+
+                if (point != -1)
+                {
+                    int tradingID = int.Parse(Request.QueryString["trading"]);
+                    TradingDAO tradingDAO = new TradingDAO();
+                    tradingDAO.UpdateBorrowerRatePoint(tradingID, point);
+                    Response.Redirect("Lending.aspx?filter=Completed");
+                }
             }
 
-            if (point != -1)
-            {
-                int tradingID = int.Parse(Request.QueryString["trading"]);
-                TradingDAO tradingDAO = new TradingDAO();
-                tradingDAO.UpdateBorrowerRatePoint(tradingID, point);
-                Response.Redirect("Lending.aspx?filter=Completed");
-            }
 
         }
         private void FillData(string filter, int userID)
@@ -89,12 +111,26 @@ namespace Presentation
             foreach (Trading t in tradings)
             {
                 books.Add(bookDAO.GetById(t.BookID));
-                borrowers.Add(userDAO.GetById(t.BorrowerID));
+                if (filter != "Available")
+                {
+                    borrowers.Add(userDAO.GetById(t.BorrowerID));
+                }
             }
+        }
+        private void DeleteTrading(int tradingID)
+        {
+            TradingDAO tradingDAO = new TradingDAO();
+            tradingDAO.DeleteLending(tradingID);
+        }
+
+        private void ApproveTrading(int tradingID)
+        {
+            TradingDAO tradingDAO = new TradingDAO();
+            tradingDAO.ApproveLending(tradingID);
         }
         protected void CloseRating(object sender, EventArgs e)
         {
             myModal.Visible = false;
         }
-    }    
+    }
 }

@@ -175,6 +175,56 @@ namespace DAL
 
             return GetTradingByCommand(query);
         }
+        public void DeleteLending(int tradingID)
+        {
+            SqlConnection conn = GetConnection();
+            SqlCommand cmd = null;
+            try
+            {
+                conn.Open();
+                //Update tradingStatus for Trading
+                string sql = @"UPDATE Trading
+                                SET tradingStatus = -1
+                                WHERE id = @tradingID;";
+                cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@tradingID", tradingID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+        }
+        public void ApproveLending(int tradingID)
+        {
+            SqlConnection conn = GetConnection();
+            SqlCommand cmd = null;
+            try
+            {
+                conn.Open();
+                //Update tradingStatus for Trading
+                string sql = @"UPDATE Trading
+                                SET tradingStatus = 2
+                                WHERE id = @tradingID;";
+                cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@tradingID", tradingID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+        }
         //===============================================End of lending===============================================
         public List<Trading> GetTradingByCommand(string query)
         {
