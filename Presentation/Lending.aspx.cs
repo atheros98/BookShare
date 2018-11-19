@@ -52,12 +52,20 @@ namespace Presentation
                     int tradingID = int.Parse(Request.QueryString["deleteID"]);
                     DeleteTrading(tradingID);
                     Response.Redirect("Lending.aspx?filter=Available");
-                }else if (filter == "Approve")
+                }
+                else if (filter == "Approve")
                 {
                     //Check if page is reload and there is some aprroval action 
                     int tradingID = int.Parse(Request.QueryString["approveID"]);
                     ApproveTrading(tradingID);
                     Response.Redirect("Lending.aspx?filter=Pending");
+                }
+                else if (filter == "Complete")
+                {
+                    //Check if page is reload and there is some complete action 
+                    int tradingID = int.Parse(Request.QueryString["completeID"]);
+                    ApproveTrading(tradingID);
+                    Response.Redirect("Lending.aspx?filter=Complete");
                 }
 
                 FillData(filter, user.Id);
@@ -127,6 +135,11 @@ namespace Presentation
         {
             TradingDAO tradingDAO = new TradingDAO();
             tradingDAO.ApproveLending(tradingID);
+        }
+        private void CompleteTrading(int tradingID)
+        {
+            TradingDAO tradingDAO = new TradingDAO();
+            tradingDAO.CompleteLending(tradingID);
         }
         protected void CloseRating(object sender, EventArgs e)
         {

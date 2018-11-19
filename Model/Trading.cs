@@ -18,6 +18,7 @@ namespace Model
         private int borrowerID;
         private List<string> tradedImages;
 
+        public static int STATUS_DELETED = -1;
         public static int STATUS_AVAILABLE = 0;
         public static int STATUS_PENDING = 1;
         public static int STATUS_LENDING = 2;

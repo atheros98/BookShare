@@ -58,7 +58,12 @@
                             {%>
                         <%--Approve button--%>
                         <th>Approve</th>
-                        <%}%>    
+                        <%}
+                            else if (filter == "Lending")
+                            {%>
+                        <%--Complete button--%>
+                        <th>Complete</th>
+                        <%}%>   
                     </tr>
                 </thead>
                 <tbody>
@@ -114,7 +119,21 @@
                             <div class="table-data-feature">
                                 <div class="btn">
                                     <a href="<%=string.Format("Lending.aspx?filter=Approve&approveID={0}", tradings[i].Id)%>">
-                                    X
+                                    A
+                                    </a>
+                                </div>
+                            </div>
+                        </td> 
+                        <%} %>
+                        <%--Complete Button--%>
+                        <%if (filter == "Lending")
+                            { %>
+                        <%--if Filter = lending system will display the complete button--%>
+                        <td>
+                            <div class="table-data-feature">
+                                <div class="btn">
+                                    <a href="<%=string.Format("Lending.aspx?filter=Complete&completeID={0}", tradings[i].Id)%>">
+                                    C
                                     </a>
                                 </div>
                             </div>

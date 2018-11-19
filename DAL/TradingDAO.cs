@@ -216,10 +216,10 @@ namespace DAL
             try
             {
                 conn.Open();
-                //Update tradingStatus for Trading
+                //Update delete tradingStatus for Trading
                 string sql = @"UPDATE Trading
-                                SET tradingStatus = -1
-                                WHERE id = @tradingID;";
+                                SET tradingStatus = " + Trading.STATUS_DELETED +
+                                @" WHERE id = @tradingID;";
                 cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@tradingID", tradingID);
                 cmd.ExecuteNonQuery();
@@ -241,10 +241,35 @@ namespace DAL
             try
             {
                 conn.Open();
-                //Update tradingStatus for Trading
+                //Update approve tradingStatus for Trading
                 string sql = @"UPDATE Trading
-                                SET tradingStatus = 2
-                                WHERE id = @tradingID;";
+                                SET tradingStatus = "+ Trading.STATUS_LENDING +
+                                @" WHERE id = @tradingID;";
+                cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@tradingID", tradingID);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Close();
+            }
+        }
+        public void CompleteLending(int tradingID)
+        {
+            SqlConnection conn = GetConnection();
+            SqlCommand cmd = null;
+            try
+            {
+                conn.Open();
+                //Update complete tradingStatus for Trading
+                string sql = @"UPDATE Trading
+                                SET tradingStatus = " + Trading.STATUS_COMPLETED +
+                                @" WHERE id = @tradingID;";
                 cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@tradingID", tradingID);
                 cmd.ExecuteNonQuery();
