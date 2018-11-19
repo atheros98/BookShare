@@ -34,8 +34,17 @@ namespace DAL
                     user = new User
                     {
                         Id = reader.GetInt32(0),
-                        Username = username,
-                        Password = password
+                        FullName = reader.GetString(1),
+                        Dob = reader.GetDateTime(2),
+                        Username = reader.GetString(3),
+                        Password = reader.GetString(4),
+                        Email = reader.GetString(5),
+                        Address = reader.GetString(6),
+                        PhoneNum = reader.GetString(7),
+                        LinkFacebook = reader.GetString(8),
+                        Avatar = reader.GetString(9),
+                        UserPoint = reader.GetFloat(10),
+                        CreatedDate = reader.GetDateTime(11)
                     };
                 }
             }

@@ -39,18 +39,18 @@ namespace Model
         public string[] GetStarFilledArray()
         {
             string[] array = new string[5];
-            for (int i = 1; i <= 5; i++)
+            for (int i = 0; i < 5; i++)
             {
-                if(userPoint - i < 0)
+                if(userPoint - i <= 0)
                 {
-                    array[i-1] = STAR_NO_FILLED;
+                    array[i] = STAR_NO_FILLED;
                 }else if(userPoint - i >= 1)
                 {
-                    array[i-1] = STAR_FILLED;
+                    array[i] = STAR_FILLED;
                 }
                 else
                 {
-                    array[i-1] = STAR_HALF_FILLED;
+                    array[i] = STAR_HALF_FILLED;
                 }
             }
 

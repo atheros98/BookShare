@@ -15,6 +15,7 @@ namespace Presentation.masterPage
         public User CurrentUser;
         public int totalBooks = 0;
         public List<Category> Categories;
+        public string[] StarList = new string[5];
 
         private int numCatagories = 10;
 
@@ -22,6 +23,7 @@ namespace Presentation.masterPage
         {
             loadRecentUploadBook();
             Categories = new CategoryDAO().GetNRandom(numCatagories);
+            
         }
 
         void loadRandomCatagories()
@@ -38,6 +40,8 @@ namespace Presentation.masterPage
                 BookDAO bookDao = new BookDAO();
                 RecentUploadBook = bookDao.GetLatestUploadBooks(CurrentUser.Id, 1)[0];
                 totalBooks = bookDao.CountNumberUploadedBook(CurrentUser.Id);
+
+                StarList = CurrentUser.GetStarFilledArray();
             }
 
         }
