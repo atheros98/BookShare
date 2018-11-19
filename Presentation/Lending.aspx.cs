@@ -17,7 +17,7 @@ namespace Presentation
         public int page;
 
         public List<Trading> tradings = new List<Trading>();
-        public List<User> users = new List<User>();
+        public List<User> borrowers = new List<User>();
         public List<Book> books = new List<Book>();
 
         public int totalPages = -1;
@@ -44,9 +44,9 @@ namespace Presentation
 
             if (id != -1)
             {
-                borrowerId = users[id].Id;
+                borrowerId = borrowers[id].Id;
                 myModal.Visible = true;
-                info.InnerHtml = "Trading no: " + (id + 1) + "<br/>Lender: " + users[id].FullName + "<br/>";
+                info.InnerHtml = "Trading no: " + (id + 1) + "<br/>Lender: " + borrowers[id].FullName + "<br/>";
                 trading.InnerText = tradings[id].Id + "";
             }
 
@@ -55,7 +55,7 @@ namespace Presentation
                 int tradingID = int.Parse(Request.QueryString["trading"]);
                 TradingDAO tradingDAO = new TradingDAO();
                 tradingDAO.UpdateBorrowerRatePoint(tradingID, point);
-                Response.Redirect("Borrowing.aspx?filter=Completed");
+                Response.Redirect("Lending.aspx?filter=Completed");
             }
 
         }
@@ -72,7 +72,7 @@ namespace Presentation
             }
             else if (filter == "Pending")
             {
-                tradings = tradingDAO.GetPendingBorrowing(userID, page);
+                tradings = tradingDAO.GetPendingLending(userID, page);
                 totalPages = tradingDAO.getPages("PendingLending", userID);
             }
             else if (filter == "Lending")
@@ -89,14 +89,12 @@ namespace Presentation
             foreach (Trading t in tradings)
             {
                 books.Add(bookDAO.GetById(t.BookID));
-                users.Add(userDAO.GetById(t.LenderID));
+                borrowers.Add(userDAO.GetById(t.BorrowerID));
             }
         }
         protected void CloseRating(object sender, EventArgs e)
         {
             myModal.Visible = false;
         }
-    }
-
-    
+    }    
 }

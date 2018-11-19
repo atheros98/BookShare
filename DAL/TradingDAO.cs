@@ -122,8 +122,9 @@ namespace DAL
                             (
                             select *, ROW_NUMBER() over(order by t.completedTime desc) as row
                             from Trading t
-                            where tradingStatus = " + Trading.STATUS_AVAILABLE + @" and lenderID = " + userID + @"
-                            ) result
+                            where tradingStatus = " + Trading.STATUS_AVAILABLE + 
+                            @" and lenderID = " + userID + 
+                            @" ) result
                             where result.row between " + from + " and " + to + " ";
 
             return GetTradingByCommand(query);
@@ -136,7 +137,8 @@ namespace DAL
                             (
                             select *, ROW_NUMBER() over(order by t.completedTime desc) as row
                             from Trading t
-                            where tradingStatus = " + Trading.STATUS_PENDING + @" and lenderID = " + userID + @"
+                            where tradingStatus = " + Trading.STATUS_PENDING + 
+                            @" and lenderID = " + userID + @"
                             ) result
                             where result.row between " + from + " and " + to + " ";
 
@@ -150,8 +152,9 @@ namespace DAL
                             (
                             select *, ROW_NUMBER() over(order by t.completedTime desc) as row
                             from Trading t
-                            where tradingStatus = " + Trading.STATUS_LENDING + @" and lenderID = " + userID + @"
-                            ) result
+                            where tradingStatus = " + Trading.STATUS_LENDING +
+                            @" and lenderID = " + userID + 
+                            @") result
                             where result.row between " + from + " and " + to + " ";
 
             return GetTradingByCommand(query);
@@ -165,8 +168,9 @@ namespace DAL
                             (
                             select *, ROW_NUMBER() over(order by t.completedTime desc) as row
                             from Trading t
-                            where tradingStatus = " + Trading.STATUS_COMPLETED + @" and lenderID = " + userID + @"
-                            ) result
+                            where tradingStatus = " + Trading.STATUS_COMPLETED +
+                            @" and lenderID = " + userID + 
+                            @") result
                             where result.row between " + from + " and " + to + " ";
 
             return GetTradingByCommand(query);
@@ -403,16 +407,20 @@ namespace DAL
                     break;
                     //=========================================Lending query=======================================
                 case "AvailableLending":
-                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_AVAILABLE + " and lenderID = " + userID; ;
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_AVAILABLE +
+                        " and lenderID = " + userID;
                     break;
                 case "PendingLending":
-                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_PENDING + " and lenderID = " + userID; ;
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_PENDING + 
+                        " and lenderID = " + userID;
                     break;
                 case "Lending":
-                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_LENDING + " and lenderID = " + userID; ;
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_LENDING +
+                        " and lenderID = " + userID;
                     break;
-                case "CompleteLending":
-                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_COMPLETED + " and lenderID = " + userID; ;
+                case "CompletedLending":
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_COMPLETED +
+                        " and lenderID = " + userID;
                     break;
             }
 
