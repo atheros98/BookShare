@@ -312,6 +312,7 @@ namespace DAL
                     BorrowerID = reader.IsDBNull(8) ? -1 : reader.GetInt32(8)
                 };
             }
+            conn.Close();
             return trading;
         }
 
