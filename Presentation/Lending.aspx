@@ -85,8 +85,8 @@
                                 { %>N/A<%}
                                            else
                                            {
-                                               if (tradings[i].LenderRatePoint != -1)
-                                               {%><%=tradings[i].LenderRatePoint %><%}
+                                               if (tradings[i].BorrowerRatePoint != -1)
+                                               {%><%=tradings[i].BorrowerRatePoint %><%}
                                                                                        else
                                                                                        {%>
                             <div class="table-data-feature">

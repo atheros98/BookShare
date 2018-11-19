@@ -64,8 +64,8 @@ namespace Presentation
                 {
                     //Check if page is reload and there is some complete action 
                     int tradingID = int.Parse(Request.QueryString["completeID"]);
-                    ApproveTrading(tradingID);
-                    Response.Redirect("Lending.aspx?filter=Complete");
+                    CompleteTrading(tradingID);
+                    Response.Redirect("Lending.aspx?filter=Completed");
                 }
 
                 FillData(filter, user.Id);
