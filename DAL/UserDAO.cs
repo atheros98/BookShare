@@ -77,6 +77,17 @@ namespace DAL
             return user;
         }
 
+        public int GetRowCount()
+        {
+            string query = "select count(id) from [User]";
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            int totalNumber = (int)cmd.ExecuteScalar();
+
+            return totalNumber;
+        }
+
         public override bool Delete(int id)
         {
             string query = "delete from [User] where id=@id";

@@ -438,6 +438,17 @@ namespace DAL
             return (int)Math.Ceiling(totalNumber*1.0/pageSize);
         }
 
+        public int GetRowCountBookByStatus(int status)
+        {
+            string query = "select count(id) from Book where status = " + status;
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            int totalNumber = (int)cmd.ExecuteScalar();
+
+            return totalNumber;
+        }
+
         public override bool Insert(Book t)
         {
             return false;
