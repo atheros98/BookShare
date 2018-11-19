@@ -17,6 +17,8 @@ namespace Presentation
         public User CurrentUser;
         public List<Book> RecentBooks = new List<Book>();
 
+        public string[] StarList;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // set title for page
@@ -72,6 +74,7 @@ namespace Presentation
 
             // set user whose profile is being view as ViewdUser
             ViewedUser = userDao.GetById(idUser);
+            StarList = ViewedUser.GetStarFilledArray();
 
             // if ViewedUser is Current logged in user, let him edit his profile
             if (CurrentUser!= null && ViewedUser.Id != CurrentUser.Id)
