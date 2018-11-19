@@ -35,7 +35,7 @@ namespace Presentation.masterPage
             {
                 CurrentUser = obj as User;
                 BookDAO bookDao = new BookDAO();
-                //RecentUploadBook = bookDao.GetLatestUploadBooks(CurrentUser.Id, 1)[0];
+                RecentUploadBook = bookDao.GetLatestUploadBooks(CurrentUser.Id, 1)[0];
             }
 
         }

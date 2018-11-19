@@ -13,6 +13,8 @@ namespace DAL
 {
     public class UserDAO : DBContext<User>
     {
+        int pageSize = 3;
+
         public User GetUserByUsernamePassword(string username, string password)
         {
             User user = null;
@@ -77,7 +79,13 @@ namespace DAL
 
         public override bool Delete(int id)
         {
-            return false;
+            string query = "delete from [User] where id=@id";
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("id", id);
+
+            return cmd.ExecuteNonQuery() > 0;
         }
 
         public override List<User> GetAll()
@@ -120,7 +128,56 @@ namespace DAL
 
         public override List<User> GetByPageId(int pageIndex)
         {
-            return null;
+            List<User> list = new List<User>();
+            string query = @"with temp as(
+	                        select *, ROW_NUMBER() over(order by createdTime desc) row_num
+	                        from [User]
+                            )
+                            select * from temp
+                            where row_num >= @start and row_num <=@end";
+
+            SqlConnection conn = new SqlConnection(ConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("start", (pageIndex - 1) * pageSize + 1);
+            cmd.Parameters.AddWithValue("end", pageIndex * pageSize);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+
+                User user = new User
+                {
+                    Id = reader.GetInt32(0),
+                    FullName = reader.GetString(1),
+                    Dob = reader.GetDateTime(2),
+                    Username = reader.GetString(3),
+                    Password = reader.GetString(4),
+                    Email = reader.GetString(5),
+                    Address = reader.GetString(6),
+                    PhoneNum = reader.GetString(7),
+                    LinkFacebook = reader.GetString(8),
+                    Avatar = reader.GetString(9),
+                    UserPoint = reader.GetFloat(10),
+                    CreatedDate = reader.GetDateTime(11)
+                };
+
+                list.Add(user);
+
+            }
+            conn.Close();
+            return list;
+        }
+
+        public int GetTotalPages()
+        {
+            string query = "select count(id) from [User]";
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            int totalNumber = (int)cmd.ExecuteScalar();
+
+            return (int)Math.Ceiling(totalNumber * 1.0 / pageSize);
         }
 
         public override bool Insert(User u)
@@ -161,7 +218,24 @@ namespace DAL
 
         public override bool Update(int id, User newEntity)
         {
-            return false;
+            string query = "update [User] set fullName=@fullName, dob=@dob, email=@email, address=@address, phoneNum=@phoneNum, linkFacebook=@linkFacebook where id = @id";
+            SqlConnection conn = GetConnection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("fullName", newEntity.FullName);
+            cmd.Parameters.AddWithValue("dob", newEntity.Dob);
+
+            cmd.Parameters.AddWithValue("email", newEntity.Email);
+            cmd.Parameters.AddWithValue("address", newEntity.Address);
+            cmd.Parameters.AddWithValue("phoneNum", newEntity.PhoneNum);
+            cmd.Parameters.AddWithValue("linkFacebook", newEntity.LinkFacebook);
+
+            cmd.Parameters.AddWithValue("id", id);
+
+            int ok = cmd.ExecuteNonQuery();
+            return ok > 0;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Model
         private double userPoint;
         private DateTime createdDate;
 
-        private string imageFolder = "./images/avatar/";
+        private string imageFolder = "/images/avatar/";
 
         public User()
         {
@@ -182,6 +182,11 @@ namespace Model
             {
                 createdDate = value;
             }
+        }
+
+        public string GetAvatarFilenameOnly()
+        {
+            return avatar;
         }
 
         public User(int id, string fullName, DateTime dob, string username, string password, string email, string address, string phoneNum, string linkFacebook, string avatar, double userPoint, DateTime createdDate)
