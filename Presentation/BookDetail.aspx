@@ -59,7 +59,7 @@
                 </div>
                 <%--Tag--%>
                 <div class="elements">
-                    <div class="title"><i class="fas fa-tags"></i>Tag</div>
+                    <div class="title"><i class="fas fa-tags"></i>Categories</div>
                     <div class="input">
                         <input id="tag" type="text" value="<%=book.Title %>" readonly="readonly" />
                     </div>

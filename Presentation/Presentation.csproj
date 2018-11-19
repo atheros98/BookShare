@@ -169,6 +169,7 @@
     <Content Include="css\bookDetail.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\boxform.css" />
+    <Content Include="css\lending.css" />
     <Content Include="css\register.css" />
     <Content Include="css\style.css" />
     <Content Include="css\table.css" />

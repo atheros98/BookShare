@@ -27,9 +27,34 @@ namespace Model
         public const int STATUS_DEACTIVE = -1;
         public const int STATUS_ACTIVE = 1;
 
+        public const string STAR_NO_FILLED = "far fa-star checked";
+        public const string STAR_HALF_FILLED = "fas fa-star-half-alt checked";
+        public const string STAR_FILLED = "fas fa-star checked";
+
         public User()
         {
 
+        }
+
+        public string[] GetStarFilledArray()
+        {
+            string[] array = new string[5];
+            for (int i = 0; i < 5; i++)
+            {
+                if(userPoint - i <= 0)
+                {
+                    array[i] = STAR_NO_FILLED;
+                }else if(userPoint - i >= 1)
+                {
+                    array[i] = STAR_FILLED;
+                }
+                else
+                {
+                    array[i] = STAR_HALF_FILLED;
+                }
+            }
+
+            return array;
         }
 
         public int Id

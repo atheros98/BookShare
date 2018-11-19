@@ -10,10 +10,10 @@
             <div class="new-book">
                 <div class="section-center-header">
                     <div class="user">
-                        <%--<a href="Profile.aspx?userid=<%=Users[i].Id%>" >
+                        <a href="Profile.aspx?userid=<%=Users[i].Id%>" >
                             <img src="<% = Users[i]!=null?Users[i].Avatar:""%>" />
                             <p><%= Users[i]!=null?Users[i].Username:"" %></p>
-                        </a>--%>
+                        </a>
                         <span>Ratings: <%= Users[i]!=null?Users[i].UserPoint:0 %></span>
                     </div>
                     <div class="time">

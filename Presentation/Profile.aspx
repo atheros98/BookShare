@@ -25,13 +25,11 @@
         <input class="fullname" type="text" name="fullname" placeholder="Full name" value="<%= ViewedUser.FullName%>" required="" />
         <p>Create Date: <%= ViewedUser.CreatedDate.ToString("MM/dd/yyyy") %></p>
         <div class="rate">
-            
             <div id="star">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+                <%foreach (string str in StarList)
+                    { %>
+                    <span class="<%=str%>"></span>
+                <%} %>
             </div>
         </div>
         <div class="info-book">
@@ -85,19 +83,11 @@
         <input class="fullname" type="text" name="fullname" placeholder="Full name" value="<%= ViewedUser.FullName%>" required="" disabled="disabled"/>
         <p>Create Date: <%= ViewedUser.CreatedDate.ToString("MM/dd/yyyy") %></p>
         <div class="rate">
-            <select id="rate">
-                <option value="1">1 Star</option>
-                <option value="2">2 Star</option>
-                <option value="3">3 Star</option>
-                <option value="4">4 Star</option>
-                <option value="5">5 Star</option>
-            </select>
             <div id="star">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
+                <%foreach (string str in StarList)
+                    { %>
+                    <span class="<%=str%>"></span>
+                <%} %>
             </div>
         </div>
         <div class="info-book">
