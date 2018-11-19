@@ -218,7 +218,7 @@ namespace DAL
             SqlConnection conn = GetConnection();
             string query = "select * from Trading where id = " + id;
             conn.Open();
-            SqlCommand cmd = new SqlCommand();
+            SqlCommand cmd = new SqlCommand(query, conn);
 
             SqlDataReader reader = cmd.ExecuteReader();
 
@@ -262,7 +262,7 @@ namespace DAL
         public void UpdateUserPoint(int userID, double point)
         {
             SqlConnection conn = GetConnection();
-            string query = "update User set userPoint = @point where id = @userID";
+            string query = "update [User] set userPoint = @point where id = @userID";
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             cmd.Parameters.AddWithValue("@point", point);
