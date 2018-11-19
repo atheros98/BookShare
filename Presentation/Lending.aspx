@@ -41,8 +41,23 @@
                         <th>No</th>
                         <th>Book Title</th>
                         <th>Start Date</th>
-                        <th>Lender</th>
+                        <th>Borrower</th>
                         <th>Rating</th>
+                        <%if (filter == "Available")
+                            {%>
+                        <%--Delete button--%>
+                        <th>Delete</th>
+                        <%}
+                            else if (filter == "Pending")
+                            {%>
+                        <%--Approve button--%>
+                        <th>Approve</th>
+                        <%}
+                            else
+                            {%>
+
+                        <%} %>
+                        <th>Approve</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +69,7 @@
                         <td><a href="BookDetail.aspx?id=<%=books[i].Id %>"><%= books[i].Title %></a></td>
                         <td><%= tradings[i].CompletedTime.ToShortDateString()%><br />
                             <%=tradings[i].CompletedTime.ToShortTimeString() %></td>
-                        <td><a href="Profile.aspx?userid=<%=users[i].Id %>"><%= users[i].FullName %></a></td>
+                        <td><a href="Profile.aspx?userid=<%=borrowers[i].Id%>"><%=borrowers[i].FullName %></a></td>
                         <td><%if (filter != "Completed")
                                 { %>N/A<%}
                                            else
@@ -64,7 +79,26 @@
                                                                                        else
                                                                                        {%>
                             <div class="table-data-feature">
-                                <a href="<%=string.Format("Lending.aspx?filter=Completed&id={0}", i)%>"<button class="item"><i class="fa fa-thumbs-up"></i></button></a>
+                                <a href="<%=string.Format("Lending.aspx?filter=Completed&id={0}", i)%>"
+                                    <button class="item"><i class="fa fa-thumbs-up"></i></button>
+                                </a>
+                            </div>
+                            <%} %>
+                            <%} %>
+                        </td>
+                        <%--Approve Button--%>
+                        <td><%if (filter != "Completed")
+                                { %>N/A<%}
+                                           else
+                                           {
+                                               if (tradings[i].LenderRatePoint != -1)
+                                               {%><%=tradings[i].LenderRatePoint %><%}
+                                                                                       else
+                                                                                       {%>
+                            <div class="table-data-feature">
+                                <a href="<%=string.Format("Lending.aspx?filter=Completed&id={0}", i)%>"
+                                    <button class="item"><i class="fa fa-thumbs-up"></i></button>
+                                </a>
                             </div>
                             <%} %>
                             <%} %>
@@ -99,10 +133,10 @@
                     <br />
                     <br />
                 </div>
-                <label id="ratepoint" style="display:none" runat="server">1</label>
-                <label id="trading" style="display:none" runat="server"></label>
+                <label id="ratepoint" style="display: none" runat="server">1</label>
+                <label id="trading" style="display: none" runat="server"></label>
                 <div class="modal-footer">
-                    <button class="btnRate"><a id="rate" href="<%=string.Format("Lending.aspx?trading={0}&point=1", trading.InnerText) %>" >Rate Now</a></button>
+                    <button class="btnRate"><a id="rate" href="<%=string.Format("Lending.aspx?trading={0}&point=1", trading.InnerText) %>">Rate Now</a></button>
                 </div>
             </div>
         </div>

@@ -19,13 +19,6 @@
             <%--Show ratings stars--%>
             <div class="rate-book">
                 <div class="rate">
-                    <select id="rate">
-                        <option value="1">1 Star</option>
-                        <option value="2">2 Star</option>
-                        <option value="3" selected>3 Star</option>
-                        <option value="4">4 Star</option>
-                        <option value="5">5 Star</option>
-                    </select>
                     <div id="star">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -130,7 +123,6 @@
                                     prevSlider = tradings[i - 1].TradedImages.Count;
                                 }
                             %>
-
                             <span class="dot" onclick="currentSlideImage(<%=prevSlider + j + 1%>)"></span>
                             <%}%>
                         </div>

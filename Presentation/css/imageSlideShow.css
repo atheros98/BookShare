@@ -3,6 +3,7 @@
 }
 /*Block for each slideshow container*/
 .slide-container-block {
+    height: 400px;
     display: block;
     position: relative;
     margin: auto;
