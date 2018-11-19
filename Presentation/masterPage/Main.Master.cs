@@ -13,9 +13,10 @@ namespace Presentation.masterPage
     {
         public Book RecentUploadBook;
         public User CurrentUser;
+        public int totalBooks = 0;
         public List<Category> Categories;
 
-        private int numCatagories = 5;
+        private int numCatagories = 10;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,7 +36,8 @@ namespace Presentation.masterPage
             {
                 CurrentUser = obj as User;
                 BookDAO bookDao = new BookDAO();
-                //RecentUploadBook = bookDao.GetLatestUploadBooks(CurrentUser.Id, 1)[0];
+                RecentUploadBook = bookDao.GetLatestUploadBooks(CurrentUser.Id, 1)[0];
+                totalBooks = bookDao.CountNumberUploadedBook(CurrentUser.Id);
             }
 
         }

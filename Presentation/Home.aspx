@@ -46,7 +46,7 @@
                 <%}
                 else
                 { %>
-                <a class="next-page" href="Home.aspx?pageIndex=<%=i %>"><%= i %></a>
+                <a class="next-page" href="<%=string.Format("Home.aspx?categoryID={0}&pageIndex={1}", categoryID, i) %>"><%= i %></a>
                 <%} %>
         <%} %>
         <%} %>
