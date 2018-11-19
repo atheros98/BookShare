@@ -63,6 +63,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminDAO.cs" />
     <Compile Include="BookDAO.cs" />
     <Compile Include="CategoryDAO.cs" />
     <Compile Include="DBContext.cs" />

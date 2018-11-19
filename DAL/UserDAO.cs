@@ -20,7 +20,7 @@ namespace DAL
             User user = null;
             SqlConnection conn = GetConnection();
             conn.Open();
-            SqlCommand cmd = new SqlCommand("select * from [User] where username = @username and password = @password", conn);
+            SqlCommand cmd = new SqlCommand("select * from [User] where username = @username and password = @password and status="+User.STATUS_ACTIVE, conn);
 
             cmd.Parameters.AddWithValue("username", username);
             cmd.Parameters.AddWithValue("password", password);
@@ -48,7 +48,7 @@ namespace DAL
             User user = null;
             string query = @"select top 1 u.id, u.username, u.avatar, u.userPoint
                             from [User] u, trading t
-                            where u.id = t.lenderID and t.tradingStatus= @status and t.bookID = @bookID order by (t.completedTime) desc";
+                            where u.id = t.lenderID and t.tradingStatus= @status and t.bookID = @bookID and u.status = "+User.STATUS_ACTIVE+" order by (t.completedTime) desc";
             
             SqlConnection conn = GetConnection();
             conn.Open();
@@ -77,9 +77,20 @@ namespace DAL
             return user;
         }
 
+        public int GetRowCount()
+        {
+            string query = "select count(id) from [User] where status = "+User.STATUS_ACTIVE;
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            int totalNumber = (int)cmd.ExecuteScalar();
+
+            return totalNumber;
+        }
+
         public override bool Delete(int id)
         {
-            string query = "delete from [User] where id=@id";
+            string query = "update [User] set status="+User.STATUS_DEACTIVE+" where id=@id";
             SqlConnection conn = GetConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -96,7 +107,7 @@ namespace DAL
         public override User GetById(int id)
         {
             User user = null;
-            string query = "select * from [User] where id = @id";
+            string query = "select * from [User] where id = @id and status = "+User.STATUS_ACTIVE;
 
             SqlConnection conn = GetConnection();
             conn.Open();
@@ -131,7 +142,7 @@ namespace DAL
             List<User> list = new List<User>();
             string query = @"with temp as(
 	                        select *, ROW_NUMBER() over(order by createdTime desc) row_num
-	                        from [User]
+	                        from [User] where status = "+ User.STATUS_ACTIVE+ @"
                             )
                             select * from temp
                             where row_num >= @start and row_num <=@end";
@@ -171,7 +182,7 @@ namespace DAL
 
         public int GetTotalPages()
         {
-            string query = "select count(id) from [User]";
+            string query = "select count(id) from [User] where status = "+User.STATUS_ACTIVE;
             SqlConnection conn = GetConnection();
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -185,9 +196,9 @@ namespace DAL
             try
             {
                 string query = @"insert into [User] (fullName, dob, username, password, email, 
-                                address, phoneNum, linkFacebook, avatar, userPoint, createdTime)
+                                address, phoneNum, linkFacebook, avatar, userPoint, createdTime, status)
                              values (@fullName, @dob, @username, @password, @email, 
-                                @address, @phoneNum, @linkFacebook, @avatar, @userPoint, @createdTime);";
+                                @address, @phoneNum, @linkFacebook, @avatar, @userPoint, @createdTime, "+User.STATUS_ACTIVE+");";
 
                 SqlConnection conn = GetConnection();
                 conn.Open();

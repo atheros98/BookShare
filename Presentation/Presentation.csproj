@@ -58,8 +58,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\AdminLogin.aspx" />
     <Content Include="admin\css\font-face.css" />
     <Content Include="admin\css\theme.css" />
+    <Content Include="admin\DashboardStatistics.aspx" />
     <Content Include="admin\fonts\poppins\poppins-v5-latin-100.svg" />
     <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.svg" />
     <Content Include="admin\fonts\poppins\poppins-v5-latin-200.svg" />
@@ -81,6 +83,7 @@
     <Content Include="admin\images\icon\logo.png" />
     <Content Include="admin\js\main.js" />
     <Content Include="admin\ManageUser.aspx" />
+    <Content Include="admin\ManageBook.aspx" />
     <Content Include="admin\RatifyPending.aspx" />
     <Content Include="admin\TestAdmin.aspx" />
     <Content Include="admin\vendor\animsition\animsition.min.css" />
@@ -216,6 +219,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\AdminLogin.aspx.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\AdminLogin.aspx.designer.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\Dashboard.Master.cs">
       <DependentUpon>Dashboard.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -223,12 +233,26 @@
     <Compile Include="admin\Dashboard.Master.designer.cs">
       <DependentUpon>Dashboard.Master</DependentUpon>
     </Compile>
+    <Compile Include="admin\DashboardStatistics.aspx.cs">
+      <DependentUpon>DashboardStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\DashboardStatistics.aspx.designer.cs">
+      <DependentUpon>DashboardStatistics.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\ManageUser.aspx.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\ManageUser.aspx.designer.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageBook.aspx.cs">
+      <DependentUpon>ManageBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageBook.aspx.designer.cs">
+      <DependentUpon>ManageBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\RatifyPending.aspx.cs">
       <DependentUpon>RatifyPending.aspx</DependentUpon>

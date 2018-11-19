@@ -11,6 +11,16 @@ namespace DAL
     {
         private int pageSize = 10;
 
+        public TradingDAO()
+        {
+
+        }
+
+        public TradingDAO(int pageSize)
+        {
+            pageSize = this.pageSize;
+        }
+
         public override bool Delete(int id)
         {
             throw new NotImplementedException();
@@ -45,6 +55,10 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@tradingID", tradingID);
 
                 cmd.ExecuteNonQuery();
+
+                int lenderID = GetTradingByID(tradingID).LenderID;
+                double NewPoint = GetUserRatePoint(lenderID);
+                UpdateUserPoint(lenderID, NewPoint);
             }
             catch (Exception ex)
             {
@@ -103,6 +117,10 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@tradingID", tradingID);
 
                 cmd.ExecuteNonQuery();
+
+                int id = GetTradingByID(tradingID).BorrowerID;
+                double NewPoint = GetUserRatePoint(id);
+                UpdateUserPoint(id, NewPoint);
             }
             catch (Exception ex)
             {
@@ -114,6 +132,9 @@ namespace DAL
                 conn.Close();
             }
         }
+
+
+
         public List<Trading> GetAvailableLending(int userID, int page)
         {
             int from = (page - 1) * pageSize + 1;
@@ -129,6 +150,19 @@ namespace DAL
 
             return GetTradingByCommand(query);
         }
+
+
+        public int Get_N_BookNumByStatus(int num, int status)
+        {
+            string query = "select top "+num+" count(id) from Trading where tradingStatus = " + status;
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            return (int)cmd.ExecuteScalar();
+        }
+
+
         public List<Trading> GetPendingLending(int userID, int page)
         {
             int from = (page - 1) * pageSize + 1;
@@ -226,6 +260,69 @@ namespace DAL
             }
         }
         //===============================================End of lending===============================================
+
+
+        public Trading GetTradingByID(int id)
+        {
+            Trading trading = null;
+            SqlConnection conn = GetConnection();
+            string query = "select * from Trading where id = " + id;
+            conn.Open();
+            SqlCommand cmd = new SqlCommand();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                trading = new Trading
+                {
+                    Id = reader.GetInt32(0),
+                    Description = reader.GetString(1),
+                    TradingStatus = reader.GetInt32(2),
+                    CompletedTime = reader.GetDateTime(3),
+                    LenderRatePoint = reader.IsDBNull(4) ? -1 : reader.GetFloat(4),
+                    BorrowerRatePoint = reader.IsDBNull(5) ? -1 : reader.GetFloat(5),
+                    BookID = reader.GetInt32(6),
+                    LenderID = reader.GetInt32(7),
+                    BorrowerID = reader.IsDBNull(8) ? -1 : reader.GetInt32(8)
+                };
+            }
+            return trading;
+        }
+
+        public double GetUserRatePoint(int userID)
+        {
+            double point = 0;
+            SqlConnection conn = GetConnection();
+            string query = @"select SUM(result.point)/ COUNT(result.point) from
+                            (select lenderRatePoint as point from Trading where lenderID = @id
+                            and lenderRatePoint is not null
+                            union select borrowerRatePoint as point from Trading where borrowerID = @id
+                            and borrowerRatePoint is not null) result";
+
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            cmd.Parameters.AddWithValue("@id", userID);
+            point = Convert.ToDouble(cmd.ExecuteScalar());
+            conn.Close();
+            return point;
+        }
+
+        public void UpdateUserPoint(int userID, double point)
+        {
+            SqlConnection conn = GetConnection();
+            string query = "update User set userPoint = @point where id = @userID";
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@point", point);
+            cmd.Parameters.AddWithValue("@userID", userID);
+
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+
         public List<Trading> GetTradingByCommand(string query)
         {
             SqlConnection conn = GetConnection();
@@ -499,5 +596,7 @@ namespace DAL
             int rows = getRowCount(type, userID);
             return rows / (pageSize) + ((rows % pageSize) != 0 ? 1 : 0);
         }
+
+        
     }
 }
