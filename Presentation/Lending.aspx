@@ -41,8 +41,14 @@
                         <th>No</th>
                         <th>Book Title</th>
                         <th>Start Date</th>
+                        <%if (filter != "Available")
+                            {%>
+                        <%--Delete button--%>
                         <th>Borrower</th>
+                        <%}%>
+                        
                         <th>Rating</th>
+
                         <%if (filter == "Available")
                             {%>
                         <%--Delete button--%>
@@ -52,12 +58,7 @@
                             {%>
                         <%--Approve button--%>
                         <th>Approve</th>
-                        <%}
-                            else
-                            {%>
-
-                        <%} %>
-                        <th>Approve</th>
+                        <%}%>    
                     </tr>
                 </thead>
                 <tbody>
@@ -69,7 +70,12 @@
                         <td><a href="BookDetail.aspx?id=<%=books[i].Id %>"><%= books[i].Title %></a></td>
                         <td><%= tradings[i].CompletedTime.ToShortDateString()%><br />
                             <%=tradings[i].CompletedTime.ToShortTimeString() %></td>
-                        <td><a href="Profile.aspx?userid=<%=borrowers[i].Id%>"><%=borrowers[i].FullName %></a></td>
+                        <%if (filter != "Available")
+                            { %>
+                            <td><a href="Profile.aspx?userid=<%=borrowers[i].Id%>"><%=borrowers[i].FullName %></a></td>
+                        <%} %>
+                        
+                        
                         <td><%if (filter != "Completed")
                                 { %>N/A<%}
                                            else
@@ -86,23 +92,34 @@
                             <%} %>
                             <%} %>
                         </td>
+                        <%--Delete Button--%>
+                        <%if (filter == "Available")
+                            { %>
+                        <%--if Filter = available system will display the delete button--%>
+                        <td>
+                            <div class="table-data-feature">
+                                <div class="btn">
+                                    <a href="<%=string.Format("Lending.aspx?filter=Delete&deleteID={0}", tradings[i].Id)%>">
+                                    X
+                                    </a>
+                                </div>
+                            </div>
+                        </td> 
+                        <%} %>
                         <%--Approve Button--%>
-                        <td><%if (filter != "Completed")
-                                { %>N/A<%}
-                                           else
-                                           {
-                                               if (tradings[i].LenderRatePoint != -1)
-                                               {%><%=tradings[i].LenderRatePoint %><%}
-                                                                                       else
-                                                                                       {%>
+                        <%if (filter == "Pending")
+                            { %>
+                        <%--if Filter = pending system will display the approve button--%>
+                        <td>
                             <div class="table-data-feature">
-                                <a href="<%=string.Format("Lending.aspx?filter=Completed&id={0}", i)%>"
-                                    <button class="item"><i class="fa fa-thumbs-up"></i></button>
-                                </a>
+                                <div class="btn">
+                                    <a href="<%=string.Format("Lending.aspx?filter=Approve&approveID={0}", tradings[i].Id)%>">
+                                    X
+                                    </a>
+                                </div>
                             </div>
-                            <%} %>
-                            <%} %>
-                        </td>
+                        </td> 
+                        <%} %>
                     </tr>
                     <tr class="spacer"></tr>
 
