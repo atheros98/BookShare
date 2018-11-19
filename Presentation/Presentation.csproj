@@ -58,8 +58,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\AdminLogin.aspx" />
     <Content Include="admin\css\font-face.css" />
     <Content Include="admin\css\theme.css" />
+    <Content Include="admin\DashboardStatistics.aspx" />
     <Content Include="admin\fonts\poppins\poppins-v5-latin-100.svg" />
     <Content Include="admin\fonts\poppins\poppins-v5-latin-100italic.svg" />
     <Content Include="admin\fonts\poppins\poppins-v5-latin-200.svg" />
@@ -81,6 +83,7 @@
     <Content Include="admin\images\icon\logo.png" />
     <Content Include="admin\js\main.js" />
     <Content Include="admin\ManageUser.aspx" />
+    <Content Include="admin\ManageBook.aspx" />
     <Content Include="admin\RatifyPending.aspx" />
     <Content Include="admin\TestAdmin.aspx" />
     <Content Include="admin\vendor\animsition\animsition.min.css" />
@@ -162,11 +165,9 @@
     <Content Include="admin\vendor\wow\animate.css" />
     <Content Include="admin\vendor\wow\wow.min.js" />
     <Content Include="BookDetail.aspx" />
-
     <Content Include="Borrowing.aspx" />
     <Content Include="css\bookDetail.css" />
     <Content Include="css\bootstrap.min.css" />
-
     <Content Include="css\boxform.css" />
     <Content Include="css\register.css" />
     <Content Include="css\style.css" />
@@ -183,7 +184,6 @@
     <Content Include="images\bookCover\pic2.jpg" />
     <Content Include="images\bookCover\pic3.jpg" />
     <Content Include="images\bookCover\pic4.jpg" />
-
     <Content Include="images\bookCover\pic5.jpg" />
     <Content Include="images\bookCover\pic6.jpg" />
     <Content Include="images\bookCover\pic7.jpg" />
@@ -203,16 +203,13 @@
     <Content Include="images\tradingImage\27_131869025134449713_1.jpg" />
     <Content Include="images\tradingImage\27_131869025134547308_2.jpg" />
     <Content Include="images\tradingImage\27_131869025134625404_3.jpg" />
-
     <Content Include="img\book-icon.svg" />
     <Content Include="img\cover.jpg" />
     <Content Include="img\CoverBook.jpg" />
     <Content Include="img\loader.gif" />
     <Content Include="javascript\checkPassword.js" />
     <Content Include="javascript\dateProcessing.js" />
-
     <Content Include="Lending.aspx" />
-
     <Content Include="Login.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Register.aspx" />
@@ -221,6 +218,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin\AdminLogin.aspx.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\AdminLogin.aspx.designer.cs">
+      <DependentUpon>AdminLogin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\Dashboard.Master.cs">
       <DependentUpon>Dashboard.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -228,12 +232,26 @@
     <Compile Include="admin\Dashboard.Master.designer.cs">
       <DependentUpon>Dashboard.Master</DependentUpon>
     </Compile>
+    <Compile Include="admin\DashboardStatistics.aspx.cs">
+      <DependentUpon>DashboardStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\DashboardStatistics.aspx.designer.cs">
+      <DependentUpon>DashboardStatistics.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\ManageUser.aspx.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\ManageUser.aspx.designer.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ManageBook.aspx.cs">
+      <DependentUpon>ManageBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ManageBook.aspx.designer.cs">
+      <DependentUpon>ManageBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\RatifyPending.aspx.cs">
       <DependentUpon>RatifyPending.aspx</DependentUpon>
@@ -256,7 +274,6 @@
     <Compile Include="BookDetail.aspx.designer.cs">
       <DependentUpon>BookDetail.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="Borrowing.aspx.cs">
       <DependentUpon>Borrowing.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -271,7 +288,6 @@
     <Compile Include="ErrorPage.aspx.designer.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -465,11 +481,9 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
-
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -123,7 +123,6 @@
                                     prevSlider = tradings[i - 1].TradedImages.Count;
                                 }
                             %>
-
                             <span class="dot" onclick="currentSlideImage(<%=prevSlider + j + 1%>)"></span>
                             <%}%>
                         </div>

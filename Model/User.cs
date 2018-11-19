@@ -20,8 +20,12 @@ namespace Model
         private string avatar;
         private double userPoint;
         private DateTime createdDate;
+        private int status;
 
         private string imageFolder = "/images/avatar/";
+
+        public const int STATUS_DEACTIVE = -1;
+        public const int STATUS_ACTIVE = 1;
 
         public User()
         {
@@ -181,6 +185,19 @@ namespace Model
             set
             {
                 createdDate = value;
+            }
+        }
+
+        public int Status
+        {
+            get
+            {
+                return status;
+            }
+
+            set
+            {
+                status = value;
             }
         }
 

@@ -11,6 +11,16 @@ namespace DAL
     {
         private int pageSize = 10;
 
+        public TradingDAO()
+        {
+
+        }
+
+        public TradingDAO(int pageSize)
+        {
+            pageSize = this.pageSize;
+        }
+
         public override bool Delete(int id)
         {
             throw new NotImplementedException();
@@ -122,12 +132,26 @@ namespace DAL
                             (
                             select *, ROW_NUMBER() over(order by t.completedTime desc) as row
                             from Trading t
-                            where tradingStatus = " + Trading.STATUS_AVAILABLE + @" and lenderID = " + userID + @"
-                            ) result
+                            where tradingStatus = " + Trading.STATUS_AVAILABLE + 
+                            @" and lenderID = " + userID + 
+                            @" ) result
                             where result.row between " + from + " and " + to + " ";
 
             return GetTradingByCommand(query);
         }
+
+
+        public int Get_N_BookNumByStatus(int num, int status)
+        {
+            string query = "select top "+num+" count(id) from Trading where tradingStatus = " + status;
+            SqlConnection conn = GetConnection();
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            return (int)cmd.ExecuteScalar();
+        }
+
+
         public List<Trading> GetPendingLending(int userID, int page)
         {
             int from = (page - 1) * pageSize + 1;
@@ -136,7 +160,8 @@ namespace DAL
                             (
                             select *, ROW_NUMBER() over(order by t.completedTime desc) as row
                             from Trading t
-                            where tradingStatus = " + Trading.STATUS_PENDING + @" and lenderID = " + userID + @"
+                            where tradingStatus = " + Trading.STATUS_PENDING + 
+                            @" and lenderID = " + userID + @"
                             ) result
                             where result.row between " + from + " and " + to + " ";
 
@@ -150,8 +175,9 @@ namespace DAL
                             (
                             select *, ROW_NUMBER() over(order by t.completedTime desc) as row
                             from Trading t
-                            where tradingStatus = " + Trading.STATUS_LENDING + @" and lenderID = " + userID + @"
-                            ) result
+                            where tradingStatus = " + Trading.STATUS_LENDING +
+                            @" and lenderID = " + userID + 
+                            @") result
                             where result.row between " + from + " and " + to + " ";
 
             return GetTradingByCommand(query);
@@ -165,8 +191,9 @@ namespace DAL
                             (
                             select *, ROW_NUMBER() over(order by t.completedTime desc) as row
                             from Trading t
-                            where tradingStatus = " + Trading.STATUS_COMPLETED + @" and lenderID = " + userID + @"
-                            ) result
+                            where tradingStatus = " + Trading.STATUS_COMPLETED +
+                            @" and lenderID = " + userID + 
+                            @") result
                             where result.row between " + from + " and " + to + " ";
 
             return GetTradingByCommand(query);
@@ -403,16 +430,20 @@ namespace DAL
                     break;
                     //=========================================Lending query=======================================
                 case "AvailableLending":
-                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_AVAILABLE + " and lenderID = " + userID; ;
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_AVAILABLE +
+                        " and lenderID = " + userID;
                     break;
                 case "PendingLending":
-                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_PENDING + " and lenderID = " + userID; ;
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_PENDING + 
+                        " and lenderID = " + userID;
                     break;
                 case "Lending":
-                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_LENDING + " and lenderID = " + userID; ;
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_LENDING +
+                        " and lenderID = " + userID;
                     break;
-                case "CompleteLending":
-                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_COMPLETED + " and lenderID = " + userID; ;
+                case "CompletedLending":
+                    sqlCommand = "select COUNT(*) from Trading where tradingStatus = " + Trading.STATUS_COMPLETED +
+                        " and lenderID = " + userID;
                     break;
             }
 
@@ -441,5 +472,7 @@ namespace DAL
             int rows = getRowCount(type, userID);
             return rows / (pageSize) + ((rows % pageSize) != 0 ? 1 : 0);
         }
+
+        
     }
 }

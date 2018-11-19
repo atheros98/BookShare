@@ -1,24 +1,27 @@
 ﻿using System;
-using System.Drawing;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using Model;
 using DAL;
 
-namespace Presentation
+namespace Presentation.admin
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class AdminLogin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             // set title for page
             Page.Title = "Login - BookShare";
 
-            if (Session["username"] != null && Request.QueryString["command"] != null)
+            if (Session["adminUsername"] != null && Request.QueryString["command"] == "logout")
             {
                 Session.RemoveAll();
-            }else if(Session["username"] != null)
+            }else if(Session["adminUsername"] != null)
             {
-                Response.Redirect("Home.aspx");
+                Response.Redirect("DashboardStatistics.aspx");
             }
         }
 
@@ -28,7 +31,7 @@ namespace Presentation
             string username = Request.Params["usernameTxt"].ToString();
             string password = Request.Params["passwordTxt"].ToString();
 
-            User user = new UserDAO().GetUserByUsernamePassword(username, password);
+            Admin user = new AdminDAO().GetAdminByUsernamePassword(username, password);
             if (user == null)
             {
                 errorTxt.Text = "Username or password is incorrect";
@@ -37,9 +40,9 @@ namespace Presentation
                 return;
             }
 
-            Session.Add("username", username);
-            Session.Add("currentUser", user);
-            Response.Redirect("Home.aspx");
+            Session.Add("adminUsername", username);
+            Session.Add("currentAdmin", user);
+            Response.Redirect("DashboardStatistics.aspx");
         }
     }
 }
